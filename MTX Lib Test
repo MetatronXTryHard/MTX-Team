@@ -10,7 +10,7 @@ library.flags = {}
 
 
 function library.create()
-    local main = game:GetObjects('rbxassetid://16550588402')[1]
+    local main = game:GetObjects('rbxassetid://16550588402')
     main.Parent = CoreGui
 
     UserInputService.InputBegan:Connect(function(input: InputObject, process: boolean)
