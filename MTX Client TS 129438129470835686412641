@@ -1,3 +1,269 @@
+--[[
+     V2.5 Soon By metatron_exe#0000 | And MTX Team / discord.gg/mtxstore
+
+
+███╗   ███╗████████╗██╗  ██╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗
+████╗ ████║╚══██╔══╝╚██╗██╔╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝
+██╔████╔██║   ██║    ╚███╔╝     ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   
+██║╚██╔╝██║   ██║    ██╔██╗     ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   
+██║ ╚═╝ ██║   ██║   ██╔╝ ██╗    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   
+╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝  
+
+                This script has been licensed using Luauth
+            Unauthorized distribution of this script is forbidden.
+      Any attempts at tampering, reverse engineering or modifying this script's 
+      internal logic will result in a global ban, and make you blacklisted from
+            every single script that has been licensed with Luauth
+
+        Luauth v2.5 for Roblox, #1 lua whitelisting system by Federal#9999
+--]]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--[[
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/MTX%20Client%20TS%20129438129470835686412641"))()
+]]
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local SaveManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MetatronX/main/UiMTXManager"))()
 local InterfaceManager = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MetatronX/main/UiMTXInterfaceManager"))()
@@ -8,14 +274,14 @@ local Window = Fluent:CreateWindow({
     TabWidth = 160,
     Size = UDim2.fromOffset(530, 350),
     Acrylic = false,
-    Theme = "Darker",
+    Theme = "Amethyst",
     MinimizeKey = Enum.KeyCode.G
 })
 local Tabs = {
     Main = Window:AddTab({ Title = "Farm", Icon = "home" }),
     Setting = Window:AddTab({ Title = "Setting", Icon = "settings" }),
     Stats = Window:AddTab({ Title = "Stats", Icon = "plus-circle" }),
-    Player = Window:AddTab({ Title = "Player", Icon = "baby" }),
+    Player = Window:AddTab({ Title = "Player", Icon = "user" }),
     Teleport = Window:AddTab({ Title = "Teleport", Icon = "palmtree" }),
     Fruit = Window:AddTab({ Title = "Fruit esp", Icon = "apple" }),
     Raid = Window:AddTab({ Title = "Dungeon", Icon = "sword" }),
@@ -23,7 +289,13 @@ local Tabs = {
     Shop = Window:AddTab({ Title = "Shop", Icon = "shopping-cart" }),
 	Misc = Window:AddTab({ Title = "Miscellaneous", Icon = "list-plus" }),
     Hop = Window:AddTab({ Title = "Info Server", Icon = "wifi" }),
+    UI = Window:AddTab({ Title = "Misc.", Icon = "more-horizontal" }),
 }
+Fluent:Notify({
+    Title = "MTX Client ❕",
+    Content = "Loading Anticheat Bypassing ✅...",
+    Duration = 5
+})
 local Options = Fluent.Options
 do
 --------------------------------------------------------------------------------------------------------------------------------------------
@@ -2267,6 +2539,8 @@ spawn(function()
 				end)
 			end
 		end)
+-- Fast attack Lag Fix
+
 
 	
 --No CLip Auto Farm
@@ -4771,6 +5045,67 @@ local SettingFarm = Tabs.Setting:AddSection("Farming")
     end)
     Options.ToggleBringMob:SetValue(true)
 
+    local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
+    CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
+    y = debug.getupvalues(CombatFrameworkR)[2]
+    spawn(function()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if _G.FastAttack then
+                if typeof(y) == "table" then
+                    pcall(function()
+                        CameraShaker:Stop()
+                        y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
+                        y.activeController.timeToNextAttack = 0
+                        y.activeController.hitboxMagnitude = 60
+                        y.activeController.active = false
+                        y.activeController.timeToNextBlock = 0
+                        y.activeController.focusStart = 1655503339.0980349
+                        y.activeController.increment = 1
+                        y.activeController.blocking = false
+                        y.activeController.attacking = false
+                        y.activeController.humanoid.AutoRotate = true
+                    end)
+                end
+            end
+        end)
+    end)
+    spawn(function()
+        game:GetService("RunService").RenderStepped:Connect(function()
+            if _G.FastAttack or _G.FastAttackCambodiakak == true then
+                game.Players.LocalPlayer.Character.Stun.Value = 0
+                game.Players.LocalPlayer.Character.Busy.Value = false        
+            end
+        end)
+    end)
+        local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
+        CamShake:Stop()
+        local Client = game.Players.LocalPlayer
+        local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
+        local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
+        spawn(function()
+            while task.wait() do
+                pcall(function()
+                    if not shared.orl then shared.orl = STOPRL.wrapAttackAnimationAsync end
+                    if not shared.cpc then shared.cpc = STOP.play end
+                        STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
+                        local Hits = STOPRL.getBladeHits(b,c,d)
+                        if Hits then
+                            if _G.FastAttack then
+                                STOP.play = function() end
+                                a:Play(0.01,0.01,0.01)
+                                func(Hits)
+                                STOP.play = shared.cpc
+                                wait(a.length * 0.5)
+                                a:Stop()
+                            else
+                                a:Play()
+                            end
+                        end
+                    end
+                end)
+            end
+        end)
+
         spawn(function()
             while wait() do
                 pcall(function()
@@ -7086,7 +7421,6 @@ Tabs.Misc:AddButton({
 
 local Mastery = Tabs.Misc:AddSection("Misc")
 
-
 local ToggleRejoin = Tabs.Misc:AddToggle("ToggleRejoin", {Title = "Auto Rejoin", Description = "",Default = true })
 ToggleRejoin:OnChanged(function(Value)
 	_G.AutoRejoin = Value
@@ -7493,8 +7827,8 @@ while wait() do
 end
 end)
 end
---
-
+----------------------------------------------------------------------------------------------------------------------------------------------
+-- Local Sever
 Tabs.Hop:AddParagraph({
     Title = "Local Server | Options",
 })
@@ -7607,73 +7941,24 @@ spawn(function()
 end)
 end
 ----------------------------------------------------------------------------------------------------------------------------------------------
-InterfaceManager:SetFolder("MTX Client")
-SaveManager:SetFolder("MTX Client/specific-game")
-Window:SelectTab(1)
+-- UI settings
+
+SaveManager:SetLibrary(Fluent)
+InterfaceManager:SetLibrary(Fluent)
+
+InterfaceManager:SetFolder("MTXClient.lua")
+SaveManager:SetFolder("MTXClient.lua")
+
+InterfaceManager:BuildInterfaceSection(Tabs.UI)
+SaveManager:BuildConfigSection(Tabs.UI)
+
+SaveManager:LoadAutoloadConfig(MTXClientSave.lua)
+
+Window:SelectTab(2)
+----------------------------------------------------------------------------------------------------------------------------------------------
 Fluent:Notify({
-    Title = "MTX Client",
-    Content = "MTX Client Loaded",
+    Title = "MTX Client ❕",
+    Content = "MTX Client Loaded...",
     Duration = 8
 })
-SaveManager:LoadAutoloadConfig()
--- Fast Attack Requirements
-local CameraShaker = require(game.ReplicatedStorage.Util.CameraShaker)
-CombatFrameworkR = require(game:GetService("Players").LocalPlayer.PlayerScripts.CombatFramework)
-y = debug.getupvalues(CombatFrameworkR)[2]
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack then
-            if typeof(y) == "table" then
-                pcall(function()
-                    CameraShaker:Stop()
-                    y.activeController.timeToNextAttack = (math.huge^math.huge^math.huge)
-                    y.activeController.timeToNextAttack = 0
-                    y.activeController.hitboxMagnitude = 60
-                    y.activeController.active = false
-                    y.activeController.timeToNextBlock = 0
-                    y.activeController.focusStart = 1655503339.0980349
-                    y.activeController.increment = 1
-                    y.activeController.blocking = false
-                    y.activeController.attacking = false
-                    y.activeController.humanoid.AutoRotate = true
-                end)
-            end
-        end
-    end)
-end)
-spawn(function()
-    game:GetService("RunService").RenderStepped:Connect(function()
-        if _G.FastAttack or _G.FastAttackCambodiakak == true then
-            game.Players.LocalPlayer.Character.Stun.Value = 0
-            game.Players.LocalPlayer.Character.Busy.Value = false        
-        end
-    end)
-end)
-    local CamShake = require(game.ReplicatedStorage.Util.CameraShaker)
-    CamShake:Stop()
-    local Client = game.Players.LocalPlayer
-    local STOP = require(Client.PlayerScripts.CombatFramework.Particle)
-    local STOPRL = require(game:GetService("ReplicatedStorage").CombatFramework.RigLib)
-    spawn(function()
-        while task.wait() do
-            pcall(function()
-                if not shared.orl then shared.orl = STOPRL.wrapAttackAnimationAsync end
-                if not shared.cpc then shared.cpc = STOP.play end
-                    STOPRL.wrapAttackAnimationAsync = function(a,b,c,d,func)
-                    local Hits = STOPRL.getBladeHits(b,c,d)
-                    if Hits then
-                        if _G.FastAttack then
-                            STOP.play = function() end
-                            a:Play(0.01,0.01,0.01)
-                            func(Hits)
-                            STOP.play = shared.cpc
-                            wait(a.length * 0.5)
-                            a:Stop()
-                        else
-                            a:Play()
-                        end
-                    end
-                end
-            end)
-        end
-    end)
+--------------------------------------------------------------------------------------------
