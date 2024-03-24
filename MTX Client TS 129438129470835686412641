@@ -531,112 +531,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 --[[
      V2.5 By metatron_exe#0000 | And MTX Team / discord.gg/mtxstore
 
@@ -7174,7 +7068,7 @@ spawn(function()
     local Dropdown = M:AddDropdown({
         Name = "Auto Select Team On Rejoin",
         Description = "Select the <font color='rgb(150, 0, 250)'>Team</font>",
-        Options = {"Pirate", "Marine"},
+        Options = {"Pirate Team", "Marine Team"},
         Default = "Marine",
         Flag = "Misc/AutoSelectTeam",
         Callback = function(Value)
@@ -7186,9 +7080,9 @@ spawn(function()
         while wait() do
             if getgenv().SelectTeam then
                 pcall(function()
-                    if getgenv().SelectTeam == "Marine" then
+                    if getgenv().SelectTeam == "Marine Team" then
                         getgenv().Team = "Marine"
-                    elseif getgenv().SelectTeam == "Pirate" then
+                    elseif getgenv().SelectTeam == "Pirate Team" then
                         getgenv().Team = "Pirate"
                     end
                 end)
@@ -7196,25 +7090,6 @@ spawn(function()
         end
     end)
 ----------------------------------------------------------------------------------------------------------------------------------------
-    if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
-        repeat wait()
-            if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
-                if getgenv().Team == "Pirate" then
-                    for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated)) do                                                                                                
-                        v.Function()
-                    end
-                elseif getgenv().Team == "Marine" then
-                    for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton.Activated)) do                                                                                                
-                        v.Function()
-                    end
-                else
-                    for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated)) do                                                                                                
-                        v.Function()
-                    end
-                end
-            end
-        until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
-    end
 ----------------------------------------------------------------------------------------------------------------------------------------
     local Anti = M:AddParagraph({"Bypass Flag AC...", "Bypass Ativo ✅."})
     local Toggle = M:AddToggle({"Bypass AC Disabler ❕.", true, function(Value)
@@ -7251,6 +7126,25 @@ spawn(function()
 --------------------------------------------------------------------------------------------------------------------------------------------
 -- Fast attack no animation --
 --------------------------------------------------------------------------------------------------------------------------------------------
+if game:GetService("Players").LocalPlayer.PlayerGui.Main:FindFirstChild("ChooseTeam") then
+    repeat wait()
+        if game:GetService("Players").LocalPlayer.PlayerGui:WaitForChild("Main").ChooseTeam.Visible == true then
+            if getgenv().Team == "Pirate" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            elseif getgenv().Team == "Marine" then
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Marines.Frame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            else
+                for i, v in pairs(getconnections(game:GetService("Players").LocalPlayer.PlayerGui.Main.ChooseTeam.Container.Pirates.Frame.TextButton.Activated)) do                                                                                                
+                    v.Function()
+                end
+            end
+        end
+    until game.Players.LocalPlayer.Team ~= nil and game:IsLoaded()
+end
 function getAllBladeHits(Sizes)
     local Hits = {}
     local Client = game.Players.LocalPlayer
