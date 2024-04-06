@@ -33,7 +33,9 @@ Bypass = hookmetamethod(game, "__namecall", function(self, ...)
         end
         return Bypass(self, ...)
  end)
---// Cache --
+
+
+--// Cache
 
 local game, workspace = game, workspace
 local getrawmetatable, getmetatable, setmetatable, pcall, getgenv, next, tick = getrawmetatable, getmetatable, setmetatable, pcall, getgenv, next, tick
@@ -45,7 +47,7 @@ local __index = GameMetatable.__index
 local __newindex = GameMetatable.__newindex
 local GetService = __index(game, "GetService")
 
---// Services & Functions --
+--// Services & Functions
 
 local RunService = GetService(game, "RunService")
 local UserInputService = GetService(game, "UserInputService")
@@ -60,7 +62,7 @@ local GetPartsObscuringTarget = __index(Camera, "GetPartsObscuringTarget")
 local GetMouseLocation = __index(UserInputService, "GetMouseLocation")
 local GetPlayers = __index(Players, "GetPlayers")
 
---// Variables --
+--// Variables
 
 local RequiredDistance, Typing, Running, ServiceConnections, Animation, OriginalSensitivity = 2000, false, false, {}
 local Connect, Disconnect, GetRenderProperty, SetRenderProperty = __index(game, "DescendantAdded").Connect
@@ -85,16 +87,16 @@ do
 	Disconnect = TemporaryConnection.Disconnect
 	Disconnect(TemporaryConnection)
 end
- 
---// Checking for multiple processes --
 
-if InfinityWareAimbot then
-	InfinityWareAimbot:Exit()
+--// Checking for multiple processes
+
+if ExunysDeveloperAimbot then
+	ExunysDeveloperAimbot:Exit()
 end
 
---// Environment --
+--// Environment
 
-getgenv().InfinityWareAimbot = {
+getgenv().ExunysDeveloperAimbot = {
 	DeveloperSettings = {
 		UpdateMode = "RenderStepped",
 		TeamCheckOption = "TeamColor",
@@ -104,7 +106,7 @@ getgenv().InfinityWareAimbot = {
 	Settings = {
 		Enabled = true,
 
-		TeamCheck = true,
+		TeamCheck = false,
 		AliveCheck = true,
 		WallCheck = false,
 
@@ -144,9 +146,9 @@ getgenv().InfinityWareAimbot = {
 	FOVCircleOutline = Drawingnew("Circle")
 }
 
-local Environment = getgenv().InfinityWareAimbot
+local Environment = getgenv().ExunysDeveloperAimbot
 
---// Core Functions --
+--// Core Functions
 
 local FixUsername = function(String)
 	local Result
@@ -323,7 +325,7 @@ local Load = function()
 	end)
 end
 
---// Typing Check --
+--// Typing Check
 
 ServiceConnections.TypingStartedConnection = Connect(__index(UserInputService, "TextBoxFocused"), function()
 	Typing = true
@@ -333,9 +335,9 @@ ServiceConnections.TypingEndedConnection = Connect(__index(UserInputService, "Te
 	Typing = false
 end)
 
---// Functions --
+--// Functions
 
-function Environment.Exit(self) -- METHOD | InfinityWareAimbot:Exit(<void>)
+function Environment.Exit(self) -- METHOD | ExunysDeveloperAimbot:Exit(<void>)
 	assert(self, "EXUNYS_AIMBOT-V3.Exit: Missing parameter #1 \"self\" <table>.")
 
 	for Index, _ in next, ServiceConnections do
@@ -346,10 +348,10 @@ function Environment.Exit(self) -- METHOD | InfinityWareAimbot:Exit(<void>)
 
 	self.FOVCircle:Remove()
 	self.FOVCircleOutline:Remove()
-	getgenv().InfinityWareAimbot = nil
+	getgenv().ExunysDeveloperAimbot = nil
 end
 
-function Environment.Restart() -- InfinityWareAimbot.Restart(<void>)
+function Environment.Restart() -- ExunysDeveloperAimbot.Restart(<void>)
 	for Index, _ in next, ServiceConnections do
 		Disconnect(ServiceConnections[Index])
 	end
@@ -357,7 +359,7 @@ function Environment.Restart() -- InfinityWareAimbot.Restart(<void>)
 	Load()
 end
 
-function Environment.Blacklist(self, Username) -- METHOD | InfinityWareAimbot:Blacklist(<string> Player Name)
+function Environment.Blacklist(self, Username) -- METHOD | ExunysDeveloperAimbot:Blacklist(<string> Player Name)
 	assert(self, "EXUNYS_AIMBOT-V3.Blacklist: Missing parameter #1 \"self\" <table>.")
 	assert(Username, "EXUNYS_AIMBOT-V3.Blacklist: Missing parameter #2 \"Username\" <string>.")
 
@@ -368,7 +370,7 @@ function Environment.Blacklist(self, Username) -- METHOD | InfinityWareAimbot:Bl
 	self.Blacklisted[#self.Blacklisted + 1] = Username
 end
 
-function Environment.Whitelist(self, Username) -- METHOD | InfinityWareAimbot:Whitelist(<string> Player Name)
+function Environment.Whitelist(self, Username) -- METHOD | ExunysDeveloperAimbot:Whitelist(<string> Player Name)
 	assert(self, "EXUNYS_AIMBOT-V3.Whitelist: Missing parameter #1 \"self\" <table>.")
 	assert(Username, "EXUNYS_AIMBOT-V3.Whitelist: Missing parameter #2 \"Username\" <string>.")
 
@@ -383,8 +385,10 @@ function Environment.Whitelist(self, Username) -- METHOD | InfinityWareAimbot:Wh
 	tableremove(self.Blacklisted, Index)
 end
 
-Environment.Load = Load -- InfinityWareAimbot.Load()
+Environment.Load = Load -- ExunysDeveloperAimbot.Load()
 
 setmetatable(Environment, {__call = Load})
 
 return Environment
+
+ExunysDeveloperAimbot()
