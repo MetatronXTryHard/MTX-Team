@@ -1,5 +1,5 @@
 
-# Aura Interface Suite (AuraIS)
+# MTX Client UI Interface Suite (MTX UI)
 
 its very pro trust me bro
 
@@ -34,7 +34,7 @@ its very pro trust me bro
 
 ### 1. Import the module:
 ```lua
-local AuraIS = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/MTX%20Team%20Realise%20UI%20Lib"))()
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/MTX%20Team%20Realise%20UI%20Lib"))()
 ```
 
 ## Creating Library
@@ -48,10 +48,7 @@ Example:
 
 
 ```lua
-local Library = AuraIS:CreateLibrary({
-    Name = "Example", -- Name
-    Icon = "rbxassetid://12974454446" -- Icon
-})
+local Main_Function = Library.CreateMain({Title = 'Main', Desc = 'Powered By MTX-Team'})
 ```
 
 ___
@@ -65,7 +62,7 @@ Example:
 
 
 ```lua
-local SecTabDemo = Library:CreateTab("Hi" --[[ title ]], "rbxassetid://12974454446" -- [[ icon ]])
+local F = Main_Function.CreatePage({Page_Name = 'Farm', Page_Title = 'Farm | Options'})
 ```
 
 ___
@@ -82,20 +79,7 @@ Example:
 
 
 ```lua
-local SectionDemo = TabDemo:CreateSection("Section 1" --[[ section title ]], "Normal") -- Normal
-```
-
-#### Foldable Section:
-
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/f273bb51-ce58-4052-88d1-5a437aea2aef)
-
-
-```lua
-local SecSectionDemo = TabDemo:CreateSection("Section 2" -- [[ section title ]], "Foldable") -- Foldable
+local Section1 = F.CreateSection("Section1")
 ```
 
 ## Creating Elements
@@ -109,12 +93,10 @@ Example:
 
 
 ```lua
-local ButtonDemo = SectionDemo:CreateButton({
-    Name = "Button Example",
-    Callback = function()
-        print("Button 1 clicked")
-    end,
-})
+Section1.CreateButton({
+   Title = "Meu buttom"}, function(state)
+    print("O estado do buttom é: " .. tostring(state))
+end)
 ```
 
 ---
@@ -130,32 +112,13 @@ Example:
 
 
 ```lua
-local SwitchToggle = SectionDemo:CreateToggle("Normal", {
-    Name = "Toggle Example",
-    Callback = function(Value)
-        print("Toggle value: " .. tostring(Value))
-    end,
-})
+Section1.CreateToggle({
+    Title = "Meu Toggle",
+    Desc = "Descrição do meu Toggle",
+    Default = false}, function(state)
+    print("O estado do Toggle é: " .. tostring(state))
+end)
 ```
-
-#### Radio Toggle
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/d7c0f1a9-9aa5-4969-bca4-d720ed60a585)
-
-
-```lua
-local RadioToggle = SectionDemo:CreateToggle("Radio", {
-    Name = "Toggle Example",
-    Callback = function(Value)
-        print("Toggle value: " .. tostring(Value))
-    end,
-})
-```
-
----
 
 ### Textbox
 
@@ -166,14 +129,13 @@ Example:
 
 
 ```lua
-local TextboxDemo = SectionDemo:CreateTextbox({
-	Name = "Input Example",
-	PlaceholderText = "Input Placeholder",
-	RemoveTextAfterFocusLost = true,
-	Callback = function(Text)
-		print(Text)
-	end,
- })
+Section1.CreateBox({
+    Title = "Meu Título",
+    Placeholder = "Digite algo aqui...",
+    Default = "Texto padrão",
+    Number = true}, function(text)
+    print("O texto inserido é: " .. text)
+end)
 ```
 
 ---
@@ -187,17 +149,14 @@ Example:
 
 
 ```lua
-local SliderDemo = SectionDemo:CreateSlider({
-	Name = "Slider Example",
-	Value = {0, 100},
-	Increment = 10,
-	Suffix = "Dragons",
-	CurrentValue = 10,
-	Flag = "Slider1",
-	Callback = function(Value)
-        print(Value)
-	end,
- })
+Section1.CreateSlider({
+    Title = "Meu Slider",
+    Min = 0,
+    Max = 100,
+    Precise = true,
+    Default = 50}, function(value)
+    print("O valor do slider é: " .. value)
+end)
 ```
 
 ---
@@ -211,38 +170,15 @@ Example:
 
 
 ```lua
-local DropdownDemo = SectionDemo:CreateDropdown({
-	Name = "Dropdown Example",
-	Options = {"Cake", "Pie", "Milkshake", "Cupcake"},
-	CurrentOption = {"Option 1"},
-	MultipleOptions = false,
-	Flag = "Dropdown1",
-	Callback = function(v)
-		print(v)
-	end,
-})
+Section1.CreateDropdown({
+    Title = "Meu Dropdown",
+    List = {"Opção 1", "Opção 2", "Opção 3"},
+    Search = true,
+    Selected = "Opção 1",
+    Default = "Opção 2"}, function(selectedOption)
+    print("A opção selecionada é: " .. selectedOption)
+end)
 ```
-
----
-
-### Color Picker
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/9a17431d-c3b0-49b0-89c4-aef07e6568f4)
-
-
-```lua
-local ColorPickerDemo = SectionDemo:CreateColorPicker({
-    Name = "Color Picker",
-    Callback = function(newColor)
-        print(newColor)
-    end,
-})
-```
-
----
 
 ## Other Elements
 
@@ -255,62 +191,8 @@ Example:
 
 
 ```lua
-local LabelDemo = SectionDemo:CreateLabel({
-	Description = "This is a sample description"
-})
+local Label Section1.CreateLabel({Title = "Label"})
 ```
-
----
-
-### Paragraph
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/6d0e58c8-88d3-4c17-9131-59ccfd378e71)
-
-
-```lua
-local ParagraphDemo = SectionDemo:CreateParagraph({
-	Title = "My Paragraph",
-	Description = "This is a sample paragraph."
-})
-```
-
----
-
-### Card
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/b6601685-a168-4c17-a2a6-6ddbe3db856a)
-
-
-```lua
-local CardDemo = SectionDemo:CreateCard({
-	Title = "My Card",
-	Description = "This is a sample card.",
-	SecondaryTitle = "Card State",
-	Image = "rbxassetid://14167800463",
-	Buttons = {
-		Button1 = {
-			Name = "Button 1",
-			Callback = function()
-				print("Button 1 clicked")
-			end
-		},
-		Button2 = {
-			Name = "Button 2",
-			Callback = function()
-				print("Button 2 clicked")
-			end
-		}
-	}
-})
-```
-
----
 
 ## Notification
 
@@ -323,75 +205,5 @@ Example:
 
 
 ```lua
-AuraIS:Notify("Normal" , { -- Notify Demo (Normal)
-			Title = "Notification Title",
-			Content = "Notification Content",
-			Duration = 5,
-			Image = "rbxassetid://4483362458",
-			Actions = {
-			   Ignore = {
-				  Name = "Okay!",
-				  Callback = function()
-				  print("The user tapped Okay!")
-			   end
-			},
-		 },
-		 })
-
-		 AuraIS:Notify("Warning" , { -- Notify Demo (Warning)
-			Title = "Notification Title",
-			Content = "Notification Content",
-			Duration = 5,
-			Image = "rbxassetid://4483362458",
-			Actions = {
-			   Ignore = {
-				  Name = "Okay!",
-				  Callback = function()
-				  print("The user tapped Okay!")
-			   end
-			},
-		 },
-		 })
-
-		 AuraIS:Notify("Error" , { -- Notify Demo (Error)
-			Title = "Notification Title",
-			Content = "Notification Content",
-			Duration = 5,
-			Image = "rbxassetid://4483362458",
-			Actions = {
-			   Ignore = {
-				  Name = "Okay!",
-				  Callback = function()
-				  print("The user tapped Okay!")
-			   end
-			},
-		 },
-		 })
-```
-
----
-
-### Window Notifications
-
-Example:
-
-
-![image](https://github.com/GamingScripter/Darkrai-Y/assets/102379753/ca564ed2-149f-4fef-ae04-fcb6c7de331c)
-
-
-```lua
-Library:Notify({ -- Notify Demo (Inside Tab)
-			Title = "Notification Title",
-			Content = "Notification Content",
-			Duration = 5,
-			Image = "rbxassetid://4483362458",
-			Actions = {
-			   Ignore = {
-				  Name = "Okay!",
-				  Callback = function()
-				  print("The user tapped Okay!")
-			   end
-			},
-		 },
-		 })
+Library.CreateNoti({Title = 'UI', Desc = 'MTX Client Loaded...', ShowTime = 5})
 ```
