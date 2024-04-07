@@ -16,37 +16,38 @@ Powered By metatron_exe#0000 | And MTX-Team / discord.gg/mtxstore
             every single script that has been licensed with Luauth
 
         Luauth v2.5 for Roblox, #1 lua whitelisting system by Federal#9999
---]]
+]]
+
 if getgenv().MTXClientUI then 
 	if game.CoreGui:FindFirstChild("MTX Client UI") then for i, v in ipairs(game.CoreGui:GetChildren()) do if string.find(v.Name,  "MTX Client") then v:Destroy() end end end
 end
 getgenv().MTXClientUI = true
 local IndexUIColor = {
     ["Border Color"] = Color3.fromRGB(150, 0, 255),
-    ["Click Effect Color"] = Color3.fromRGB(230, 230, 230),
-    ["Setting Icon Color"] = Color3.fromRGB(230, 230, 230),
+    ["Click Effect Color"] = Color3.fromRGB(25, 25, 25),
+    ["Setting Icon Color"] = Color3.fromRGB(25, 25, 25),
     ["Logo Image"] = "rbxassetid://16550588402",
     ["Search Icon Color"] = Color3.fromRGB(255, 255, 255),
     ["Search Icon Highlight Color"] = Color3.fromRGB(150, 0, 255),
     ["GUI Text Color"] = Color3.fromRGB(230, 230, 230),
-    ["Text Color"] = Color3.fromRGB(230, 230, 230),
+    ["Text Color"] = Color3.fromRGB(255, 255, 255),
     ["Placeholder Text Color"] = Color3.fromRGB(178, 178, 178),
     ["Title Text Color"] = Color3.fromRGB(150, 0, 255),
-    ["Background Main Color"] = Color3.fromRGB(43, 43, 43),
-    ["Background 1 Color"] = Color3.fromRGB(43, 43, 43),
+    ["Background Main Color"] = Color3.fromRGB(0, 0, 0),
+    ["Background 1 Color"] = Color3.fromRGB(0, 0, 0),
     ["Background 1 Transparency"] = 0,
-    ["Background 2 Color"] = Color3.fromRGB(90, 90, 90),
-    ["Background 3 Color"] = Color3.fromRGB(53, 53, 53),
+    ["Background 2 Color"] = Color3.fromRGB(25, 25, 25),
+    ["Background 3 Color"] = Color3.fromRGB(0, 0, 0),
     ["Background Image"] = "",
     ["Page Selected Color"] = Color3.fromRGB(150, 0, 255),
     ["Section Text Color"] = Color3.fromRGB(150, 0, 255),
     ["Section Underline Color"] = Color3.fromRGB(150, 0, 255),
     ["Toggle Border Color"] = Color3.fromRGB(150, 0, 255),
-    ["Toggle Checked Color"] = Color3.fromRGB(230, 230, 230),
+    ["Toggle Checked Color"] = Color3.fromRGB(255, 255, 255),
     ["Toggle Desc Color"] = Color3.fromRGB(185, 185, 185),
     ["Button Color"] = Color3.fromRGB(150, 0, 255),
     ["Label Color"] = Color3.fromRGB(150, 0, 255),
-    ["Dropdown Icon Color"] = Color3.fromRGB(230, 230, 230),
+    ["Dropdown Icon Color"] = Color3.fromRGB(255, 255, 255),
     ["Dropdown Selected Color"] = Color3.fromRGB(150, 0, 255),
     ["Textbox Highlight Color"] = Color3.fromRGB(150, 0, 255),
     ["Box Highlight Color"] = Color3.fromRGB(150, 0, 255),
@@ -55,7 +56,7 @@ local IndexUIColor = {
     ["Tween Animation 1 Speed"] = 0.25,
     ["Tween Animation 2 Speed"] = 0.5,
     ["Tween Animation 3 Speed"] = 0.1,
-	["Text Stroke Transparency"] = .5
+	["Text Stroke Transparency"] = 0.5
 }
 
 
@@ -2341,6 +2342,8 @@ function Library.CreateMain(Setting)
 
 end
 
-Library.CreateNoti({Title = 'UI', Desc = 'The UI automatically hides once executed. Press the button at the bottom left of the screen to show the GUI', ShowTime = 10})
+Library.CreateNoti({Title = 'UI', Desc = 'The UI automatically hides once executed. Press the button at the bottom left of the screen to show the GUI', ShowTime = 5})
+
+local Main_Function = Library.CreateMain({Title = 'Main', Desc = 'Powered By MTX-Team'})
 
 return Library
