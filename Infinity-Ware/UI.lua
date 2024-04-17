@@ -155,8 +155,8 @@ leaf = true
 local maker = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/Infinity-Ware/UI%20Modules.lua"))();
     local make = maker.Instance
     
-    local x = 500
-    local y = 350
+    local x = 550
+    local y = 375
     
     local SupportedProperties = {
         "TextTransparency"  , "ImageTransparency" , "BackgroundTransparency"
