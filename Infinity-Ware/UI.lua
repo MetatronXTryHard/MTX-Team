@@ -155,7 +155,7 @@ leaf = true
 local maker = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/Infinity-Ware/UI%20Modules.lua"))();
     local make = maker.Instance
     
-    local x = 550
+    local x = 625
     local y = 375
     
     local SupportedProperties = {
