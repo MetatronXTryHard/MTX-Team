@@ -752,7 +752,7 @@ local opened = true
                 })
     
                 function insection.Component(component , arg1, arg2, arg3, arg4, arg5, arg6, arg7)
-                    if component == "Card" then
+                    if component == "Paragraph" then
                         local TitleLabel = make("TextLabel",{
                             Parent = Section;
                             Name = text;
