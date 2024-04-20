@@ -22,7 +22,7 @@ function ui:load()
 	-- StarterGui.DeveloperConsole.Holder
 	G2L["2"] = Instance.new("Frame", G2L["1"]);
 	G2L["2"]["BorderSizePixel"] = 0;
-	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(27, 31, 40);
+	G2L["2"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["2"]["AnchorPoint"] = Vector2.new(0.5, 0.5);
 	G2L["2"]["Size"] = UDim2.new(0, 490, 0, 284);
 	G2L["2"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -37,7 +37,7 @@ function ui:load()
 	G2L["4"] = Instance.new("Frame", G2L["2"]);
 	G2L["4"]["ZIndex"] = 999999999;
 	G2L["4"]["BorderSizePixel"] = 0;
-	G2L["4"]["BackgroundColor3"] = Color3.fromRGB(34, 38, 50);
+	G2L["4"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["4"]["Size"] = UDim2.new(0, 490, 0, 48);
 	G2L["4"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["4"]["Name"] = [[Topbar]];
@@ -49,7 +49,7 @@ function ui:load()
 	-- StarterGui.DeveloperConsole.Holder.Topbar.cover
 	G2L["6"] = Instance.new("Frame", G2L["4"]);
 	G2L["6"]["BorderSizePixel"] = 0;
-	G2L["6"]["BackgroundColor3"] = Color3.fromRGB(34, 38, 50);
+	G2L["6"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["6"]["Size"] = UDim2.new(0, 490, 0, 12);
 	G2L["6"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["6"]["Position"] = UDim2.new(0, 0, 0.75, 0);
@@ -59,7 +59,7 @@ function ui:load()
 	G2L["7"] = Instance.new("Frame", G2L["4"]);
 	G2L["7"]["ZIndex"] = 2;
 	G2L["7"]["BorderSizePixel"] = 0;
-	G2L["7"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["7"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["7"]["Size"] = UDim2.new(0, 48, 0, 48);
 	G2L["7"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["7"]["Position"] = UDim2.new(0.9020408391952515, 0, 0, 0);
@@ -73,7 +73,7 @@ function ui:load()
 	G2L["9"] = Instance.new("Frame", G2L["7"]);
 	G2L["9"]["ZIndex"] = 2;
 	G2L["9"]["BorderSizePixel"] = 0;
-	G2L["9"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["9"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["9"]["Size"] = UDim2.new(0, 48, 0, 12);
 	G2L["9"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["9"]["Position"] = UDim2.new(0, 0, 0.75, 0);
@@ -83,7 +83,7 @@ function ui:load()
 	G2L["a"] = Instance.new("Frame", G2L["7"]);
 	G2L["a"]["ZIndex"] = 2;
 	G2L["a"]["BorderSizePixel"] = 0;
-	G2L["a"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["a"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["a"]["Size"] = UDim2.new(0, 9, 0, 48);
 	G2L["a"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["a"]["Name"] = [[cover-left]];
@@ -144,7 +144,7 @@ function ui:load()
 	G2L["11"] = Instance.new("Frame", G2L["4"]);
 	G2L["11"]["ZIndex"] = 999999999;
 	G2L["11"]["BorderSizePixel"] = 0;
-	G2L["11"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["11"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["11"]["Size"] = UDim2.new(0, 48, 0, 48);
 	G2L["11"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["11"]["Position"] = UDim2.new(0.8040816187858582, 0, 0, 0);
@@ -211,7 +211,7 @@ function ui:load()
 	G2L["19"] = Instance.new("Frame", G2L["2"]);
 	G2L["19"]["ZIndex"] = 888888888;
 	G2L["19"]["BorderSizePixel"] = 0;
-	G2L["19"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["19"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["19"]["AnchorPoint"] = Vector2.new(0.5, 0);
 	G2L["19"]["Size"] = UDim2.new(0, 478, 0, 42);
 	G2L["19"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
@@ -227,7 +227,7 @@ function ui:load()
 	G2L["1b"] = Instance.new("Frame", G2L["19"]);
 	G2L["1b"]["ZIndex"] = 999999999;
 	G2L["1b"]["BorderSizePixel"] = 0;
-	G2L["1b"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["1b"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["1b"]["Size"] = UDim2.new(0, 38, 0, 38);
 	G2L["1b"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["1b"]["Name"] = [[Timestamp]];
@@ -253,7 +253,7 @@ function ui:load()
 	G2L["1e"] = Instance.new("Frame", G2L["19"]);
 	G2L["1e"]["ZIndex"] = 999999999;
 	G2L["1e"]["BorderSizePixel"] = 0;
-	G2L["1e"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["1e"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["1e"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["1e"]["AutomaticSize"] = Enum.AutomaticSize.XY;
 	G2L["1e"]["Name"] = [[cmdr]];
@@ -309,7 +309,7 @@ function ui:load()
 	-- StarterGui.DeveloperConsole.Function.Blank
 	G2L["26"] = Instance.new("Frame", G2L["25"]);
 	G2L["26"]["BorderSizePixel"] = 0;
-	G2L["26"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["26"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["26"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["26"]["AutomaticSize"] = Enum.AutomaticSize.XY;
 	G2L["26"]["Name"] = [[Blank]];
@@ -321,7 +321,7 @@ function ui:load()
 	-- StarterGui.DeveloperConsole.Function.Blank.Timestamp
 	G2L["28"] = Instance.new("Frame", G2L["26"]);
 	G2L["28"]["BorderSizePixel"] = 0;
-	G2L["28"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["28"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["28"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["28"]["AutomaticSize"] = Enum.AutomaticSize.XY;
 	G2L["28"]["Name"] = [[Timestamp]];
@@ -360,7 +360,7 @@ function ui:load()
 	-- StarterGui.DeveloperConsole.Function.Blank.Message
 	G2L["2d"] = Instance.new("Frame", G2L["26"]);
 	G2L["2d"]["BorderSizePixel"] = 0;
-	G2L["2d"]["BackgroundColor3"] = Color3.fromRGB(39, 43, 57);
+	G2L["2d"]["BackgroundColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["2d"]["BorderColor3"] = Color3.fromRGB(0, 0, 0);
 	G2L["2d"]["AutomaticSize"] = Enum.AutomaticSize.XY;
 	G2L["2d"]["Name"] = [[Message]];
