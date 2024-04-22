@@ -1,19 +1,18 @@
 --Settings--
 local ESP = {
     Enabled = false,
-    Players = true,
-    Tracers = false,
-    Names = false,
-    TeamColor = false,
-    TeamMates = false,
-    FaceCamera = false,
-    Boxes = false,
+    Boxes = true,
     BoxShift = CFrame.new(0,-1.5,0),
 	BoxSize = Vector3.new(4,6,0),
     Color = Color3.fromRGB(105, 0, 255),
+    FaceCamera = false,
+    Names = true,
+    TeamColor = true,
     Thickness = 2,
     AttachShift = 1,
-
+    TeamMates = true,
+    Players = true,
+    
     Objects = setmetatable({}, {__mode="kv"}),
     Overrides = {}
 }
