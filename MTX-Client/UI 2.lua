@@ -6,8 +6,8 @@ getgenv().MTXClient = true
 
 local IndexUIColor = {
     ["Border Color"] = Color3.fromRGB(105, 0, 255),
-    ["Click Effect Color"] = Color3.fromRGB(150, 0, 255),
-    ["Setting Icon Color"] = Color3.fromRGB(150, 0, 255),
+    ["Click Effect Color"] = Color3.fromRGB(105, 0, 255),
+    ["Setting Icon Color"] = Color3.fromRGB(105, 0, 255),
     ["Logo Image"] = "rbxassetid://16550588402",
     ["Search Icon Color"] = Color3.fromRGB(255, 255, 255),
     ["Search Icon Highlight Color"] = Color3.fromRGB(105, 0, 255),
@@ -87,7 +87,7 @@ function DCorrectTable(tabl)
 	return ret
 end
 local HttpService = game:GetService("HttpService")
-local SaveCustomFileName = "MTXClient_UI_Config.json"
+local SaveCustomFileName = "!MTXClient_UI_Config.json"
  
 
 function SaveCustomUISettings()
