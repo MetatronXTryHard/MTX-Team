@@ -215,6 +215,8 @@ Library_Function.Gui = Instance.new('ScreenGui')
 Library_Function.Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Library_Function.Gui.Name = 'MTX Client'
 
+getgenv().UIToggled = false
+
 getgenv().ReadyForGuiLoaded = false
 spawn(function()
 	Library_Function.Gui.Enabled = false
@@ -224,8 +226,6 @@ spawn(function()
 		Library_Function.Gui.Enabled = true
 	end
 end)
-
-getgenv().UIToggled = true
 
 local ImageButton = Instance.new("ImageButton")
 local ScreenGui = Instance.new("ScreenGui")
