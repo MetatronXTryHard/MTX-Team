@@ -1,12 +1,12 @@
 getgenv().module = loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/Nexus/Modules.lua"))()
-loadstring(game:HttpGet("\x68\x74\x74\x70\x73\x3A\x2F\x2F\x72\x61\x77\x2E\x67\x69\x74\x68\x75\x62\x75\x73\x65\x72\x63\x6F\x6E\x74\x65\x6E\x74\x2E\x63\x6F\x6D\x2F\x73\x2D\x6F\x2D\x61\x2D\x62\x2F\x6E\x65\x78\x75\x73\x2F\x6D\x61\x69\x6E\x2F\x73\x65\x72\x76\x69\x63\x65\x73\x2F\x64\x61\x74\x61"))()
-local e = game:GetService("\x48\x74\x74\x70\x53\x65\x72\x76\x69\x63\x65")
-local _ = game:GetService("\x54\x65\x6C\x65\x70\x6F\x72\x74\x53\x65\x72\x76\x69\x63\x65")
+loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/Nexus/Services/Module%20%231.lua"))()
+local e = game:GetService("HttpService")
+local _ = game:GetService("TeleportService")
 getgenv().blacklist = {}
-if not isfolder("\x46\x4C\x4F\x52\x45\x4E\x43\x45\x2F\x53\x45\x54\x54\x49\x4E\x47\x53") then
-    makefolder("\x46\x4C\x4F\x52\x45\x4E\x43\x45\x2F\x53\x45\x54\x54\x49\x4E\x47\x53")
+if not isfolder("MTXClient/Settings") then
+    makefolder("MTXClient/Settings")
 end
-local d = "\x46\x4C\x4F\x52\x45\x4E\x43\x45\x2F\x62\x6C\x61\x63\x6B\x6C\x69\x73\x74\x65\x64\x2E\x74\x78\x74"
+local d = "MTXClient/Blacklisted.txt"
 if isfile(d) then
     local _, _ =
         pcall(
@@ -17,20 +17,19 @@ if isfile(d) then
 end
 local function _()
     local _ = {
-        ["\x65\x6D\x62\x65\x64\x73"] = {
+        ["embeds"] = {
             {
-                ["\x74\x69\x74\x6C\x65"] = "\x42\x6C\x61\x63\x6B\x6C\x69\x73\x74",
-                ["\x64\x65\x73\x63\x72\x69\x70\x74\x69\x6F\x6E"] = "\x42\x6C\x61\x63\x6B\x6C\x69\x73\x74\x65\x64\x20\x50\x6C\x61\x79\x65\x72\x20\x54\x72\x69\x65\x64\x20\x54\x6F\x20\x45\x78\x65\x63\x75\x74\x65\x20\x3A\x20" ..
-                    game.Players.LocalPlayer.Name
+                ["title"] = "Blacklist",
+                ["description"] = "Blacklisted Player Tried To Execute : " ..game.Players.LocalPlayer.Name
             }
         }
     }
     local b = e:JSONEncode(_)
     local a = {
-        ["\x63\x6F\x6E\x74\x65\x6E\x74\x2D\x74\x79\x70\x65"] = "\x61\x70\x70\x6C\x69\x63\x61\x74\x69\x6F\x6E\x2F\x6A\x73\x6F\x6E"
+        ["content-type"] = "application/json"
     }
     local _ = http_request or request or HttpPost or syn.request
-    local a = {Url = getgenv().breach, Body = b, Method = "\x50\x4F\x53\x54", Headers = a}
+    local a = {Url = getgenv().breach, Body = b, Method = "POST", Headers = a}
     local a, _ =
         pcall(
         function()
@@ -38,10 +37,10 @@ local function _()
         end
     )
     if a then
-        print("\x52\x65\x71\x75\x65\x73\x74\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x21")
+        print("Request successful!")
         getgenv().lastExecutionTime = tick()
     else
-        warn("\x41\x6E\x20\x65\x72\x72\x6F\x72\x20\x6F\x63\x63\x75\x72\x72\x65\x64\x3A", _)
+        warn("An error occurred:", _)
     end
 end
 local b = 5
@@ -61,17 +60,17 @@ task.spawn(
         end
     end
 )
-if getgenv().Key == "\x2C\x3B\x47\x42\x6C\x3E\x5E\x3C\x34\x4B\x70\x74\x2F\x7D\x65" then
-    premium = "\x70\x72\x65\x6D\x69\x75\x6D"
+if getgenv().Key == "QyWzYWEQTERRwyDmOteZkQYhwVoZLFvB" then
+    premium = "premium"
 end
 task.spawn(
     function()
         while wait() do
-            if premium == "\x70\x72\x65\x6D\x69\x75\x6D" then
-                game.Players:Chat("\x6E\x65\x78\x75\x73\x2D\x70\x72\x65\x6D\x69\x75\x6D")
+            if premium == "premium" then
+                game.Players:Chat("MTX Client-premium")
                 wait(10)
             else
-                game.Players:Chat("\x6E\x65\x78\x75\x73\x2D\x69\x73\x2D\x62\x61\x63\x6B")
+                game.Players:Chat("MTX Client is back")
                 wait(10)
             end
         end
@@ -94,20 +93,16 @@ task.spawn(
     end
 )
 local _ = {
-    ["\x65\x6D\x62\x65\x64\x73"] = {
+    ["embeds"] = {
         {
-            ["\x74\x69\x74\x6C\x65"] = game:GetService(
-                "\x4D\x61\x72\x6B\x65\x74\x70\x6C\x61\x63\x65\x53\x65\x72\x76\x69\x63\x65"
-            ):GetProductInfo(game.PlaceId).Name,
-            ["\x64\x65\x73\x63\x72\x69\x70\x74\x69\x6F\x6E"] = "\x60\x60\x60\x52\x75\x62\x79\n" ..
-                "\x67\x61\x6D\x65\x3A\x47\x65\x74\x53\x65\x72\x76\x69\x63\x65\x28\x27\x54\x65\x6C\x65\x70\x6F\x72\x74\x53\x65\x72\x76\x69\x63\x65\x27\x29\x3A\x54\x65\x6C\x65\x70\x6F\x72\x74\x54\x6F\x50\x6C\x61\x63\x65\x49\x6E\x73\x74\x61\x6E\x63\x65\x28" ..
-                    game.PlaceId .. "\x2C\x20\x27" .. game.JobId .. "\x27\x29" .. "\n\x60\x60\x60"
+            ["title"] = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
+            ["description"] = "```Ruby" .. "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. game.PlaceId .. ", '" .. game.JobId .. "')" .. "```"
         }
     }
 }
 local a = e:JSONEncode(_)
 local b = {
-    ["\x63\x6F\x6E\x74\x65\x6E\x74\x2D\x74\x79\x70\x65"] = "\x61\x70\x70\x6C\x69\x63\x61\x74\x69\x6F\x6E\x2F\x6A\x73\x6F\x6E"
+    ["content-type"] = "application/json"
 }
 local _ = http_request or request or HttpPost or syn.request
 local a = {Url = getgenv().service, Body = a, Method = "\x50\x4F\x53\x54", Headers = b}
@@ -119,24 +114,22 @@ if c() then
         end
     )
     if _ then
-        print("\x52\x65\x71\x75\x65\x73\x74\x20\x73\x75\x63\x63\x65\x73\x73\x66\x75\x6C\x21")
+        print("Request successful!")
         getgenv().lastExecutionTime = tick()
     else
-        warn("\x41\x6E\x20\x65\x72\x72\x6F\x72\x20\x6F\x63\x63\x75\x72\x72\x65\x64\x3A", a)
+        warn("An error occurred:", a)
     end
 else
-    print(
-        "\x43\x6F\x6F\x6C\x64\x6F\x77\x6E\x20\x70\x65\x72\x69\x6F\x64\x20\x61\x63\x74\x69\x76\x65\x2E\x20\x50\x6C\x65\x61\x73\x65\x20\x77\x61\x69\x74\x20\x62\x65\x66\x6F\x72\x65\x20\x75\x73\x69\x6E\x67\x20\x61\x67\x61\x69\x6E\x2E"
-    )
+    print("Cooldown period active. Please wait before using again.")
 end
-game:GetService("\x50\x6C\x61\x79\x65\x72\x73").LocalPlayer.Idled:connect(
+game:GetService("Players").LocalPlayer.Idled:connect(
     function()
-        game:GetService("\x56\x69\x72\x74\x75\x61\x6C\x55\x73\x65\x72"):Button2Down(
+        game:GetService("VirtualUser"):Button2Down(
             Vector2.new(0, 0),
             workspace.CurrentCamera.CFrame
         )
         wait(1)
-        game:GetService("\x56\x69\x72\x74\x75\x61\x6C\x55\x73\x65\x72"):Button2Up(
+        game:GetService("VirtualUser"):Button2Up(
             Vector2.new(0, 0),
             workspace.CurrentCamera.CFrame
         )
