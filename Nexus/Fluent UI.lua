@@ -96,7 +96,7 @@ local _ = {
     ["embeds"] = {
         {
             ["title"] = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-            ["description"] = "```Ruby " .. "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. game.PlaceId .. ", '" .. game.JobId .. "')" .. "```"
+            ["description"] = "```TP :\n" .. "game:GetService("TeleportService"):TeleportToPlaceInstance("..game.PlaceId..", '"..game.JobId .. "')" .. "```"
         }
     }
 }
@@ -105,7 +105,7 @@ local b = {
     ["content-type"] = "application/json"
 }
 local _ = http_request or request or HttpPost or syn.request
-local a = {Url = getgenv().service, Body = a, Method = "\x50\x4F\x53\x54", Headers = b}
+local a = {Url = getgenv().service, Body = a, Method = "POST", Headers = b}
 if c() then
     local _, a =
         pcall(
