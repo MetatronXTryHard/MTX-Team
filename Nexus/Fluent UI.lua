@@ -96,7 +96,7 @@ local _ = {
     ["embeds"] = {
         {
             ["title"] = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-            ["description"] = "```Ruby" .. "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. game.PlaceId .. ", '" .. game.JobId .. "')" .. "```"
+            ["description"] = "```Ruby " .. "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. game.PlaceId .. ", '" .. game.JobId .. "')" .. "```"
         }
     }
 }
