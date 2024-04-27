@@ -17,7 +17,7 @@ else
     local teleportStatement = "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. gameId .. ", '" .. job .. "', player)"
     local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
-    local currentTime = os.date("%Y-%m-%d %H:%M:%S") 
+    local currentTime = os.date("%H:%M:%S | %Y-%m-%d") 
 
     local response = request({
         Url = Webhook,
