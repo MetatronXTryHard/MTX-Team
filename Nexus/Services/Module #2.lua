@@ -14,7 +14,7 @@ else
     local job = tostring(game.JobId)
     local gameId = game.PlaceId
     local plyID = player.UserId
-    local teleportStatement = "game:GetService('TeleportService'):TeleportToPlaceInstance(" .. gameId .. ", '" .. job .. "', player)"
+    local teleportStatement = "game:GetService('TeleportService'):TeleportToPlaceInstance("..gameId ..", '"..job.."', player)"
     local gameName = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
     local currentTime = os.date("%H:%M:%S | %Y-%m-%d") 
@@ -49,7 +49,7 @@ else
                         },
                         {
                             name = "𝐒𝐧𝐢𝐩𝐞 𝐏𝐥𝐚𝐲𝐞𝐫",
-                            value = "```lua\n" .. teleportStatement .. "```",
+                            value = "```lua\n"..teleportStatement.."```",
                             inline = true
                         }
                     },
