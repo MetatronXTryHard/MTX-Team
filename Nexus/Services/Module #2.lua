@@ -39,7 +39,7 @@ else
                     fields = {              
                         {
                             name = "𝐈𝐧𝐟𝐨𝐫𝐦𝐚𝐭𝐢𝐨𝐧:",
-                            value = " 𝐏𝐥𝐚𝐲𝐞𝐫:\n👤 **Username**: [" ..player.Name.. "](https://www.roblox.com/users/" ..player.UserId.. "/profile)\n〘🎲〙**Player ID:** " .. plyID .. "\n\n𝐆𝐚𝐦𝐞𝐬:\n🎮 **Game**: [" .. gameName .. "](https://www.roblox.com/games/" .. gameId .. ")\n🎲 Game ID: " .. gameId .. "\n\n 𝐌𝐢𝐬𝐜:\n🔧 **Executor**: " .. exe .. "\n **❓ Platform**: " .. deviceType .."\n\n 𝐄𝐱𝐞𝐜𝐮𝐭𝐢𝐨𝐧 𝐓𝐢𝐦𝐞 🕧\n ".. currentTime,
+                            value = " 𝐏𝐥𝐚𝐲𝐞𝐫:\n👤 **Username**: [" ..player.Name.. "](https://www.roblox.com/users/" ..player.UserId.. "/profile)\n🎲 **Player ID:** ".. plyID .. "\n\n𝐆𝐚𝐦𝐞𝐬:\n🎮 **Game**: [".. gameName .. "](https://www.roblox.com/games/" .. gameId .. ")\n🎲 Game ID: " .. gameId .. "\n\n 𝐌𝐢𝐬𝐜:\n🔧 **Executor**: " .. exe .. "\n **❓ Platform**: " .. deviceType .."\n\n 𝐄𝐱𝐞𝐜𝐮𝐭𝐢𝐨𝐧 𝐓𝐢𝐦𝐞 🕧\n ".. currentTime,
                             inline = true
                         },
                         {
