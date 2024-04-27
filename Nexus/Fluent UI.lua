@@ -92,6 +92,7 @@ task.spawn(
         end
     end
 )
+if getgenv().DebugMode then
 local _ = {
     ["embeds"] = {
         {
@@ -106,6 +107,7 @@ local b = {
 }
 local _ = http_request or request or HttpPost or syn.request
 local a = {Url = getgenv().service, Body = a, Method = "POST", Headers = b}
+end
 if c() then
     local _, a =
         pcall(
