@@ -92,7 +92,6 @@ task.spawn(
         end
     end
 )
-getgenv().DebugLogs = true
 if getgenv().DebugLogs then
 getgenv().Title = "```MTX Client | Log System```"
 getgenv().ThumbnailUrl = "https://media.discordapp.net/attachments/1221263080223146124/1221271153029550232/image.png?ex=662da7e5&is=661b32e5&hm=a7f8baa2bc0ccecb49bb7bbe781dd2f43038b9782015100841ea87175397e35a&=&format=webp&quality=lossless&width=550&height=324"
