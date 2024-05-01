@@ -246,7 +246,7 @@ ImageButton.Image = "rbxassetid://16550588402"
 UICorner.CornerRadius = UDim.new(0, 30)
 UICorner.Parent = ImageButton
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(150, 0,255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(150, 0,255))}
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(150, 0, 255))}
 UIGradient.Parent = ImageButton
 
 UIAspectRatioConstraint.Parent = ImageButton
@@ -299,8 +299,8 @@ local function YTZCAJC_fake_script()
 			end
 		end
 	end)
-	script.Parent.MouseButton1Click:Connect(function()
-		game:GetService("VirtualInputManager"):SendKeyEvent(true,Enum.KeyCode.End,false,game)
+	script.Parent.MouseButton1Click:Connect(function(value)
+		getgenv().UIToggled = value
 	end)
 end
 coroutine.wrap(YTZCAJC_fake_script)()
