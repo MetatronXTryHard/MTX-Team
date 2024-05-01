@@ -215,7 +215,7 @@ Library_Function.Gui = Instance.new('ScreenGui')
 Library_Function.Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Library_Function.Gui.Name = 'MTX Client'
 
-getgenv().UIToggled = false
+getgenv().UIToggled = true
 
 getgenv().ReadyForGuiLoaded = false
 spawn(function()
