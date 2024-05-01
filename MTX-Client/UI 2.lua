@@ -299,7 +299,7 @@ local function YTZCAJC_fake_script()
 			end
 		end
 	end)
-	script.Parent.MouseButton1Click:Connect(function(value)
+	script.Parent.MouseButton1Click:Connect(function()
 	 Library.ToggleUI()
 	end)
 end
