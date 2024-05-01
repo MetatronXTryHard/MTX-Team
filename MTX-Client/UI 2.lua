@@ -215,7 +215,7 @@ Library_Function.Gui = Instance.new('ScreenGui')
 Library_Function.Gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 Library_Function.Gui.Name = 'MTX Client'
 
-getgenv().UIToggled = true
+getgenv().UIToggled = false
 
 getgenv().ReadyForGuiLoaded = false
 spawn(function()
@@ -233,7 +233,6 @@ local UICorner = Instance.new("UICorner")
 local UIGradient = Instance.new("UIGradient")
 local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
-
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -246,7 +245,6 @@ ImageButton.Image = "rbxassetid://16550588402"
 UICorner.CornerRadius = UDim.new(0, 30)
 UICorner.Parent = ImageButton
 
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(150, 0, 255))}
 UIGradient.Parent = ImageButton
 
 UIAspectRatioConstraint.Parent = ImageButton
@@ -300,7 +298,7 @@ local function YTZCAJC_fake_script()
 		end
 	end)
 	script.Parent.MouseButton1Click:Connect(function()
-	 Library.ToggleUI()
+		Library.ToggleUI()
 	end)
 end
 coroutine.wrap(YTZCAJC_fake_script)()
