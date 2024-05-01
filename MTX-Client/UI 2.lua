@@ -300,7 +300,7 @@ local function YTZCAJC_fake_script()
 		end
 	end)
 	script.Parent.MouseButton1Click:Connect(function(value)
-		getgenv().UIToggled = value
+	 Library.ToggleUI()
 	end)
 end
 coroutine.wrap(YTZCAJC_fake_script)()
