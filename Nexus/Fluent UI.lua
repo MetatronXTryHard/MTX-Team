@@ -60,7 +60,7 @@ task.spawn(
         end
     end
 )
-if getgenv().Key == "QyWzYWEQTERRwyDmOteZkQYhwVoZLFvB" or getgenv().Key == "WyWzYWEQRERRwyDmKtMZkQYhwVDZLFvB" then
+if getgenv().Key == "CyWzYWELREXR2y4mKtYZkQYhDVDZvFvG" or getgenv().Key == "WyWzYWEQRERRwyDmKtMZkQYhwVDZLFvB" then
     premium = "premium"
 end
 task.spawn(
