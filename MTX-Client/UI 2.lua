@@ -231,75 +231,82 @@ local ScreenGui = Instance.new("ScreenGui")
 local ImageButton = Instance.new("ImageButton")
 local UICorner = Instance.new("UICorner")
 local UIGradient = Instance.new("UIGradient")
-local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
+-- Função para calcular a menor dimensão da tela
+local function GetMinScreenDimension()
+    local screenSize = workspace.CurrentCamera.ViewportSize
+    return math.min(screenSize.X, screenSize.Y)
+end
+
+-- Defina a posição inicial para o canto superior esquerdo da tela
+local initialPosition = UDim2.new(0, GetMinScreenDimension() * 0.1, 0, GetMinScreenDimension() * 0.1)
+
 ImageButton.Parent = ScreenGui
-ImageButton.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-ImageButton.Position = UDim2.new(0.10615778, 0, 0.16217947, 0)
-ImageButton.Size = UDim2.new(0.0627121851, 0, 0.107579626, 0)
+ImageButton.AnchorPoint = Vector2.new(0, 0)
+ImageButton.Position = initialPosition
+ImageButton.Size = UDim2.new(0, GetMinScreenDimension() * 0.1, 0, GetMinScreenDimension() * 0.1)
 ImageButton.Image = "rbxassetid://16550588402"
 
-UICorner.CornerRadius = UDim.new(0, 30)
+UICorner.CornerRadius = UDim.new(1, 0)
 UICorner.Parent = ImageButton
 
+UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(105, 0, 255))}
 UIGradient.Parent = ImageButton
 
-UIAspectRatioConstraint.Parent = ImageButton
-UIAspectRatioConstraint.AspectRatio = 0.988
-
-
 local function HCEGY_fake_script()
-	local script = Instance.new('LocalScript', UIGradient)
+    local script = Instance.new("LocalScript", UIGradient)
 
-	local TweenService = game:GetService("TweenService")
-	local tweeninfo = TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
-	local tween = TweenService:Create(script.Parent, tweeninfo, {Rotation = 360})
-	tween:Play()
+    local TweenService = game:GetService("TweenService")
+    local tweeninfo = TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
+    local tween = TweenService:Create(script.Parent, tweeninfo, {Rotation = 360})
+    tween:Play()
 end
 coroutine.wrap(HCEGY_fake_script)()
-local function YTZCAJC_fake_script()
-	local script = Instance.new('LocalScript', ImageButton)
 
-	local UIS = game:GetService('UserInputService')
-	local frame = script.Parent
-	local dragToggle = nil
-	local dragSpeed = 0.25
-	local dragStart = nil
-	local startPos = nil
-	
-	local function updateInput(input)
-		local delta = input.Position - dragStart
-		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-	end
-	
-	frame.InputBegan:Connect(function(input)
-		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
-			dragStart = input.Position
-			startPos = frame.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragToggle = false
-				end
-			end)
-		end
-	end)
-	
-	UIS.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			if dragToggle then
-				updateInput(input)
-			end
-		end
-	end)
-	script.Parent.MouseButton1Click:Connect(function()
-		Library.ToggleUI()
-	end)
+local function YTZCAJC_fake_script()
+    local script = Instance.new("LocalScript", ImageButton)
+
+    local UIS = game:GetService("UserInputService")
+    local frame = script.Parent
+    local dragToggle = nil
+    local dragSpeed = 0.25
+    local dragStart = nil
+    local startPos = nil
+
+    local function updateInput(input)
+        local delta = input.Position - dragStart
+        local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
+            startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+        game:GetService("TweenService"):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+    end
+
+    frame.InputBegan:Connect(function(input)
+        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
+            dragToggle = true
+            dragStart = input.Position
+            startPos = frame.Position
+            input.Changed:Connect(function()
+                if input.UserInputState == Enum.UserInputState.End then
+                    dragToggle = false
+                end
+            end)
+        end
+    end)
+
+    UIS.InputChanged:Connect(function(input)
+        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+            if dragToggle then
+                updateInput(input)
+            end
+        end
+    end)
+    
+    script.Parent.MouseButton1Click:Connect(function()
+      Library.ToggleUI()
+    end)
 end
 coroutine.wrap(YTZCAJC_fake_script)()
 
