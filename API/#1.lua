@@ -499,4 +499,3039 @@
 
 -- e como redz ja dizia gozei...
 -- Escrevi e sai correndo, comi o cu de quem ta lendo
-local a=game:GetService('UserInputService')local b=game:GetService('TextService')local c=game:GetService('TweenService')local d,e,f,g,h,i,j,k,l,m,n,o=game:GetService("UserInputService"),game:GetService("TeleportService"),game:GetService("RunService"),game:GetService("Workspace"),game:GetService("Lighting"),game:GetService("Players"),game:GetService("HttpService"),game:GetService("StarterGui"),game:GetService("ReplicatedStorage"),game:GetService("TweenService"),game:GetService("VirtualUser"),game:GetService("PathfindingService")local p,q,r=i.LocalPlayer:GetMouse(),g.Camera,i.LocalPlayer;local s,t,u,v,w,x,y,z,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W=Vector2.new,Vector3.new,CFrame.new,CFrame.Angles,Color3.fromRGB,Color3.fromHex,Instance.new,task.spawn,task.wait,coroutine.create,coroutine.resume,0,25,0,math.huge,math.pi,math.clamp,math.round,math.abs,math.floor,math.random,math.sin,math.cos,math.rad,math.pi/2,table.find,table.clear,string.sub,string.upper,string.lower,table.insert;local X={}local a=game:GetService('UserInputService')local b=game:GetService('TextService')local c=game:GetService('TweenService')local Y=game:GetService('RunService')local Z=game:GetService('HttpService')local j=game:GetService("HttpService")local _=false;local a0={}do a0.__index=a0;a0.ClassName="Signal"function a0.isSignal(a1)return type(a1)=="table"and getmetatable(a1)==a0 end;function a0.new()local self=setmetatable({},a0)self._bindableEvent=Instance.new("BindableEvent")self._argMap={}self._source=_ and debug.traceback()or""self._bindableEvent.Event:Connect(function(a2)self._argMap[a2]=nil;if not self._bindableEvent and not next(self._argMap)then self._argMap=nil end end)return self end;function a0:Fire(...)if not self._bindableEvent then warn(("Signal is already destroyed. %s"):format(self._source))return end;local a3=table.pack(...)local a2=j:GenerateGUID(false)self._argMap[a2]=a3;self._bindableEvent:Fire(a2)end;function a0:Connect(a4)if not(type(a4)=="function")then error(("connect(%s)"):format(typeof(a4)),2)end;return self._bindableEvent.Event:Connect(function(a2)local a3=self._argMap[a2]if a3 then a4(table.unpack(a3,1,a3.n))else error("Missing arg data, probably due to reentrance.")end end)end;function a0:Wait()local a2=self._bindableEvent.Event:Wait()local a3=self._argMap[a2]if a3 then return table.unpack(a3,1,a3.n)else error("Missing arg data, probably due to reentrance.")return nil end end;function a0:Destroy()if self._bindableEvent then self._bindableEvent:Destroy()self._bindableEvent=nil end;setmetatable(self,nil)end end;local a5={}local function a6(a7,a8,a9,aa,ab)local ac=c:Create(a7,TweenInfo.new(a8,Enum.EasingStyle[a9],Enum.EasingDirection[aa]),ab)ac:Play()return ac end;local function ad(ae)local ae=ae or{}local af={}for ag,ah in pairs(ae)do af[tostring(ag):lower()]=ah end;return af end;local function ai(aj,ak)local ak=ak or{}local al=Instance.new(aj)for ag,ah in pairs(ak)do al[ag]=ah end;return al end;local function am(ae,ah)if not table.find(ae,ah)then table.insert(ae,ah)end end;local function an(ae,ah)local ac=table.find(ae,ah)if ac then table.remove(ae,ac)end end;local function ao(a7,ap)local ap=ap or a7;local aq=false;local ar;local as;local at;local function au(av)local aw=av.Position-as;a7.Position=UDim2.new(at.X.Scale,at.X.Offset+aw.X,at.Y.Scale,at.Y.Offset+aw.Y)end;ap.InputBegan:Connect(function(av)if av.UserInputType==Enum.UserInputType.MouseButton1 or av.UserInputType==Enum.UserInputType.Touch then aq=true;as=av.Position;at=a7.Position;av.Changed:Connect(function()if av.UserInputState==Enum.UserInputState.End then aq=false end end)end end)ap.InputChanged:Connect(function(av)if av.UserInputType==Enum.UserInputType.MouseMovement or av.UserInputType==Enum.UserInputType.Touch then ar=av end end)a.InputChanged:Connect(function(av)if av==ar and aq then au(av)end end)end;local function ax(a7,ak)local ak=ad(ak)local ay,az,aA,aB;if ak.corner then local aC=ad(ak.corner)ay=ai('UICorner',{Parent=a7,CornerRadius=aC.radius or UDim.new()})end;if ak.stroke then local aD=ad(ak.stroke)az=ai('UIStroke',{Name='Stroke',Parent=a7,Thickness=1,Transparency=0,Color=aD.Color or Color3.fromRGB(40,40,40),LineJoinMode='Round',ApplyStrokeMode='Contextual'})end;if ak.list then local aE=ad(ak.list)aA=ai('UIListLayout',{Parent=a7,Padding=aE.pad or UDim.new(),FillDirection=aE.direction or'Vertical',HorizontalAlignment=aE.horizontalalignment or'Left',SortOrder=aE.order or'LayoutOrder',VerticalAlignment=aE.verticalalignment or'Top'})end;if ak.pad then local aF=ad(ak.pad)aB=ai('UIPadding',{Parent=a7,PaddingBottom=aF.bottom or UDim.new(),PaddingTop=aF.top or UDim.new(),PaddingRight=aF.right or UDim.new(),PaddingLeft=aF.left or UDim.new()})end;return ay,az,aA,aB end;local function aG(aH)local aI=aH._holder;local aJ=ai('Frame',{Name=#aI:GetChildren()-(aH._settingMenu and 0 or 3),Parent=aI,Size=UDim2.new(1,0,0,15),BackgroundTransparency=1,BorderSizePixel=0,ZIndex=aI.ZIndex+1})local aI=ai('Frame',{Name='Holder',Parent=aJ,BackgroundTransparency=1,BorderSizePixel=0,Position=aH._holderPosition or UDim2.new(0,80,0,0),Size=aH._holderSize or UDim2.new(0,100,1,0),ZIndex=aJ.ZIndex+1})ax(aI,{List={Pad=UDim.new(0,5),Direction='Horizontal',horizontalalignment='Right',verticalalignment='Top'}})return aI end;local function aK(a7,ak)local ak=ad(ak)local aL=ak.side or'X'local aM=aL=='Y'and 36 or 0;local aN=ak.min or 0;local aO=ak.max or 100;local aP=ak.default or 0;local aQ=ak.float or 1;local aR=ak.set or function()end;local aS=ai('Frame',{Parent=a7,Name='Button',BackgroundTransparency=1,Position=UDim2.new(),Size=UDim2.new(1,0,1,0),ZIndex=a7.ZIndex+1})local function aT(av)local aU=(av.Position[aL]-a7.AbsolutePosition[aL])/a7.AbsoluteSize[aL]local a1=(aO-aN)*aU+aN;a1=math.floor(a1*1/aQ)/(1/aQ)a1=math.clamp(a1,aN,aO)aR(a1)end;aR(aP)local aV=false;aS.InputBegan:Connect(function(av)if av.UserInputType==Enum.UserInputType.MouseButton1 then aV=true;aT(av)end end)aS.InputEnded:Connect(function(av)if av.UserInputType==Enum.UserInputType.MouseButton1 then aV=false;aT(av)end end)a.InputChanged:Connect(function(av)if av.UserInputType==Enum.UserInputType.MouseMovement and aV then aT(av)end end)return aS end;local function aW(aX,ak)local aY=ai('TextBox',{Parent=aX.Parent,ClearTextOnFocus=false,Font=aX.Font,FontFace=aX.FontFace,LineHeight=aX.LineHeight,Position=aX.Position,Size=aX.Size,Text=aX.Text,TextColor3=aX.TextColor3,TextScaled=aX.TextScaled,TextSize=aX.TextSize,Name=aX.Name,ZIndex=aX.ZIndex,BackgroundTransparency=aX.BackgroundTransparency,TextTransparency=aX.TextTransparency,TextXAlignment=aX.TextXAlignment,BorderSizePixel=aX.BorderSizePixel})aX:Destroy()local ak=ad(ak)local aZ=ak.callback or function()end;if ak.focuses then aY.Focused:Connect(function()aZ(false,aY.Text)end)aY.FocusLost:Connect(function(ac,a_)aZ(true,aY.Text,ac,a_)end)else aY:GetPropertyChangedSignal('Text'):Connect(function()aZ(aY.Text)end)end;return aY end;local b0={}b0.__index=b0;local function b1(ae,b2)local b3={}for ag,ah in pairs(ae)do b3[ag]=ah end;for ag,ah in pairs(b2)do b3[ag]=ah end;return setmetatable(b3,b0)end;local b4={}b4.__index=b4;function b4:CreateSegment(ak)local ak=ad(ak)local aI=aG(self)local b5={_holder=aI,_window=self._window,_sector=self._sector,_tabSector=self._tabSector,_segment=true}if ak.name then b5._title=true;ai('TextLabel',{Name='Title',Parent=aI.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=aI.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;return setmetatable(b5,b0)end;function b0:Colorpicker(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local b7=self._tabSector;local b8=300+300*#b7:GetChildren()local b9=ai('ImageLabel',{Parent=b6,Name=10-#b6:GetChildren(),BackgroundTransparency=1.000,BorderSizePixel=0,Position=UDim2.new(0,46,0,0),Size=UDim2.new(0,15,0,15),ZIndex=b6.ZIndex+1,Image="http://www.roblox.com/asset/?id=14259665095",ImageColor3=Color3.fromRGB(200,200,200),SliceScale=4.000})local ba=self._tabSector;local bb=ba.CanvasSize.Y.Offset;local bc=ba.AbsolutePosition.X+ba.AbsoluteSize.X;local bd=125;local aM=15;local be=(b9.AbsolutePosition.X+aM>=bc or b9.AbsolutePosition.X+aM+bd>=bc)and-(bd+aM)or aM+b9.AbsoluteSize.X/2;local bf=math.clamp(b9.AbsolutePosition.Y-60,ba.AbsolutePosition.Y,ba.AbsolutePosition.Y+bb)local bg=ai('Frame',{Name='ColorpickerFrame',Parent=b9,BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,be,0,bf-b9.AbsolutePosition.Y+2),Size=UDim2.new(0,bd,0,135),ZIndex=b8+1,Visible=false})ax(bg,{corner={radius=UDim.new(0,4)},stroke={}})local aS=ai('TextButton',{Parent=b9,Size=UDim2.new(1,0,1,0),TextTransparency=1,BackgroundTransparency=1,ZIndex=b8+1})aS.MouseButton1Down:Connect(function()bg.Visible=not bg.Visible end)ba:GetPropertyChangedSignal('CanvasSize'):Connect(function()bb=ba.CanvasSize.Y.Offset;bf=math.clamp(b9.AbsolutePosition.Y-60,ba.AbsolutePosition.Y,ba.AbsolutePosition.Y+bb)bg.Position=UDim2.new(0,be,0,bf-b9.AbsolutePosition.Y+2)end)local bh=ai('Frame',{Name='Colorpicker',Parent=bg,BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,Position=UDim2.new(0,5,0,5),Size=UDim2.new(0,100,0,90),ZIndex=b8+2})ax(bh,{Corner={radius=UDim.new(0,4)}})local bi=ai('ImageLabel',{ZIndex=b8+3,Parent=bh,Image='rbxassetid://4155801252',Size=UDim2.new(1,0,1,0)})local bj=ai('Frame',{Name='Hue',Parent=bg,BackgroundColor3=Color3.fromRGB(255,255,255),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,5,0,100),Size=UDim2.new(0,115,0,11),ZIndex=b8+2})ax(bj,{corner={radius=UDim.new(0,4)}})ai('UIGradient',{Parent=bj,Enabled=true,Rotation=0,Color=ColorSequence.new{ColorSequenceKeypoint.new(0.00,Color3.fromRGB(255,0,0)),ColorSequenceKeypoint.new(0.17,Color3.fromRGB(255,255,0)),ColorSequenceKeypoint.new(0.33,Color3.fromRGB(0,255,0)),ColorSequenceKeypoint.new(0.50,Color3.fromRGB(0,255,255)),ColorSequenceKeypoint.new(0.66,Color3.fromRGB(0,0,255)),ColorSequenceKeypoint.new(0.82,Color3.fromRGB(255,0,255)),ColorSequenceKeypoint.new(1.00,Color3.fromRGB(255,0,0))}})local bk=ai('ImageLabel',{Name='Alpha',Parent=bg,BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,Position=UDim2.new(0,110,0,5),Size=UDim2.new(0,10,0,90),ZIndex=b8+2,Image="rbxassetid://14248403322"})local bl=ai('Frame',{BackgroundTransparency=1,Parent=bk,Size=UDim2.new(1,0,1,-2)})local bm=ai('Frame',{Parent=bl,BorderSizePixel=1,Size=UDim2.new(1,-2,0,2),Position=UDim2.new(0,1,0,0),BackgroundColor3=Color3.fromRGB(255,255,255),ZIndex=b8+4})local bn=ai('Frame',{BackgroundTransparency=1,Parent=bj,Size=UDim2.new(1,-2,1,0)})local bo=ai('Frame',{Parent=bn,BorderSizePixel=1,Size=UDim2.new(0,2,1,-2),Position=UDim2.new(0,0,0,1),BackgroundColor3=Color3.fromRGB(255,255,255),ZIndex=b8+4})local bp=ai('Frame',{Parent=bh,Name='SlideFrame',Size=UDim2.new(1,-3,1,-3),Position=UDim2.new(0,1,0,1),BackgroundTransparency=1})local bq=ai('Frame',{Parent=bp,Name='Picker',Size=UDim2.new(0,6,0,6),Position=UDim2.new(),BorderSizePixel=1,BackgroundColor3=Color3.fromRGB(255,255,255),ZIndex=b8+4})local br={}for ag=1,3 do local bs=ai('Frame',{Name=tostring(ag),Parent=bg,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=0.500,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,6+39*(ag-1),0,116),Size=UDim2.new(0,35,0,14),ZIndex=b8+2})local ac=ai('TextLabel',{Name=tostring(ag),Parent=bs,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,1,0,0),Size=UDim2.new(1,0,1,-1),ZIndex=b8+3,Font=Enum.Font.Gotham,Text="255",TextColor3=Color3.fromRGB(180,180,180),TextSize=11.000,TextWrapped=true})ax(bs,{corner={radius=UDim.new(0,4)},pad={top=UDim.new(0,1),bottom=UDim.new(0,1),left=UDim.new(0,8),right=UDim.new(0,8)},stroke={}})table.insert(br,ac)end;local bt=self._window;local aZ=ak.callback or function()end;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;local aZ=ak.callback or function()end;local aP={Color=Color3.fromRGB(255,255,255),Alpha=0}if ak.default then if typeof(ak.default)=='Color3'then aP.Color=ak.default elseif typeof(ak.default)=='table'then aP=ak.default end end;bt.flags[bu]={Color=aP.Color,Alpha=aP.Alpha or 0}local bv,bw,ah=aP.Color:ToHSV()local ac=aP.Alpha or 0;local function aR(bx,by)local bz,bA,bB=bx:ToHSV()if by then bv=bz;bw=bA;ah=bB;bm.Position=UDim2.new(0,1,ac,0)bo.Position=UDim2.new(bv,0,0,1)bq.Position=UDim2.new(1-bw,-3,1-ah,-3)end;bi.ImageColor3=Color3.fromHSV(bv,1,1)bk.BackgroundColor3=Color3.fromHSV(bv,1,1)br[1].Text=math.floor(bx.R*255)br[2].Text=math.floor(bx.G*255)br[3].Text=math.floor(bx.B*255)bt.flags[bu].Color=bx;bt.flags[bu].Alpha=ac;aZ(bt.flags[bu])end;local function bC(bD)ac=bD;bm.Position=UDim2.new(0,1,ac,0)aR(Color3.fromHSV(bv,1-bw,1-ah))end;local function bE(a1)bv=a1;bo.Position=UDim2.new(bv,0,0,1)aR(Color3.fromHSV(bv,1-bw,1-ah))end;local function bF(a1)bw=a1;bq.Position=UDim2.new(bw,-3,ah,-3)aR(Color3.fromHSV(bv,1-bw,1-ah))end;local function bG(a1)ah=a1;bq.Position=UDim2.new(bw,-3,ah,-3)aR(Color3.fromHSV(bv,1-bw,1-ah))end;aK(bl,{side='Y',min=0,max=1,float=0.01,default=0,set=bC})aK(bn,{side='X',min=0,max=1,float=0.01,default=0,set=bE})aK(bp,{side='X',min=0,max=1,float=0.01,default=0,set=bF})aK(bp,{side='Y',min=0,max=1,float=0.01,default=0,set=bG})aR(aP.Color,true)local bH,bI,a_;local aY;aY=aW(br[1],{focuses=true,callback=function(ac,bJ,a_,bK)if not ac then bH=bJ else if tonumber(bJ)then aR(Color3.fromRGB(bJ,br[2].Text,br[3].Text),true)else aY.Text=bH end end end})br[1]=aY;local aY;aY=aW(br[2],{focuses=true,callback=function(ac,bJ,a_,bK)if not ac then bI=bJ else if tonumber(bJ)then aR(Color3.fromRGB(br[1].Text,bJ,br[3].Text),true)else aY.Text=bI end end end})br[2]=aY;local aY;aY=aW(br[3],{focuses=true,callback=function(ac,bJ,a_,bK)if not ac then a_=bJ else if tonumber(bJ)then aR(Color3.fromRGB(br[1].Text,br[2].Text,bJ),true)else aY.Text=a_ end end end})br[3]=aY;local function bL(bx)ac=typeof(bx)=='table'and bx.Alpha or 0;local bx=typeof(bx)=='table'and bx.Color or bx;aR(bx,true)end;bt._FlagsSet[bu]=bL;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=bL},{__index=bM})end;function b0:Settings(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local ba=self._tabSector;local bc=ba.AbsolutePosition.X+ba.AbsoluteSize.X;local b8=200+#self._sector:GetChildren()*200;local bN=ai('ImageLabel',{Parent=b6,Name=10-#b6:GetChildren(),BackgroundTransparency=1.000,BorderSizePixel=0,Position=UDim2.new(0,46,0,0),Size=UDim2.new(0,15,0,15),ZIndex=b6.ZIndex+1,Image="http://www.roblox.com/asset/?id=14259672152",ImageColor3=Color3.fromRGB(200,200,200),SliceScale=4.000})local bd=150;local aM=10;local be=(bN.AbsolutePosition.X+aM>=bc or bN.AbsolutePosition.X+aM+bd>=bc)and-(bd+aM)or aM+bN.AbsoluteSize.X/2;local bf=math.clamp(bN.AbsolutePosition.Y,ba.AbsolutePosition.Y,ba.AbsolutePosition.Y+ba.AbsoluteSize.Y)local aS=ai('TextButton',{Parent=bN,Name='Button',Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,TextTransparency=1,ZIndex=b6.ZIndex+2})local bO=ai('Frame',{Name='Setting',Parent=bN,BackgroundColor3=Color3.fromRGB(30,30,30),BorderSizePixel=0,Position=UDim2.new(0,be,0,bf-bN.AbsolutePosition.Y+2),Size=UDim2.new(0,bd,0,10),ZIndex=b8,Visible=false})ax(bO,{Corner={radius=UDim.new(0,4)},stroke={}})aS.MouseButton1Down:Connect(function()bO.Visible=not bO.Visible end)local bP=ai('Frame',{Parent=bO,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(),Size=UDim2.new(1,0,1,0),ZIndex=b8+1})ax(bP,{list={pad=UDim.new(0,5),directing='Vertical',horizontalalignment='Left',verticalalignment='Top'},pad={bottom=UDim.new(0,5),top=UDim.new(0,5),left=UDim.new(0,6),right=UDim.new(0,6)}})local aA=bP.UIListLayout;local function bQ()local bR=aA.AbsoluteContentSize.Y+25;local bf=math.clamp(bN.AbsolutePosition.Y+-bR/2+7,ba.AbsolutePosition.Y,ba.AbsolutePosition.Y+ba.AbsoluteSize.Y)bO.Size=UDim2.new(0,bd,0,bR)bO.Position=UDim2.new(0,be,0,bf-bN.AbsolutePosition.Y+2)end;aA:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(bQ)ba:GetPropertyChangedSignal('CanvasSize'):Connect(bQ)return setmetatable({_holder=bP,_window=self._window,_tabSector=self._tabSector,_sector=self._sector,_settingMenu=true,_holderSize=UDim2.new(1,-60,1,0),_holderPosition=UDim2.new(1,-80,0,0)},{__index=b0})end;function b0:Title(ak)local ak=ad(ak)local bS=aG(self)local b6=bS.Parent;bS:Destroy()local bT=ak.title or''local bU=ak.description;if bU then b6.Size=UDim2.new(1,0,0,28)end;ax(b6,{list={Pad=UDim.new(0,4),direction='Vertical',horizontalalignment='Left',verticalalignment='Center'}})ai('TextLabel',{Parent=b6,Name='Title',LayoutOrder=1,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,0,bU and 12 or 15),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12,TextXAlignment=Enum.TextXAlignment.Left,Text=bT})if bU then ai('TextLabel',{Parent=b6,Name='Description',LayoutOrder=2,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.Gotham,Text=bU,TextColor3=Color3.fromRGB(108,108,108),TextSize=12.000,TextWrapped=true,TextXAlignment=Enum.TextXAlignment.Left})end end;function b0:Toggle(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local bV=ai('Frame',{Name='Toggle',LayoutOrder=10-#b6:GetChildren(),Parent=b6,BackgroundColor3=Color3.fromRGB(25,25,25),BackgroundTransparency=0.5,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,35,1,0),ZIndex=b6.ZIndex+2})ax(bV,{corner={radius=UDim.new(1,0)},pad={bottom=UDim.new(0,1),top=UDim.new(0,1),right=UDim.new(0,1),left=UDim.new(0,1)},stroke={}})local bW=ai('Frame',{Name='Circle',Parent=bV,BackgroundColor3=Color3.fromRGB(125,125,125),BorderSizePixel=0,Position=UDim2.new(0,1,0,0),Size=UDim2.new(0,12,1,0),ZIndex=b6.ZIndex+3})local bX=ai('TextButton',{Name='Callback Handler',Parent=bV,BackgroundTransparency=1,Text='',BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=b6.ZIndex+4})ax(bW,{corner={radius=UDim.new(1,0)}})local bt=self._window;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;local aZ=ak.callback or function()end;bt.flags[bu]=ak.default~=nil;local function bY()if bt.flags[bu]then a6(bW,0.25,'Quad','Out',{BackgroundColor3=Color3.new(1,1,1),Position=UDim2.new(1,-13,0,0)})else a6(bW,0.25,'Quad','Out',{BackgroundColor3=Color3.fromRGB(125,125,125),Position=UDim2.new(0,1,0,0)})end;aZ(bt.flags[bu])end;local function bZ(b_)bt.flags[bu]=b_;bY()end;bZ(bt.flags[bu])local c0=bV.AbsolutePosition;bX.MouseButton1Down:Connect(function()bZ(not bt.flags[bu])end)bt._FlagsSet[bu]=bZ;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=bZ},{__index=bM})end;function b0:Input(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local bt=self._window;local aZ=ak.callback or function()end;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;local av=ai('Frame',{Name='Input',LayoutOrder=10-#b6:GetChildren(),Parent=b6,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=0.5,BorderSizePixel=0,Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,100,1,0),ZIndex=b6.ZIndex+2})ax(av,{pad={Bottom=UDim.new(0,1),top=UDim.new(0,1),right=UDim.new(0,8),left=UDim.new(0,8)},corner={radius=UDim.new(1,0)},stroke={}})local c1=ai('TextLabel',{Parent=av,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=b6.ZIndex+3,Font=Enum.Font.Gotham,Text="0",TextColor3=Color3.fromRGB(255,255,255),TextScaled=true,TextSize=14,TextWrapped=true})local function aR(bJ)c1.Text=bJ;bt.flags[bu]=bJ;aZ(bJ)end;c1=aW(c1,{focuses=ak.focuses,callback=function(...)bt.flags[bu]=c1.Text;aZ(...)end})bt._FlagsSet[bu]=aR;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=aR},{__index=bM})end;function b0:Slider(ak)local ak=ad(ak)local b6=self._holder;local bt=self._window;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;local aZ=ak.callback or function()end;local aN=ak.min or 0;local aO=ak.max or 100;local aP=ak.default or aN;local aQ=ak.float or 1;local c2=true;if ak.showvalue==false then c2=false end;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local c3=ai('Frame',{Name='Slider',LayoutOrder=10-#b6:GetChildren(),Parent=b6,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,70+(c2 and b:GetTextSize(tostring(aO),12,Enum.Font['GothamMedium'],Vector2.new(math.huge,math.huge)).X+5 or 0),1,0),ZIndex=b6.ZIndex+2})ax(c3,{pad={bottom=UDim.new(0,1),top=UDim.new(0,1),left=UDim.new(0,1),right=UDim.new(0,1)},corner={radius=UDim.new(1,0)}})local c4=ai('Frame',{Name='Slide',Parent=c3,BackgroundColor3=Color3.fromRGB(40,40,40),BorderSizePixel=0,Position=UDim2.new(1,-65,0.5,-1),Size=UDim2.new(0,60,0,2),ZIndex=b6.ZIndex+3})local bW=ai('Frame',{Parent=c4,Name='Circle',BackgroundColor3=Color3.fromRGB(255,255,255),BorderSizePixel=0,Position=UDim2.new(0,-5,0,6),Size=UDim2.new(0,12,0,12),ZIndex=b6.ZIndex+3})ax(bW,{corner={radius=UDim.new(1,0)}})ax(c4,{corner={radius=UDim.new(1,0)}})local c5;if c2 then c5=ai('TextLabel',{Parent=c3,Name='Counter',BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,b:GetTextSize(tostring(aO),12,Enum.Font['GothamMedium'],Vector2.new(math.huge,math.huge)).X,1,0),ZIndex=c3.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment='Right'})end;local function aR(bB)bB=math.clamp(bB,aN,aO)bW.Position=UDim2.new((bB-aN)/(aO-aN),-3,0,-6)if c5 then c5.Text=tostring(bB)end;bt.flags[bu]=bB;aZ(bB)end;local ac=aK(c4,{min=aN,max=aO,default=aP,float=aQ,side='X',set=aR})ac.Position=UDim2.new(0,0,0,-6)ac.Size=UDim2.new(0,60,0,12)aR(aP)bt._FlagsSet[bu]=aR;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=aR},{__index=bM})end;function b0:Dropdown(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;if not b6.Parent:FindFirstChild('Title')then ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})end;local c6=ak.options or{}local c7=ak.default or{}local aN=ak.min or 0;local aO=ak.max or#c6;if aN>aO then error('kill yourself (min is bigger than max)',2)end;local c8=#self._sector:GetChildren()local b8=100;local c9=ai('Frame',{Parent=b6,Name='Dropdown',LayoutOrder=10-#b6:GetChildren(),BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,1,0,1),Size=UDim2.new(0,90,1,0),ZIndex=b8})ax(c9,{Corner={radius=UDim.new(0,2)},stroke={}})local bX=ai('TextButton',{Parent=c9,Name='Handler',BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=b8+1,Text='',TextTransparency=1})local ca=ai('TextLabel',{Parent=c9,Name='Choice',BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,5,0,2),Size=UDim2.new(1,-20,0,9),ZIndex=b8+1,Font=Enum.Font.Gotham,Text='',TextColor3=Color3.fromRGB(255,255,255),TextSize=11,TextXAlignment=Enum.TextXAlignment.Left})local cb=ai('ImageLabel',{Parent=c9,Name='Arrow',BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(1,-12,0,5),Size=UDim2.new(0,7,0,4),ZIndex=c9.ZIndex+1,Image="http://www.roblox.com/asset/?id=14259608577",ImageColor3=Color3.fromRGB(200,200,200)})c9:GetPropertyChangedSignal('ZIndex'):Connect(function()cb.ZIndex=c9.ZIndex+1 end)local cc=ai('ScrollingFrame',{Parent=c9,Name='OptionsHolder',Active=true,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,0,0,17),Size=UDim2.new(1,0,0,73),Visible=false,ZIndex=b8+1,CanvasSize=UDim2.new(0,0,0,0),AutomaticCanvasSize='Y',ScrollBarImageTransparency=1})ax(cc,{list={pad=UDim.new(0,5),direction='Vertical',horizontalalignment='Left',verticalalignment='Top'},pad={Top=UDim.new(0,1),Bottom=UDim.new(0,1),right=UDim.new(0,4),left=UDim.new(0,4)}})local bt=self._window;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;local aZ=ak.callback or function()end;local function cd()local ce=''if#c7==0 then ce='None'ca.TextColor3=Color3.fromRGB(125,125,125)else ca.TextColor3=Color3.fromRGB(255,255,255)for ag,ah in pairs(c7)do local cf=b:GetTextSize(ah,ca.TextSize,Enum.Font.Gotham,ca.AbsoluteSize).X;if b:GetTextSize(ce,ca.TextSize,Enum.Font.Gotham,ca.AbsoluteSize).X+cf>=ca.AbsoluteSize.X-7 then ce=ce..'...'break end;ce=ce..tostring(ah)..(#c7~=1 and(ag==#c7 and''or', ')or'')end end;ca.Text=ce;bt.flags[bu]=aO==1 and c7[1]or c7;aZ(bt.flags[bu])end;cd()local cg={}local ch={}local function ci(a7)if not ch[a7]then if#cg==aO then local a7=cg[1]a6(a7,0.25,'Quad','In',{TextColor3=Color3.fromRGB(125,125,125)})an(c7,a7.Text)an(cg,a7)ch[a7]=false end;a6(a7,0.25,'Quad','In',{TextColor3=Color3.fromRGB(255,255,255)})am(c7,a7.Text)am(cg,a7)ch[a7]=true else if#c7<=aN then return end;a6(a7,0.25,'Quad','In',{TextColor3=Color3.fromRGB(125,125,125)})an(c7,a7.Text)an(cg,a7)ch[a7]=false end;cd()end;local cj=1;local ck={}for ag,ah in pairs(c6)do local a7=ai('TextLabel',{Parent=cc,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,1,0,1),Size=UDim2.new(1,-5,0,12),ZIndex=b8+11,Font=Enum.Font.Gotham,Text=tostring(ah),TextColor3=Color3.fromRGB(125,125,125),TextSize=11,TextXAlignment=Enum.TextXAlignment.Left})ck[tostring(ah)]=a7;local aS=ai('TextButton',{Parent=a7,BackgroundTransparency=1,TextTransparency=1,Size=UDim2.new(1,0,1,0),ZIndex=a7.ZIndex+1})a7.MouseEnter:Connect(function()if ch[a7]then return end;a6(a7,0.25,'Quad','In',{TextColor3=Color3.fromRGB(200,200,200)})end)a7.MouseLeave:Connect(function()if ch[a7]then return end;a6(a7,0.25,'Quad','In',{TextColor3=Color3.fromRGB(125,125,125)})end)aS.MouseButton1Down:Connect(function()ci(a7)end)cc:GetPropertyChangedSignal('ZIndex'):Connect(function()a7.ZIndex=cc.ZIndex+1;aS.ZIndex=a7.ZIndex+1 end)if aN>=cj then ci(a7)end;cj=1 end;cc.Size=UDim2.new(1,-5,0,0)self._sector.ChildAdded:Connect(function()b8=100+(#self._sector:GetChildren()-c8)*100;c9.ZIndex=b8;cc.ZIndex=b8+1;ca.ZIndex=b8+1;bX.ZIndex=b8+1 end)bX.MouseButton1Down:Connect(function()cc.Visible=not cc.Visible;local a8=cc.Visible and 0.4 or 0.3;local cl=cc.Visible and UDim2.new(0,90,1,math.clamp(cc.AbsoluteCanvasSize.Y,20,100)+5)or UDim2.new(0,90,1,0)local cm=cc.Visible and UDim2.new(1,0,0,math.clamp(cc.AbsoluteCanvasSize.Y,20,100)+5)or UDim2.new(1,0,0,0)a6(c9,a8,'Quad','InOut',{Size=cl})a6(cc,a8,'Quad','InOut',{Size=cm})end)local function bL(cn)if typeof(cn)=='table'then for ag,ah in pairs(cn)do if not c6[ag]then cn[ag]=nil end end else cn={cn}end;c7=cn;for ag,ah in pairs(ck)do local ac=table.find(c7,ag)ah.TextColor3=ac and Color3.fromRGB(255,255,255)or Color3.fromRGB(125,125,125)ch[ah]=ac~=nil;local a_=table.find(cg,ah)if a_ then table.remove(cg,a_)end end;cd()end;bt._FlagsSet[bu]=bL;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=bL},{__index=bM})end;function b0:Label(ak)local ak=ad(ak)local b6=aG(self)ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})b6:Destroy()end;function b0:Button(ak)local ak=ad(ak)local b6=self._holder;if not self._segment then b6=aG(self)end;local aZ=ak.callback or function()end;b6.Position=UDim2.new(0,1,0,-1)b6.Size=UDim2.new(0,172,1,2)local aS=ai('Frame',{Name='Button',LayoutOrder=0,Parent=b6,BackgroundColor3=Color3.fromRGB(30,30,30),BorderSizePixel=0,Position=UDim2.new(0,1,0,1),Size=UDim2.new(1,0,1,0),ZIndex=b6.ZIndex+2})ax(aS,{corner={radius=UDim.new(0,2)},stroke={}})ai('TextLabel',{Parent=aS,Name='Label',BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,3,0,1),Size=UDim2.new(1,0,1,-3),ZIndex=b6.ZIndex+3,Font=Enum.Font.Gotham,Text=ak.name or'',TextColor3=Color3.fromRGB(255,255,255),TextSize=12.000})local bX=ai('TextButton',{Parent=aS,Name='Handler',BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=b6.ZIndex+4,Text=''})bX.MouseButton1Down:Connect(aZ)end;local co={[Enum.KeyCode.LeftShift]='L-SHIFT',[Enum.KeyCode.RightShift]='R-SHIFT',[Enum.KeyCode.One]='1',[Enum.KeyCode.Two]='2',[Enum.KeyCode.Three]='3',[Enum.KeyCode.Four]='4',[Enum.KeyCode.Five]='5',[Enum.KeyCode.Six]='6',[Enum.KeyCode.Seven]='7',[Enum.KeyCode.Eight]='8',[Enum.KeyCode.Nine]='9',[Enum.KeyCode.Zero]='0',[Enum.KeyCode.LeftControl]='L-CTRL',[Enum.KeyCode.RightControl]='R-CTRL',[Enum.KeyCode.RightAlt]='R-ALT',[Enum.KeyCode.LeftAlt]='L-ALT',[Enum.KeyCode.CapsLock]='CAPSLOCK',[Enum.KeyCode.KeypadOne]='NUM-1',[Enum.KeyCode.KeypadTwo]='NUM-2',[Enum.KeyCode.KeypadThree]='NUM-3',[Enum.KeyCode.KeypadFour]='NUM-4',[Enum.KeyCode.KeypadFive]='NUM-5',[Enum.KeyCode.KeypadSix]='NUM-6',[Enum.KeyCode.KeypadSeven]='NUM-7',[Enum.KeyCode.KeypadEight]='NUM-8',[Enum.KeyCode.KeypadNine]='NUM-9',[Enum.KeyCode.KeypadZero]='NUM-0',[Enum.KeyCode.Minus]="-",[Enum.KeyCode.Equals]="=",[Enum.KeyCode.Tilde]="~",[Enum.KeyCode.LeftBracket]="[",[Enum.KeyCode.RightBracket]="]",[Enum.KeyCode.RightParenthesis]=")",[Enum.KeyCode.LeftParenthesis]="(",[Enum.KeyCode.Semicolon]=",",[Enum.KeyCode.Quote]="'",[Enum.KeyCode.BackSlash]="\\",[Enum.KeyCode.Comma]=",",[Enum.KeyCode.Period]=".",[Enum.KeyCode.Slash]="/",[Enum.KeyCode.Asterisk]="*",[Enum.KeyCode.Plus]="+",[Enum.KeyCode.Period]=".",[Enum.KeyCode.Backquote]="`",[Enum.UserInputType.MouseButton1]="MOUSE-1",[Enum.UserInputType.MouseButton2]="MOUSE-2",[Enum.UserInputType.MouseButton3]="MOUSE-3"}local function cp(cq,cr)local bw,cs=pcall(function()return cq[cr]end)if not bw then return end;return cs end;local function ct(cu)for ag,ah in pairs(co)do if ah==cu then return ag end end;return cp(Enum.KeyCode,cu)or cp(Enum.UserInputType,cu)or cu end;function b0:Keybind(ak)local ak=ad(ak)local b6=aG(self)local bt=self._window;local aZ=ak.callback or function()end;b6.Size=UDim2.new(0,0,0,1)ai('TextLabel',{Name='Title',Parent=b6.Parent,BackgroundTransparency=1.000,BorderSizePixel=0,Size=UDim2.new(1,0,0,12),ZIndex=b6.ZIndex+1,Font=Enum.Font.GothamMedium,TextColor3=Color3.fromRGB(200,200,200),TextSize=12.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.name or''})local cv=ai("Frame",{Name='KeybindHolder',Parent=b6,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=0.5,BorderSizePixel=0,Size=UDim2.new(0,75,1,0),ZIndex=b6.ZIndex+2})local bX=ai('TextButton',{Name='Handler',Parent=cv,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,10,1,0),Position=UDim2.new(0,-5,0,0),ZIndex=b6.ZIndex+5,Text=''})ax(cv,{corner={radius=UDim.new(0,2)},pad={bottom=UDim.new(0,1),top=UDim.new(0,1),Left=UDim.new(0,8),right=UDim.new(0,8)},stroke={}})local cw=ai('TextLabel',{Parent=cv,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=b6.ZIndex+3,Font=Enum.Font.Gotham,Text="NONE",TextColor3=Color3.fromRGB(125,125,125),TextSize=12,TextWrapped=false})local cd;local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;bt.flags[bu]={Active=ak.active,Type=ak.Type or 1,Binding=false}local cx=ai('Frame',{Parent=cv,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=0,BorderSizePixel=0,Position=UDim2.new(0.5,0,0.5,0),Size=UDim2.new(),ZIndex=b6.ZIndex+5,Visible=false})ax(cx,{stroke={},corner={radius=UDim.new(0,2)}})local cy=ai('TextButton',{Parent=cx,BackgroundColor3=Color3.fromRGB(125,125,125),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0.5,0),Size=UDim2.new(1,0,0.5,0),ZIndex=b6.ZIndex+6,Font=Enum.Font.SourceSans,Text="TOGGLE",TextColor3=Color3.fromRGB(255,255,255),TextSize=14})local cz=ai('TextButton',{Parent=cx,BackgroundColor3=Color3.fromRGB(125,125,125),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,0),Size=UDim2.new(1,0,0.5,0),ZIndex=b6.ZIndex+6,Font=Enum.Font.SourceSans,Text="HOLD",TextColor3=Color3.fromRGB(255,255,255),TextSize=14})local ba=self._tabSector;local bb=ba.AbsoluteCanvasSize.Y;local bc=ba.AbsolutePosition.X+ba.AbsoluteSize.X;local bd=50;local aM=15;local cA=cv.AbsolutePosition.X+cv.AbsoluteSize.X+aM>=bc or cv.AbsolutePosition.X+cv.AbsoluteSize.X+aM+bd>=bc;local function cB(aR)if aR==false or cx.Visible then a6(cy,0.5,'Quad','Out',{TextTransparency=1})a6(cz,0.5,'Quad','Out',{TextTransparency=1})a6(cx,0.5,'Quad','Out',{Position=UDim2.new(0.5,0,0.5,0),Size=UDim2.new()}).Completed:Wait()cx.Visible=false else local bf=math.clamp(cv.AbsolutePosition.Y-8,ba.AbsolutePosition.Y,ba.AbsolutePosition.Y+bb)cx.Visible=true;a6(cy,0.5,'Quad','Out',{TextTransparency=0})a6(cz,0.5,'Quad','Out',{TextTransparency=0})a6(cx,0.5,'Quad','Out',{Position=cA and UDim2.new(0,-65,0,-8)or UDim2.new(1,15,0,-8),Size=UDim2.new(0,50,0,30)}).Completed:Wait()end end;bX.MouseButton2Down:Connect(function()cB()end)cy.MouseButton1Down:Connect(function()bt.flags[bu].Type=1;cd()cB(false)end)cz.MouseButton1Down:Connect(function()bt.flags[bu].Type=2;cd()cB(false)end)cy.MouseEnter:Connect(function()if bt.flags[bu].Type~=1 then a6(cy,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})end end)cz.MouseEnter:Connect(function()if bt.flags[bu].Type~=2 then a6(cz,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})end end)cy.MouseLeave:Connect(function()if bt.flags[bu].Type~=1 then a6(cy,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(125,125,125)})end end)cz.MouseLeave:Connect(function()if bt.flags[bu].Type~=2 then a6(cz,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(125,125,125)})end end)local a2;local function cC(cD)local cE=co[cD]or tostring(cD):match("Enum%.%a+%.(%a+)")or cD;local bx=(cE=='NONE'or cE=='...')and Color3.fromRGB(125,125,125)or Color3.fromRGB(255,255,255)a6(cw,0.1,'Quad','In',{TextColor3=bx})cw.Text=cE;cv.Size=UDim2.new(0,cw.TextBounds.X+10,1,0)a2=ct(cE)bt.flags[bu]['Key']=cE end;cC('NONE')local cF=ak.key;if cF then if typeof(cF)=='EnumItem'then cC(cF)else cC(Enum.KeyCode[cF]or Enum.UserInputType.MouseButton1)end end;cd=function()local b_=bt.flags[bu]if b_.Type==1 then a6(cy,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(255,255,255)})a6(cz,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(125,125,125)})else a6(cy,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(125,125,125)})a6(cz,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(255,255,255)})end;aZ(b_)end;cd()local cG;bX.MouseButton1Click:Connect(function()bt.flags[bu].Binding=true;cC('...')cG=a.InputBegan:Connect(function(av,ac)if av.KeyCode==Enum.KeyCode.Backspace then cC('NONE')elseif av.KeyCode==Enum.KeyCode.Unknown then cC(av.UserInputType)else cC(av.KeyCode)end;bt.flags[bu].Binding=false;cG:Disconnect()cd()end)end)a5[math.random()]=a.InputBegan:Connect(function(av,ac)if a2==av.KeyCode or a2==av.UserInputType then if bt.flags[bu].Type==1 then bt.flags[bu].Active=not bt.flags[bu].Active else bt.flags[bu].Active=true end;cd()end end)a5[math.random()]=a.InputEnded:Connect(function(av,ac)if a2==av.KeyCode or a2==av.UserInputType then if bt.flags[bu].Type==2 then bt.flags[bu].Active=false;cd()end end end)local function bL(a1)assert(typeof(a1)=='table')local a1=ad(a1)bt.flags[bu].Binding=false;bt.flags[bu].Active=a1.active;bt.flags[bu].Type=a1.type or bt.flags[bu].Type;cC(ct(a1.key or'NONE'))end;bt._FlagsSet[bu]=bL;local bM=table.clone(self)bM._holder=b6;bM._segment=true;setmetatable(bM,b0)return setmetatable({Set=bL},{__index=bM})end;function SetupSector(bt,cH)ax(cH,{list={pad=UDim.new(0,14),direction='Horizontal',horizontalalignment='Left',verticalalignment='Top'},pad={top=UDim.new(0,1),left=UDim.new(0,1),right=UDim.new(0,3)}})local cI=ai('Frame',{Name='Row 1',Parent=cH,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(0.5,-7,1,0)})local cJ=ai('Frame',{Name='Row 2',Parent=cH,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(0.5,-7,1,0)})local c0,c0,cK=ax(cI,{list={pad=UDim.new(0,14),verticalalignment='Top',direction='Vertical'}})local c0,c0,cL=ax(cJ,{list={pad=UDim.new(0,14),verticalalignment='Top',direction='Vertical'}})local function cM()task.wait()cH.CanvasSize=UDim2.new(0,0,0,math.max(cL.AbsoluteContentSize.Y,cK.AbsoluteContentSize.Y)+cH.Parent.UIPadding.PaddingTop.Offset+cH.Parent.UIPadding.PaddingBottom.Offset)end;cK:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(cM)cL:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(cM)local cN={}function cN:Sector(ak)local ak=ad(ak)local cO=ak.side==1 and cI or cJ;local cP=ai('Frame',{Parent=cO,ZIndex=2,BackgroundColor3=Color3.fromRGB(30,30,30),BackgroundTransparency=0.5,Size=UDim2.new(),Name='Sector'})ax(cP,{list={pad=UDim.new(0,12),direction='Vertical',horizontalalignment='Left',verticalalignment='Top'},corner={radius=UDim.new(0,4)},pad={Bottom=UDim.new(0,16),top=UDim.new(0,16),right=UDim.new(0,16),left=UDim.new(0,16)},stroke={}})local aA=cP.UIListLayout;aA:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function(bB)local bR=aA.AbsoluteContentSize.Y+32;cP.Size=UDim2.new(1,0,0,bR)cM()end)return setmetatable({_holder=cP,_window=bt,_side=ak.side,_tabSector=cH,_sector=cP,_holderSize=UDim2.new(0,100,1,0),_holderPosition=UDim2.new(0,80,0,0)},{__index=function(ac,a_)return b4[a_]or b0[a_]end})end;return cN end;local cQ={}cQ.__index=cQ;function cQ.normal(cR,bt)local cH=ai('ScrollingFrame',{Parent=cR,Name='Sector',LayoutOrder=#bt._tabs+1,Size=UDim2.new(1,0,1,0),BackgroundTransparency=1,BorderSizePixel=0,BottomImage="",CanvasSize=UDim2.new(0,0,1,0),ScrollBarImageColor3=Color3.fromRGB(50,50,50),ScrollBarThickness=1,TopImage="",Active=true,ZIndex=3,Visible=false})return cH,SetupSector(bt,cH)end;local cS={}cS.__index=cS;function cS.new(ak,bt,cH)local ak=ad(ak)local self=setmetatable({_window=bt,_CurrentChoices={}},cS)local bu=ak.flag;if not bu then bt.undefinedFlags=1;bu='undefined_'..bt.undefinedFlags end;bt.flags[bu]={choices={},options={}}self._flag=bu;cH.Visible=false;local cT=ai('Frame',{Parent=cH,Name='Background',BackgroundColor3=Color3.fromRGB(20,20,20),BackgroundTransparency=0.500,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=2})ax(cT,{corner={radius=UDim.new(0,4)},stroke={}})local cU=ai('Frame',{Parent=cH,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=2,Visible=false})local cV=ai('ScrollingFrame',{Name='Content',Parent=cH,Active=true,BackgroundColor3=Color3.fromRGB(20,20,20),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),Visible=true,ZIndex=2,BottomImage="",CanvasSize=UDim2.new(0,0,0,0),ScrollBarThickness=1,TopImage=""})self._ChoicesHolder=cV;do ai('UIGridLayout',{Parent=cV,CellPadding=UDim2.new(0,4,0,4),CellSize=UDim2.new(0,80,0,85),FillDirection='Horizontal',SortOrder='LayoutOrder'})ax(cV,{pad={top=UDim.new(0,14),bottom=UDim.new(0,14),left=UDim.new(0,12),right=UDim.new(0,11)}})local cW=ai('Frame',{Parent=cV,BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,LayoutOrder=1,Size=UDim2.new(0,100,0,100),ZIndex=3})ax(cW,{corner={radius=UDim.new(0,4)},pad={top=UDim.new(0,3),bottom=UDim.new(0,3),left=UDim.new(0,3),right=UDim.new(0,3)},stroke={}})for ag=0,1 do ai('Frame',{Parent=cW,BackgroundColor3=Color3.fromRGB(255,255,255),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0.5,-5,0.5,-20),Rotation=ag*90,Size=UDim2.new(0,10,0,40),ZIndex=4})end;ai('TextButton',{Parent=cW,BackgroundTransparency=1,TextTransparency=1,ZIndex=cW.ZIndex+1,Size=UDim2.new(1,0,1,0)}).MouseButton1Down:Connect(function()cV.Visible=not cV.Visible;cU.Visible=not cU.Visible end)end;do local ak=ai('ScrollingFrame',{Name='Options',Parent=cU,Active=true,BackgroundColor3=Color3.fromRGB(50,50,50),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,30),Size=UDim2.new(1,-5,1,-30),ZIndex=3,CanvasSize=UDim2.new(0,0,0,0),ScrollBarThickness=1})ax(ak,{list={pad=UDim.new(0,5),horizontalalignment='Left',direction='Vertical',SortOrder='Name',Verticalalignment='Top'},pad={bottom=UDim.new(0,10),top=UDim.new(0,10),right=UDim.new(0,15),left=UDim.new(0,15)}})self._OptionsHolder=ak;local cX=ai('Frame',{Parent=cU,Name='Menu',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0,30),ZIndex=3})ax(cX,{corner={radius=UDim.new(0,4)},list={pad=UDim.new(0,6),direction='Horizontal',order='LayoutOrder',HorizontalAlignment='Left',verticalalignment='Top'},pad={top=UDim.new(0,5),bottom=UDim.new(0,5),left=UDim.new(0,5),right=UDim.new(0,5)},stroke={}})local cY=ai('Frame',{Parent=cX,Name='Add',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,LayoutOrder=2,Size=UDim2.new(0,140,1,0),ZIndex=4})local cZ=ai('Frame',{Parent=cX,Name='Back',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,LayoutOrder=1,Size=UDim2.new(0,60,1,0),ZIndex=4})local c_=ai('Frame',{Parent=cX,Name='Search',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,LayoutOrder=3,Size=UDim2.new(0,200,1,0),ZIndex=4})ax(cY,{corner={radius=UDim.new(0,2)},stroke={}})ax(cZ,{corner={radius=UDim.new(0,2)},stroke={}})ax(c_,{corner={radius=UDim.new(0,2)},stroke={}})ai('TextButton',{Parent=cZ,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,1),Size=UDim2.new(1,0,1,0),ZIndex=4,Font=Enum.Font.GothamMedium,Text="Back",TextColor3=Color3.fromRGB(255,255,255),TextSize=14.000}).MouseButton1Down:Connect(function()cV.Visible=true;cU.Visible=false end)ai('TextButton',{Parent=cY,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,3),TextScaled=true,TextWrapped=true,Size=UDim2.new(1,0,1,-5),ZIndex=4,Font=Enum.Font.GothamMedium,Text="Add Selected (0)",TextColor3=Color3.fromRGB(125,125,125),TextSize=14.000}).MouseButton1Down:Connect(function()return self:_HandleChoices()end)local d0=ai('TextBox',{Parent=c_,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,5,0,3),Size=UDim2.new(1,-5,1,-5),TextScaled=true,ZIndex=5,Font=Enum.Font.GothamMedium,Text="Search",TextColor3=Color3.fromRGB(125,125,125),TextSize=14.000,TextXAlignment=Enum.TextXAlignment.Left})local d1=true;local d2=false;d0.Focused:Connect(function()d0.TextColor3=Color3.fromRGB(255,255,255)if d1 then d0.Text=''end end)d0.FocusLost:Connect(function()d0.ClearTextOnFocus=d0.Text==''d1=d0.Text==''if d0.Text==''then d0.TextColor3=Color3.fromRGB(125,125,125)d2=true;d0.Text='Search'end end)d0:GetPropertyChangedSignal('Text'):Connect(function()if d2 then d2=false;d1=true else d1=d0.Text==''end;for ag,ah in pairs(ak:GetChildren())do if not ah:IsA('Frame')then end;if ah.Name:match(d0.Text)or d1 then ah.Visible=true else ah.Visible=false end end end)end;self:AddOptions(ak.options or{})self:AddChoices(ak.choices or{})end;function cS:AddOption(d3,d4)local aI=self._OptionsHolder;local d4=ad(d4)local cu=d4.name or''local bt=self._window;local bu=self._flag;local d3=d3 or''local aI=ai('Frame',{Parent=aI,Name=(d3 or'')..' | '..(cu or''),LayoutOrder=#aI:GetChildren()-1,BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,0),Size=UDim2.new(1,0,0,40),ZIndex=4})ax(aI,{pad={bottom=UDim.new(0,5),top=UDim.new(0,5),left=UDim.new(),right=UDim.new(0,5)}})ai('ImageLabel',{Parent=aI,BackgroundColor3=Color3.fromRGB(255,255,255),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,30,1,0),ZIndex=4,Image=d4.image or''})ai('TextLabel',{Parent=aI,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,35,0,0),Size=UDim2.new(0,200,1,0),ZIndex=4,Font=Enum.Font.GothamMedium,Text=(d3 or'')..' | '..(cu or''),TextColor3=Color3.fromRGB(255,255,255),TextSize=14.000,TextXAlignment=Enum.TextXAlignment.Left})local aS=ai('Frame',{Name='Button',Parent=aI,BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(1,-75,0,0),Size=UDim2.new(0,75,1,0),ZIndex=4})ax(aS,{corner={radius=UDim.new(0,2)},stroke={}})bt.flags[self._flag].options[d3]=bt.flags[self._flag].options[d3]or{}local d5={image=d4.image or'',name=d4.name or''}table.insert(bt.flags[self._flag].options[d3],d5)local d6=#bt.flags[self._flag].options[d3]local bX=ai('TextButton',{Name='Button',Parent=aS,BackgroundColor3=Color3.fromRGB(200,200,200),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=4,Font=Enum.Font.GothamMedium,Text="ADD",TextColor3=Color3.fromRGB(200,200,200),TextSize=14.000})bX.MouseButton1Down:Connect(function()if bt.flags[bu].choices[d3]and bt.flags[bu].choices[d3].name==d5.name then return end;if self._CurrentChoices[d3]then self._CurrentChoices[d3]=nil;self:_SetSelection(self:_GetSelection()-1)a6(bX,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})else self._CurrentChoices[d3]=d5;self:_SetSelection(self:_GetSelection()+1)a6(bX,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(125,125,125)})end;self:FilterOptions()end)bX.MouseEnter:Connect(function()if self._CurrentChoices[d3]~=d5 and(not bt.flags[bu].choices[d3]or bt.flags[bu].choices[d3].name~=d5.name)then a6(bX,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(255,255,255)})end end)bX.MouseLeave:Connect(function()if self._CurrentChoices[d3]~=d5 and(not bt.flags[bu].choices[d3]or bt.flags[bu].choices[d3].name~=d5.name)then a6(bX,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})end end)end;function cS:AddChoice(d3,d5)if self._window.flags[self._flag].choices[d3]then return end;local aI=self._ChoicesHolder;local d4=ad(d5)local a7=ai('Frame',{Parent=aI,LayoutOrder=#aI:GetChildren()-1,Name='Choice',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,100,0,100),ZIndex=3})ax(a7,{corner={radius=UDim.new(0,4)},pad={Bottom=UDim.new(0,3),top=UDim.new(0,3),right=UDim.new(0,3),left=UDim.new(0,3)},stroke={}})local aS=ai('ImageButton',{Parent=a7,BackgroundColor3=Color3.fromRGB(200,200,200),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=4,Image=d4.image or''})aS.MouseButton1Down:Connect(function()self._window.flags[self._flag].choices[d3]=nil;a7:Destroy()self:FilterOptions()end)self._window.flags[self._flag].choices[d3]=d4 end;function cS:AddChoices(ak)for ag,ah in pairs(ak)do for c0,d7 in pairs(ah)do self:AddChoice(ag,d7)end end end;function cS:AddOptions(ak)for ag,ah in pairs(ak)do for c0,d7 in pairs(ah)do self:AddOption(ag,d7)end end end;function cS:_HandleChoices()for ag,ah in pairs(self._CurrentChoices)do self:AddChoice(ag,ah)end;table.clear(self._CurrentChoices)self:FilterOptions()self:_SetSelection(0)end;function cS:_SetSelection(d8)local bJ="Add Selection ("..d8 ..')'self._OptionsHolder.Parent.Menu.Add.TextButton.Text=bJ;a6(self._OptionsHolder.Parent.Menu.Add.TextButton,0.2,'Quad','Out',{TextColor3=tonumber(d8)==0 and Color3.fromRGB(125,125,125)or Color3.fromRGB(255,255,255)})end;function cS:_GetSelection()return self._OptionsHolder.Parent.Menu.Add.TextButton.Text:match("%d+")end;function cS:FilterOptions()for ag,ah in pairs(self._OptionsHolder:GetChildren())do if not ah:IsA('Frame')then end;local d5=ah.Name:split(' | ')local a1=self._CurrentChoices[d5[1]]local d9=self._window.flags[self._flag].choices[d5[1]]if a1 and a1.name~=d5[2]or d9 and d9.name~=d5[2]then ah.Visible=false;a6(ah.Button.Button,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})else if not(a1 or d9)then a6(ah.Button.Button,0.2,'Quad','Out',{TextColor3=Color3.fromRGB(200,200,200)})end;ah.Visible=true end end end;function cQ.skins(cR,bt,ak)local ak=ad(ak)return cR,cS.new(ak,bt,cR)end;local da={}da.__index=da;function da.new(ak,db)local ak=typeof(ak)=='table'and ad(ak)or{text=tostring(ak)}local aI=ai('Frame',{Parent=db,Name='Holder',BackgroundColor3=Color3.fromRGB(30,30,30),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(50,0,0,20),ZIndex=3,ClipsDescendants=true})ax(aI,{corner={radius=UDim.new(0,4)},stroke={}})ak.color=ak.color or Color3.fromRGB(255,255,255)ak.time=ak.time or 1.3;if ak.grad~=false then ai('Frame',{Name='Color',Parent=aI,BackgroundColor3=ak.color,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0,1),Size=UDim2.new(0,1,1,-2),ZIndex=4})ai('Frame',{Name='Color2',Parent=aI,BackgroundColor3=ak.color,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,1,0,0),Size=UDim2.new(0,1,1,0),ZIndex=4})end;local bJ=ai('TextLabel',{Parent=aI,Name='Text',BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,7,0,0),Size=UDim2.new(1,-10,1,0),ZIndex=4,Font=Enum.Font.Gotham,TextColor3=Color3.fromRGB(255,255,255),TextSize=14.000,TextXAlignment=Enum.TextXAlignment.Left,Text=ak.text or''})aI.Size=UDim2.new(0,bJ.TextBounds.X+15,0,25)local dc=setmetatable({_holder=aI,_options=ak},da)task.spawn(da[ak.style and ak.style:lower()or'normal'],dc)return dc end;function da:_Animate()local dd={OnFinish=a0.new(),OnAnimation=a0.new()}coroutine.wrap(function()local cl=self._holder.AbsoluteSize;self._holder.Size=UDim2.new(0,0,0,cl.Y)a6(self._holder,0.6,'Quad','Out',{Size=UDim2.new(0,cl.X,0,cl.Y)})wait(self._options.time)dd.OnAnimation:Fire()a6(self._holder,0.2,'Quad','Out',{BackgroundTransparency=1,Position=UDim2.new(-1,0,0,0)})a6(self._holder.Color,0.2,'Quad','Out',{BackgroundTransparency=1})a6(self._holder.Stroke,0.2,'Quad','Out',{Transparency=1})a6(self._holder.Color2,0.2,'Quad','Out',{BackgroundTransparency=1})local ae=a6(self._holder.Text,0.2,'Quad','Out',{TextTransparency=1})ae.Completed:Wait()dd.OnFinish:Fire()self._holder:Destroy()end)()return dd end;function da:normal()return self:_Animate()end;function da:warning()local de=false;local df,dg=self._holder.Color,self._holder.Color2;coroutine.wrap(function()local ac=0;while not de do a6(df,0.25,'Linear','In',{BackgroundColor3=Color3.new()or self._options.color})local ae=a6(dg,0.25,'Linear','In',{BackgroundColor3=Color3.new()or self._options.color})ae.Completed:Wait()ac=1 end end)()local dd=self:_Animate()dd.OnFinish:Connect(function()de=true end)return dd end;function da:time()local de=false;local a8=self._options.time;local dh=ai('Frame',{Parent=self._holder,Position=UDim2.new(0,2,1,-1),Size=UDim2.new(0,0,0,1),BackgroundColor3=self._options.color,ZIndex=4,BorderSizePixel=0})local di=0;local dj=Y.RenderStepped:Connect(function(dk)di=dk;dh.Size=UDim2.new(math.min(di/a8,1),-6,0,1)end)local dd=self:_Animate()dd.OnAnimation:Connect(function()dj:Disconnect()a6(dh,0.2,'Quad','Out',{BackgroundTransparency=1})end)return dd end;function da:loading()local de=false;local df,dg=self._holder.Color,self._holder.Color2;local dl=ai('Frame',{Parent=self._holder,Position=UDim2.new(0,1,1,-1),Size=UDim2.new(0,0,0,1),BackgroundColor3=self._options.color,ZIndex=4,BorderSizePixel=0})coroutine.wrap(function()local ac=0;while not de do local bd=self._holder.AbsoluteSize.X/3;local aU=bd/2;local ae=a6(dl,0.6,'Linear','Out',{Position=UDim2.new(0.5,ac%2==0 and aU or-aU,1,-1),Size=UDim2.new(0,ac%2==0 and-bd or bd,0,1)})ae.Completed:Wait()local ae=a6(dl,0.6,'Quad','Out',{Position=ac%2==0 and UDim2.new(1,-2,1,-1)or UDim2.new(0,2,1,-1),Size=UDim2.new(0,1,0,1)})ae.Completed:Wait()ac=1;task.wait(.15)end end)()local dd=self:_Animate()dd.OnAnimation:Connect(function()de=true;a6(dl,0.2,'Quad','Out',{BackgroundTransparency=1})end)return dd end;function da:SetText(bJ)self._holder.Text.Text=bJ;self._holder.Size=UDim2.new(0,self._holder.Text.TextBounds.X+10,0,25)end;local dm={}dm.__index=dm;function dm.new(dn,ak)local dc=setmetatable({_watermark=dn},dm)dc:Edit(ak or{})return dc end;function dm:Edit(ak)local ak=ad(ak)if ak.text then self._watermark.Text.Text=tostring(ak.text)end end;function X:Init(ak)local ak=ad(ak)local dp=ak.parent or script.Parent or game:GetService('CoreGui')local dq=ai('ScreenGui',{Name='UIHolder',Parent=dp,ZIndexBehavior='Global',ResetOnSpawn=false})function X:Unload()for c0,dr in next,a5 do dr:Disconnect()end;dq:Destroy()end;function X:SetToggled(ds)dq.Enabled=ds end;function X:Toggle()self:SetToggled(not dq.Enabled)end;function X:Watermark(ak)local ak=ad(ak)local bJ=ak.text or'Lynx'local dn=ai('Frame',{Name="Watermark",Parent=dq,BackgroundColor3=Color3.fromRGB(30,30,30),BorderSizePixel=0,Position=UDim2.new(0,32,0,32),Size=UDim2.new(0,32,0,32)})ao(dn)ax(dn,{corner={radius=UDim.new(0,8)},pad={bottom=UDim.new(0,8),top=UDim.new(0,8),left=UDim.new(0,16),right=UDim.new(0,16)},stroke={}})local bJ=ai('TextLabel',{Name="Text",FontFace=Font.new("rbxasset://fonts/families/GothamSSm.json"),RichText=true,Text=bJ,TextColor3=Color3.fromRGB(255,255,255),TextSize=14,TextScaled=false,TextWrapped=false,TextXAlignment="Left",BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,1,0),Parent=dn})bJ:GetPropertyChangedSignal('TextBounds'):Connect(function()task.wait()local dt=bJ.TextBounds;dn.Size=UDim2.new(0,dt.X+32,0,dt.Y+16)end)return dm.new(dn,ak)end;do local du=ai("ScreenGui",{Parent=dq.Parent,Name='Notifications'})local db=ai('Frame',{Name='NotificationsHolder',Parent=du,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,50,0,50),Size=UDim2.new(0,34,50,0),ZIndex=2})local dv={}local dw={}db.ChildAdded:Connect(function(dx)if dx.Name=='Holder'then local dy=#dv*30;dx.Position=UDim2.new(0,dx.AbsolutePosition.X,0,dy)table.insert(dv,dx)dw[dx]=dy end end)db.ChildRemoved:Connect(function(dx)if dx.Name=='Holder'then local ae=table.find(dv,dx)local dz=dw[dx]for ag=ae+1,#dv do local dx=dv[ag]local dA=dz;dz=dw[dx]dw[dx]=dA;a6(dx,0.2,'Quad','Out',{Position=UDim2.new(0,dx.AbsolutePosition.X-db.AbsolutePosition.X,0,dA)})end;dw[dx]=nil;table.remove(dv,ae)end end)function X:Notify(ak)return da.new(ak,db)end end;function X:SetupLoader(ak)local ak=ad(ak)local dB=ak.time or 2;local dC=ai('Frame',{Parent=dq,Name='Loading',BackgroundColor3=Color3.fromRGB(30,30,30),BorderSizePixel=0,Position=UDim2.new(0.5,-50,0.5,-50),Size=UDim2.fromOffset(100,100)})ax(dC,{corner={radius=UDim.new(1,0)},pad={bottom=UDim.new(0,16),top=UDim.new(0,16),left=UDim.new(0,16),right=UDim.new(0,16)}})local bW=ai('ImageLabel',{Name="Circle",Image="rbxassetid://6331335348",BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.fromScale(1,1),Parent=dC})local dD=tick()task.spawn(function()while task.wait()do if tick()-dD>=dB-2 then task.spawn(function()a6(bW,0.1,'Quad','In',{ImageTransparency=1})task.wait(.1)bW.Rotation=0;bW.Image='rbxassetid://1202200114'a6(bW,0.1,'Quad','In',{ImageTransparency=0})task.wait(1)a6(dC,0.2,'Quad','In',{BackgroundTransparency=1})a6(bW,0.2,'Quad','In',{ImageTransparency=1})task.wait(.9)dC:Destroy()end)break end;bW.Rotation=(bW.Rotation+5)%360 end end)end;function X:NewWindow(ak)local ak=ad(ak)local dE=ad(ak.window)local dF=dE.name or'MTX Client'local dG=dE.description or'Universal'local dH=ad(ak.user)local dI=dH.name or'metatron_exe'local dJ=dH.role or'Developer'local dK=dH.icon or''local dL=ai('Frame',{Parent=dq,Name='Window',BackgroundColor3=Color3.fromRGB(23,23,23),BackgroundTransparency=0.030,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,620,0,385)})dL.Position=UDim2.new(0.5,-dL.AbsoluteSize.X/2,0.5,-dL.AbsoluteSize.Y/2)ax(dL,{corner={radius=UDim.new(0,8)},stroke={Color=Color3.fromRGB(40,40,40)}})local dM=ai('Frame',{Parent=dL,Name='Sidebar',BackgroundColor3=Color3.fromRGB(255,255,255),BorderColor3=Color3.fromRGB(0,0,0),BackgroundTransparency=1.000,Size=UDim2.new(0.270000011,0,1,0),BorderSizePixel=0})ao(dL,dM)local bt={_tabs={},undefinedFlags=0,_FlagsSet={},_DefaultFlags={},flags={}}bt['Flags']=bt.flags;function bt:SaveConfig(cu)local dN={}for ag,ah in pairs(bt.flags)do local b_=ah;if typeof(ah)=='table'and ah.Color and typeof(ah.Color)=='Color3'then b_={Color={R=ah.Color.R,G=ah.Color.G,B=ah.Color.B},Alpha=ah.Alpha}end;dN[ag]=b_ end;return Z:JSONEncode(dN)end;function bt:LoadConfig(av)local dO=Z:JSONDecode(av)for bu,b_ in pairs(dO)do if typeof(b_)=='table'and typeof(b_.Color)=='table'then b_.Color=Color3.new(b_.Color.R,b_.Color.G,b_.Color.B)end;if bt._FlagsSet[bu]then bt._FlagsSet[bu](b_)end end end;do local cV=ai('Frame',{Name='Content',Parent=dM,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,1,0)})ai('UIPadding',{Parent=cV,PaddingBottom=UDim.new(0,16),PaddingLeft=UDim.new(0,16),PaddingRight=UDim.new(0,16),PaddingTop=UDim.new(0,16)})local dP=ai('Frame',{Parent=cV,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,0,0.150000006,-16)})ai('UIListLayout',{Parent=dP,Padding=UDim.new(0,4),HorizontalAlignment=Enum.HorizontalAlignment.Center,VerticalAlignment=Enum.VerticalAlignment.Center})ai('TextLabel',{Name='a_name',Parent=dP,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,0,18),Font=Enum.Font.GothamBlack,Text=dF,RichText=true,TextColor3=Color3.fromRGB(255,255,255),TextSize=14.000,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Bottom})ai('TextLabel',{Name='b_Description',Parent=dP,BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,0,18),Font=Enum.Font.Gotham,Text=dG,RichText=true,TextColor3=Color3.fromRGB(108,108,108),TextSize=14.000,TextStrokeColor3=Color3.fromRGB(92,92,92),TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Top})local dQ=ai('Frame',{Name='UserInfo',Parent=cV,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,0,0.9,0),Size=UDim2.new(1,0,0.1,0)})ax(dQ,{list={pad=UDim.new(0,16),sort='LayoutOrder',direction='Horizontal',horizontalalignment='Left'}})if dK then ax(ai('ImageLabel',{Name='Img',Parent=dQ,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,0,0.5,-12),Size=UDim2.new(0,35,0,35),Image=dK}),{corner={radius=UDim.new(1,0),stroke={}}})end;local dR=ai('Frame',{Name='Info',Parent=dQ,BackgroundTransparency=1.000,BorderSizePixel=0,Position=UDim2.new(0,dK and 56 or 0,0,0),Size=UDim2.new(1,dK and-40 or 0,1,0)})ax(dR,{list={pad=UDim.new(0,4)}})ai('TextLabel',{Parent=dR,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,56,0.5,-18),Size=UDim2.new(1,0,0,14),Font=Enum.Font.GothamBold,Text=dI,TextColor3=Color3.fromRGB(255,255,255),TextSize=14.000,TextWrapped=true,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Bottom})ai('TextLabel',{Parent=dR,BackgroundTransparency=1,BorderSizePixel=0,Position=UDim2.new(0,56,0.5,-18),Size=UDim2.new(1,0,0,14),Font=Enum.Font.Gotham,Text=dJ,TextColor3=Color3.fromRGB(108,108,108),TextSize=14,TextWrapped=true,TextXAlignment=Enum.TextXAlignment.Left,TextYAlignment=Enum.TextYAlignment.Top})local dS=ai('ScrollingFrame',{Name='Tabs',Parent=cV,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0.150000006,0),Selectable=false,Size=UDim2.new(1,0,0.75,-24),BottomImage="",CanvasSize=UDim2.new(0,0,0,145),ScrollBarImageColor3=Color3.fromRGB(50,50,50),ScrollBarThickness=1,TopImage=""})local c0,c0,aA,aB=ax(dS,{list={pad=UDim.new(0,8),VerticalAlignment='Top'},Pad={left=UDim.new(0,1),top=UDim.new(0,1),right=UDim.new(0,8)}})aA:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()task.wait()local dT=aA.AbsoluteContentSize;dS.CanvasSize=UDim2.new(0,dT.X,0,dT.Y)end)local function dU(dV,dW)a6(dV,0.25,'Quad','In',{BackgroundTransparency=dW and 0 or 1})a6(dV:FindFirstChildOfClass('UIStroke'),0.25,'Quad','In',{Transparency=dW and 0 or 1})end;function bt:Tab(ak)local ak=ad(ak)local type=ak.type and ak.type:lower()or'normal'local dK=ak.icon;local cP=ai('Frame',{Name=('1'):rep(#dS:GetChildren()-1),Parent=dS,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,-1,0,32),ZIndex=2})local dX=ai('TextButton',{Name='Handler',Parent=cP,BackgroundTransparency=1,BorderSizePixel=0,ZIndex=5,Size=UDim2.new(1,0,1,0),Text=''})local dY=ai('Frame',{Name='Tab',Parent=cP,BackgroundColor3=Color3.fromRGB(25,25,25),BackgroundTransparency=1,BorderSizePixel=0,Size=UDim2.new(1,0,1,0),ZIndex=3})local c0,az,c0,c0=ax(dY,{corner={radius=UDim.new(0,4)},list={pad=UDim.new(0,8),horizontalalignment='Left',verticalalignment='Center',direction='Horizontal'},pad={bottom=UDim.new(0,10),top=UDim.new(0,10),left=UDim.new(0,10),right=UDim.new(0,10)},stroke={}})az.Transparency=1;if dK then ai('ImageLabel',{Name='a_icon',Parent=dY,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(0,16,1,0),ZIndex=4,Image=dK,ScaleType=Enum.ScaleType.Fit})end;ai('TextLabel',{Name='b_text',Parent=dY,BackgroundColor3=Color3.fromRGB(255,255,255),BackgroundTransparency=1.000,BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Size=UDim2.new(1,dK and-28 or 0,1,0),ZIndex=4,Font=Enum.Font.GothamMedium,Text=ak.name or'[NO NAME]',TextColor3=Color3.fromRGB(255,255,255),TextSize=14,TextWrapped=true,TextXAlignment=Enum.TextXAlignment.Left})local dZ=ai('Frame',{Parent=dL,Name='SectorHolder_'..#bt._tabs+1,Size=UDim2.new(0.73,0,1,0),Position=UDim2.new(0.27,0,0,0),BackgroundTransparency=1,BorderSizePixel=0})ax(dZ,{pad={bottom=UDim.new(0,14),top=UDim.new(0,14),right=UDim.new(0,14),left=UDim.new(0,14)}})local cH,d_=cQ[type](dZ,bt,ak)dX.MouseButton1Down:Connect(function()if bt._CurrentTab[1]~=cP then task.spawn(function()dU(bt._CurrentTab[1].Tab,false)bt._CurrentTab[2].Visible=false;bt._CurrentTab[2].ZIndex=1;bt._CurrentTab={cP,cH}cH.ZIndex=1;dU(cP.Tab,true)end)cH.Visible=true end end)if not bt._CurrentTab then bt._CurrentTab={cP,cH}dU(bt._CurrentTab[1].Tab,true)cH.Visible=true;cH.ZIndex=1 end;table.insert(bt._tabs,cH)return d_ end;function bt:Separator()ai('Frame',{Name='Separator',Parent=ai('Frame',{Name=('1'):rep(#dS:GetChildren()-1),Parent=dS,BackgroundTransparency=1,Size=UDim2.new(1,-1,0,32),ZIndex=2}),BackgroundColor3=Color3.fromRGB(40,40,40),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(0,0,0.5,0),Size=UDim2.new(1,0,0,1)})end end;ai('Frame',{Name="Separator",Parent=dM,BackgroundColor3=Color3.fromRGB(40,40,40),BorderColor3=Color3.fromRGB(0,0,0),BorderSizePixel=0,Position=UDim2.new(1,0,0,0),Size=UDim2.new(0,1,1,0)})return bt end end;X:Init()
+local uis = game:GetService('UserInputService')
+local txtservice = game:GetService('TextService')
+local ts = game:GetService('TweenService')
+
+local InputService, TeleportService, RunService, Workspace, Lighting, Players, HttpService, StarterGui, ReplicatedStorage, TweenService, VirtualUser, PathFindingService = game:GetService("UserInputService"), game:GetService("TeleportService"), game:GetService("RunService"), game:GetService("Workspace"), game:GetService("Lighting"), game:GetService("Players"), game:GetService("HttpService"), game:GetService("StarterGui"), game:GetService("ReplicatedStorage"), game:GetService("TweenService"), game:GetService("VirtualUser"), game:GetService("PathfindingService")
+local Mouse, Camera, LocalPlayer = Players.LocalPlayer:GetMouse(), Workspace.Camera, Players.LocalPlayer
+local NewVector2, NewVector3, NewCFrame, NewAngle, NewRGB, NewHex, NewInstance, Spawn, Wait, Create, Resume, SpinAngle, SpinSize, SpinSpeed, Huge, Pi, Clamp, Round, Abs, Floor, Random, Sin, Cos, Rad, Halfpi, Find, Clear, Sub, Upper, Lower, Insert = Vector2.new, Vector3.new, CFrame.new, CFrame.Angles, Color3.fromRGB, Color3.fromHex, Instance.new, task.spawn, task.wait, coroutine.create, coroutine.resume, 0, 25, 0, math.huge, math.pi, math.clamp, math.round, math.abs, math.floor, math.random, math.sin, math.cos, math.rad, math.pi/2, table.find, table.clear, string.sub, string.upper, string.lower, table.insert
+
+local ui = {}
+
+local uis = game:GetService('UserInputService')
+local txtservice = game:GetService('TextService')
+local ts = game:GetService('TweenService')
+local rs = game:GetService('RunService')
+local hs = game:GetService('HttpService')
+
+local HttpService = game:GetService("HttpService")
+local ENABLE_TRACEBACK = false
+local Signal = {}
+do
+	Signal.__index = Signal
+	Signal.ClassName = "Signal"
+
+	function Signal.isSignal(value)
+		return type(value) == "table" and getmetatable(value) == Signal
+	end
+
+	function Signal.new()
+		local self = setmetatable({}, Signal)
+		self._bindableEvent = Instance.new("BindableEvent")
+		self._argMap = {}
+		self._source = ENABLE_TRACEBACK and debug.traceback() or ""
+
+		self._bindableEvent.Event:Connect(function(key)
+			self._argMap[key] = nil
+			if (not self._bindableEvent) and (not next(self._argMap)) then
+				self._argMap = nil
+			end
+		end)
+		return self
+	end
+
+	function Signal:Fire(...)
+		if not self._bindableEvent then
+			warn(("Signal is already destroyed. %s"):format(self._source))
+			return
+		end
+		local args = table.pack(...)
+		local key = HttpService:GenerateGUID(false)
+		self._argMap[key] = args
+		self._bindableEvent:Fire(key)
+	end
+
+	function Signal:Connect(handler)
+		if not (type(handler) == "function") then
+			error(("connect(%s)"):format(typeof(handler)), 2)
+		end
+		return self._bindableEvent.Event:Connect(function(key)
+			local args = self._argMap[key]
+			if args then
+				handler(table.unpack(args, 1, args.n))
+			else
+				error("Missing arg data, probably due to reentrance.")
+			end
+		end)
+	end
+
+	function Signal:Wait()
+		local key = self._bindableEvent.Event:Wait()
+		local args = self._argMap[key]
+		if args then
+			return table.unpack(args, 1, args.n)
+		else
+			error("Missing arg data, probably due to reentrance.")
+			return nil
+		end
+	end
+
+	function Signal:Destroy()
+		if self._bindableEvent then
+			self._bindableEvent:Destroy()
+			self._bindableEvent = nil
+		end
+		setmetatable(self, nil)
+	end
+end
+
+local Connections = {}
+
+local function Tween(frame,time,style,direction,props)
+	local a = ts:Create(frame,TweenInfo.new(time,Enum.EasingStyle[style],Enum.EasingDirection[direction]),props)
+	a:Play()
+	return a
+end
+local function formatTable(t)
+	local t = t or {}
+	local new = {}
+	for i,v in pairs(t) do
+		new[tostring(i):lower()] = v
+	end
+	return new
+end
+local function create(className,options)
+	local options = options or {}
+	local inst = Instance.new(className)
+	for i,v in pairs(options) do
+		inst[i] = v
+	end
+	return inst
+end
+local function TabInsert(t,v)
+	if not table.find(t,v) then
+		table.insert(t,v)
+	end
+end
+local function TabRemove(t,v)
+	local a = table.find(t,v)
+	if a then
+		table.remove(t,a)
+	end
+end
+local function Dragify(frame,frame2)
+	local frame2 = frame2 or frame
+	local dragging = false 
+	local dragInput 
+	local dragStart 
+	local startPos 
+	local function update(input) 
+		local delta = input.Position - dragStart 
+		frame.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end 
+	frame2.InputBegan:Connect(function(input) 
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then 
+			dragging = true 
+			dragStart = input.Position 
+			startPos = frame.Position 
+			input.Changed:Connect(function() 
+				if input.UserInputState == Enum.UserInputState.End then 
+					dragging = false 
+				end 
+			end) 
+		end 
+	end) 
+	frame2.InputChanged:Connect(function(input) 
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then 
+			dragInput = input 
+		end 
+	end)
+	uis.InputChanged:Connect(function(input) 
+		if input == dragInput and dragging then 
+			update(input) 
+		end 
+	end)
+end
+local function SetupFrame(frame,options)
+	local options = formatTable(options)
+	local uiCorner,stroke,list,pad
+	if options.corner then
+		local cornerOptions = formatTable(options.corner)
+		uiCorner = create('UICorner',{
+			Parent = frame,
+			CornerRadius = cornerOptions.radius or UDim.new(),
+		})
+	end
+	if options.stroke then
+		local strokeOptions = formatTable(options.stroke)
+		stroke = create('UIStroke',{
+			Name = 'Stroke',
+			Parent = frame,
+			Thickness = 1,
+			Transparency = 0,
+			Color = strokeOptions.Color or Color3.fromRGB(40,40,40), 
+			LineJoinMode = 'Round',
+			ApplyStrokeMode = 'Contextual'
+		})
+	end
+	if options.list then
+		local listOptions = formatTable(options.list)
+		list = create('UIListLayout',{
+			Parent = frame,
+			Padding = listOptions.pad or UDim.new(),
+			FillDirection = listOptions.direction or 'Vertical',
+			HorizontalAlignment = listOptions.horizontalalignment or 'Left',
+			SortOrder = listOptions.order or 'LayoutOrder',
+			VerticalAlignment = listOptions.verticalalignment or 'Top',
+		})
+	end
+	if options.pad then
+		local padOptions = formatTable(options.pad)
+		pad = create('UIPadding',{
+			Parent = frame,
+			PaddingBottom = padOptions.bottom or UDim.new(),
+			PaddingTop = padOptions.top or UDim.new(),
+			PaddingRight = padOptions.right or UDim.new(),
+			PaddingLeft = padOptions.left or UDim.new(),
+		})
+	end
+	return uiCorner,stroke,list,pad
+end
+local function CreateElement(element) 
+	local holder = element._holder
+	local elementHolder = create('Frame',{
+		Name = #holder:GetChildren()-(element._settingMenu and 0 or 3),
+		Parent = holder,
+		Size = UDim2.new(1,0,0,15),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		ZIndex = holder.ZIndex+1,
+	})
+	local holder = create('Frame',{
+		Name = 'Holder',
+		Parent = elementHolder,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = element._holderPosition or UDim2.new(0,80,0,0),
+		Size = element._holderSize or UDim2.new(0,100,1,0),
+		ZIndex = elementHolder.ZIndex+1,
+	})
+	SetupFrame(holder,{
+		List = {Pad = UDim.new(0,5),Direction = 'Horizontal',horizontalalignment = 'Right',verticalalignment = 'Top'},
+	})
+	return holder
+end
+local function CreateSlider(frame,options)
+	local options = formatTable(options)
+	local side = options.side or 'X'
+	local offset = side == 'Y' and 36 or 0
+
+	local min = options.min or 0
+	local max = options.max or 100
+	local default = options.default or 0
+	local float = options.float or 1
+
+	local set = options.set or function() end
+
+
+	local button = create('Frame',{
+		Parent = frame,
+		Name = 'Button',
+		BackgroundTransparency = 1,
+		Position = UDim2.new(),
+		Size = UDim2.new(1,0,1,0),
+		ZIndex = frame.ZIndex+1,
+	})
+
+	local function slide(input)
+		local x = (input.Position[side]-frame.AbsolutePosition[side])/frame.AbsoluteSize[side]
+
+		local value = ((max-min)*x)+min
+		value = math.floor(value*(1/float))/(1/float)
+		value = math.clamp(value,min,max)
+		set(value)
+	end
+	set(default)
+	local sliding = false
+	button.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			sliding = true
+			slide(input)
+		end
+	end)
+	button.InputEnded:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 then
+			sliding = false
+			slide(input)
+		end
+	end)
+	uis.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement and sliding then
+			slide(input)
+		end
+	end)
+	return button
+end
+local function CreateInput(textlabel,options)
+	local textbox = create('TextBox',{
+		Parent = textlabel.Parent,
+		ClearTextOnFocus = false,
+		Font = textlabel.Font,
+		FontFace = textlabel.FontFace,
+		LineHeight = textlabel.LineHeight,
+		Position = textlabel.Position,
+		Size = textlabel.Size,
+		Text = textlabel.Text,
+		TextColor3 = textlabel.TextColor3,
+		TextScaled = textlabel.TextScaled,
+		TextSize = textlabel.TextSize,
+		Name = textlabel.Name,
+		ZIndex = textlabel.ZIndex,
+		BackgroundTransparency = textlabel.BackgroundTransparency,
+		TextTransparency = textlabel.TextTransparency,
+		TextXAlignment = textlabel.TextXAlignment,
+		BorderSizePixel = textlabel.BorderSizePixel,
+	})
+	textlabel:Destroy()
+	local options = formatTable(options)
+	local callback = options.callback or function() end
+	if options.focuses then
+		textbox.Focused:Connect(function()
+			callback(false,textbox.Text)
+		end)
+		textbox.FocusLost:Connect(function(a,b)
+			callback(true,textbox.Text,a,b)
+		end)
+	else
+		textbox:GetPropertyChangedSignal('Text'):Connect(function()
+			callback(textbox.Text)
+		end)
+	end
+	return textbox
+end
+
+local Elements = {}
+Elements.__index = Elements
+
+local function CombineTables(t,t2)
+	local t3 = {}
+	for i,v in pairs(t) do
+		t3[i] = v
+	end
+	for i,v in pairs(t2) do
+		t3[i] = v
+	end
+
+	return setmetatable(t3,Elements)
+end
+local Segment = {} 
+Segment.__index = Segment
+function Segment:CreateSegment(options)
+	local options = formatTable(options)
+	local holder = CreateElement(self)
+
+	local elementsClass = {_holder = holder,_window = self._window,_sector = self._sector,_tabSector = self._tabSector,_segment = true}
+	if options.name then
+		elementsClass._title = true
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = holder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = holder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	return setmetatable(elementsClass,Elements)
+end
+
+function Elements:Colorpicker(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	local sector = self._tabSector
+	local zindexadd = 300+300*#sector:GetChildren()
+	local colorpickerIcon = create('ImageLabel',{
+		Parent = mainHolder,
+		Name = (10-#mainHolder:GetChildren()),
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 46, 0, 0),
+		Size = UDim2.new(0, 15, 0, 15),
+		ZIndex = mainHolder.ZIndex+1,
+		Image = "http://www.roblox.com/asset/?id=14259665095",
+		ImageColor3 = Color3.fromRGB(200, 200, 200),
+		SliceScale = 4.000,
+	})
+	local scroll = self._tabSector
+	local scrollY = scroll.CanvasSize.Y.Offset
+	
+	local edgeX = scroll.AbsolutePosition.X+scroll.AbsoluteSize.X
+	local sizex = 125
+	local offset = 15
+
+	local posX = ((colorpickerIcon.AbsolutePosition.X+offset >= edgeX or colorpickerIcon.AbsolutePosition.X+offset+sizex >= edgeX) and -(sizex+offset) or offset+(colorpickerIcon.AbsoluteSize.X/2))
+	local posY = math.clamp(colorpickerIcon.AbsolutePosition.Y-60,scroll.AbsolutePosition.Y,scroll.AbsolutePosition.Y+scrollY)
+
+	local colorpickerFrame = create('Frame',{
+		Name = 'ColorpickerFrame',
+		Parent = colorpickerIcon,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, posX, 0, posY-colorpickerIcon.AbsolutePosition.Y+2),
+		Size = UDim2.new(0, sizex, 0, 135),
+		ZIndex = zindexadd+1,
+		Visible = false,
+	})
+	SetupFrame(colorpickerFrame,{corner = {radius = UDim.new(0,4)},stroke = {}})
+	local button = create('TextButton',{
+		Parent = colorpickerIcon,
+		Size = UDim2.new(1,0,1,0),
+		TextTransparency = 1,
+		BackgroundTransparency = 1,
+		ZIndex = zindexadd+1
+	})
+	button.MouseButton1Down:Connect(function()
+		colorpickerFrame.Visible = not colorpickerFrame.Visible
+	end)
+	
+	scroll:GetPropertyChangedSignal('CanvasSize'):Connect(function()
+		scrollY = scroll.CanvasSize.Y.Offset
+		posY = math.clamp(colorpickerIcon.AbsolutePosition.Y-60,scroll.AbsolutePosition.Y,scroll.AbsolutePosition.Y+scrollY)
+		colorpickerFrame.Position = UDim2.new(0, posX, 0, posY-colorpickerIcon.AbsolutePosition.Y+2)
+	end)
+	
+	local mainColorpicker = create('Frame',{
+		Name = 'Colorpicker',
+		Parent = colorpickerFrame,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 5, 0, 5),
+		Size = UDim2.new(0, 100, 0, 90),
+		ZIndex = zindexadd+2,
+	})
+	SetupFrame(mainColorpicker,{Corner = {radius = UDim.new(0,4)}})
+	local image = create('ImageLabel',{
+		ZIndex = zindexadd+3,
+		Parent = mainColorpicker,
+		Image = 'rbxassetid://4155801252',
+		Size = UDim2.new(1,0,1,0)
+	})
+
+	local hue = create('Frame',{
+		Name = 'Hue',
+		Parent = colorpickerFrame,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 5, 0, 100),
+		Size = UDim2.new(0, 115, 0, 11),
+		ZIndex = zindexadd+2,
+	})
+	SetupFrame(hue,{corner = {radius = UDim.new(0,4)}})
+	create('UIGradient',{
+		Parent = hue,
+		Enabled = true,
+		Rotation = 0,
+		Color = ColorSequence.new{
+			ColorSequenceKeypoint.new(0.00, Color3.fromRGB(255, 0, 0)), 
+			ColorSequenceKeypoint.new(0.17, Color3.fromRGB(255, 255, 0)), 
+			ColorSequenceKeypoint.new(0.33, Color3.fromRGB(0, 255, 0)), 
+			ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 255)), 
+			ColorSequenceKeypoint.new(0.66, Color3.fromRGB(0, 0, 255)), 
+			ColorSequenceKeypoint.new(0.82, Color3.fromRGB(255, 0, 255)), 
+			ColorSequenceKeypoint.new(1.00, Color3.fromRGB(255, 0, 0))
+		}
+	})
+	local alpha = create('ImageLabel',{
+		Name = 'Alpha',
+		Parent = colorpickerFrame,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 110, 0, 5),
+		Size = UDim2.new(0, 10, 0, 90),
+		ZIndex = zindexadd+2,
+		Image = "rbxassetid://14248403322",
+	})
+
+
+	local alphaslideFrame = create('Frame',{
+		BackgroundTransparency = 1,
+		Parent = alpha,
+		Size = UDim2.new(1,0,1,-2)
+	})
+	local alphapicker = create('Frame',{
+		Parent = alphaslideFrame,
+		BorderSizePixel = 1,
+		Size = UDim2.new(1,-2,0,2),
+		Position = UDim2.new(0,1,0,0),
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		ZIndex = zindexadd+4
+	})
+
+	local hueslideFrame = create('Frame',{
+		BackgroundTransparency = 1,
+		Parent = hue,
+		Size = UDim2.new(1,-2,1,0)
+	})
+	local huepicker = create('Frame',{
+		Parent = hueslideFrame,
+		BorderSizePixel = 1,
+		Size = UDim2.new(0,2,1,-2),
+		Position = UDim2.new(0,0,0,1),
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		ZIndex = zindexadd+4
+	})
+
+	local colorpickerSlide = create('Frame',{
+		Parent = mainColorpicker,
+		Name = 'SlideFrame',
+		Size = UDim2.new(1,-3,1,-3),
+		Position = UDim2.new(0,1,0,1),
+		BackgroundTransparency = 1,
+	})
+	local colorpointer = create('Frame',{
+		Parent = colorpickerSlide,
+		Name = 'Picker',
+		Size = UDim2.new(0,6,0,6),
+		Position = UDim2.new(),
+		BorderSizePixel = 1,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		ZIndex = zindexadd+4
+	})
+
+	local inputs = {}
+	for i=1,3 do 
+		local mainFrame = create('Frame',{
+			Name = tostring(i),
+			Parent = colorpickerFrame,
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BackgroundTransparency = 0.500,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 6+(39*(i-1)), 0, 116),
+			Size = UDim2.new(0, 35, 0, 14),
+			ZIndex = zindexadd+2,
+		})
+		local a = create('TextLabel',{
+			Name = tostring(i),
+			Parent = mainFrame,
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 1, 0, 0),
+			Size = UDim2.new(1, 0, 1, -1),
+			ZIndex = zindexadd+3,
+			Font = Enum.Font.Gotham,
+			Text = "255",
+			TextColor3 = Color3.fromRGB(180, 180, 180),
+			TextSize = 11.000,
+			TextWrapped = true,
+		})
+		SetupFrame(mainFrame,{corner = {radius = UDim.new(0,4)},pad = {top = UDim.new(0,1),bottom = UDim.new(0,1),left = UDim.new(0,8),right = UDim.new(0,8)},stroke = {}})
+		table.insert(inputs,a)
+	end
+	local window = self._window
+	local callback = options.callback or function() end
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	local callback = options.callback or function() end
+
+
+	local default = {Color = Color3.fromRGB(255, 255, 255),Alpha = 0}
+	if options.default then
+		if typeof(options.default) == 'Color3' then
+			default.Color = options.default
+		elseif typeof(options.default) == 'table' then
+			default = options.default
+		end
+	end
+	window.flags[flag] = {Color = default.Color,Alpha = default.Alpha or 0}
+	local h,s,v = default.Color:ToHSV()
+	
+	local a = default.Alpha or 0
+	
+	local function set(color,setpos)
+		local newhue,newsat,newval = color:ToHSV()
+
+		if setpos then
+			h = newhue
+			s = newsat
+			v = newval
+
+			alphapicker.Position = UDim2.new(0,1,a,0)
+			huepicker.Position = UDim2.new(h,0,0,1)
+			colorpointer.Position = UDim2.new(1-s,-3,1-v,-3)
+		end
+		image.ImageColor3 = Color3.fromHSV(h,1,1)
+
+		alpha.BackgroundColor3 = Color3.fromHSV(h,1,1)
+
+		inputs[1].Text = math.floor(color.R*255) 
+		inputs[2].Text = math.floor(color.G*255)
+		inputs[3].Text = math.floor(color.B*255) 
+
+		window.flags[flag].Color = color
+		window.flags[flag].Alpha = a
+		callback(window.flags[flag])
+	end
+	local function SetA(newa)
+		a = newa
+		alphapicker.Position = UDim2.new(0,1,a,0)
+		set(Color3.fromHSV(h,1-s,1-v))
+	end
+	local function SetH(value)
+		h = value
+		huepicker.Position = UDim2.new(h,0,0,1)
+		set(Color3.fromHSV(h,1-s,1-v))
+	end
+	local function SetS(value)
+		s = value
+		colorpointer.Position = UDim2.new(s,-3,v,-3)
+		set(Color3.fromHSV(h,1-s,1-v))
+	end
+	local function SetV(value)
+		v = value
+		colorpointer.Position = UDim2.new(s,-3,v,-3)
+		set(Color3.fromHSV(h,1-s,1-v))
+	end
+
+	CreateSlider(alphaslideFrame,{side = 'Y',min=0,max=1,float=0.01,default=0,set=SetA})
+	CreateSlider(hueslideFrame,{side = 'X',min=0,max=1,float=0.01,default=0,set=SetH})
+
+	CreateSlider(colorpickerSlide,{side = 'X',min=0,max=1,float=0.01,default=0,set=SetS})
+	CreateSlider(colorpickerSlide,{side = 'Y',min=0,max=1,float=0.01,default=0,set=SetV})
+
+	set(default.Color,true)
+
+	local r,g,b
+
+
+	local textbox;textbox = CreateInput(inputs[1],{focuses = true,callback = function(a,text,b,c)
+		if not a then
+			r = text
+		else
+			if tonumber(text) then
+				set(Color3.fromRGB(text,inputs[2].Text,inputs[3].Text),true)
+			else
+				textbox.Text = r
+			end
+		end
+	end})
+	inputs[1] = textbox
+	local textbox;textbox = CreateInput(inputs[2],{focuses = true,callback = function(a,text,b,c)
+		if not a then
+			g = text
+		else
+			if tonumber(text) then
+				set(Color3.fromRGB(inputs[1].Text,text,inputs[3].Text),true)
+			else
+				textbox.Text = g
+			end
+		end
+	end})
+	inputs[2] = textbox
+	local textbox;textbox = CreateInput(inputs[3],{focuses = true,callback = function(a,text,b,c)
+		if not a then
+			b = text
+		else
+			if tonumber(text) then
+				set(Color3.fromRGB(inputs[1].Text,inputs[2].Text,text),true)
+			else
+				textbox.Text = b
+			end
+		end
+	end})
+	inputs[3] = textbox
+	
+	local function SetValue(color)
+		a = typeof(color) == 'table' and color.Alpha or 0
+		local color = typeof(color) == 'table' and color.Color or color
+		set(color,true)
+	end
+	
+	window._FlagsSet[flag] = SetValue
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	return setmetatable({Set = SetValue},{__index = newmt})
+
+end
+function Elements:Settings(options)
+	local options = formatTable(options)
+	
+	local mainHolder = self._holder
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	local scroll = self._tabSector
+
+	local edgeX = scroll.AbsolutePosition.X+scroll.AbsoluteSize.X
+	
+	local zindexadd = 200+#self._sector:GetChildren()*200
+	local settingIcon = create('ImageLabel',{
+		Parent = mainHolder,
+		Name = (10-#mainHolder:GetChildren()),
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 46, 0, 0),
+		Size = UDim2.new(0, 15, 0, 15),
+		ZIndex = mainHolder.ZIndex+1,
+		Image = "http://www.roblox.com/asset/?id=14259672152",
+		ImageColor3 = Color3.fromRGB(200, 200, 200),
+		SliceScale = 4.000,
+	})
+	local sizex = 150
+	local offset = 10
+	
+	local posX = ((settingIcon.AbsolutePosition.X+offset >= edgeX or settingIcon.AbsolutePosition.X+offset+sizex >= edgeX) and -(sizex+offset) or offset+(settingIcon.AbsoluteSize.X/2))
+	local posY = math.clamp(settingIcon.AbsolutePosition.Y,scroll.AbsolutePosition.Y,scroll.AbsolutePosition.Y+scroll.AbsoluteSize.Y)
+	
+	local button = create('TextButton',{
+		Parent = settingIcon,
+		Name = 'Button',
+		Size = UDim2.new(1,0,1,0),
+		BackgroundTransparency = 1,
+		TextTransparency = 1,
+		ZIndex = mainHolder.ZIndex+2,
+	})
+	local settingFrame = create('Frame',{
+		Name = 'Setting',
+		Parent = settingIcon,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, posX, 0, posY-settingIcon.AbsolutePosition.Y+2),
+		Size = UDim2.new(0, sizex, 0, 10),
+		ZIndex = zindexadd,
+		Visible = false,
+	})
+	SetupFrame(settingFrame,{Corner = {radius = UDim.new(0, 4)},stroke = {}})
+	button.MouseButton1Down:Connect(function()
+		settingFrame.Visible = not settingFrame.Visible
+	end)
+	local settingsHolder = create('Frame',{
+		Parent = settingFrame,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = UDim2.new(),
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = zindexadd+1,
+	})
+	SetupFrame(settingsHolder,
+		{
+			list = {pad = UDim.new(0,5),directing = 'Vertical',horizontalalignment = 'Left',verticalalignment = 'Top'},
+			pad = {bottom = UDim.new(0,5),top = UDim.new(0,5),left = UDim.new(0,6), right = UDim.new(0,6)}
+		}
+	)
+
+	local list = settingsHolder.UIListLayout
+	local function UpdatePos()
+		local contentSize = list.AbsoluteContentSize.Y + 25
+
+		local posY = math.clamp(settingIcon.AbsolutePosition.Y+(-contentSize/2+7),scroll.AbsolutePosition.Y,scroll.AbsolutePosition.Y+scroll.AbsoluteSize.Y)
+
+		settingFrame.Size = UDim2.new(0,sizex,0,contentSize)
+		settingFrame.Position = UDim2.new(0, posX, 0, posY-settingIcon.AbsolutePosition.Y+2)	
+	end
+	list:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(UpdatePos)
+	scroll:GetPropertyChangedSignal('CanvasSize'):Connect(UpdatePos)
+	return setmetatable(
+		{
+			_holder = settingsHolder,
+			_window = self._window,
+			_tabSector = self._tabSector,
+			_sector = self._sector,
+			_settingMenu = true,
+			_holderSize = UDim2.new(1,-60,1,0),
+			_holderPosition = UDim2.new(1,-80,0,0)
+		},
+		{__index = Elements}
+	)
+end
+function Elements:Title(options)
+	local options = formatTable(options)
+	local oldMainholder = CreateElement(self)
+	local mainHolder = oldMainholder.Parent
+	oldMainholder:Destroy() 
+
+	local title = options.title or ''
+	local description = options.description
+
+	if description then
+		mainHolder.Size = UDim2.new(1, 0, 0, 28)
+	end 
+
+	SetupFrame(mainHolder,{
+		list = {Pad = UDim.new(0,4),direction = 'Vertical',horizontalalignment = 'Left',verticalalignment = 'Center'}
+	})
+	create('TextLabel',{
+		Parent = mainHolder,
+		Name = 'Title',
+		LayoutOrder = 1,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 0, description and 12 or 15),
+		ZIndex = mainHolder.ZIndex+1,
+		Font = Enum.Font.GothamMedium,
+		TextColor3 = Color3.fromRGB(200, 200, 200),
+		TextSize = 12,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		Text = title
+	})
+
+	if description then
+		create('TextLabel',{
+			Parent = mainHolder,
+			Name = 'Description',
+			LayoutOrder = 2,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.Gotham,
+			Text = description,
+			TextColor3 = Color3.fromRGB(108, 108, 108),
+			TextSize = 12.000,
+			TextWrapped = true,
+			TextXAlignment = Enum.TextXAlignment.Left,
+		})
+	end
+end
+function Elements:Toggle(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	local toggle = create('Frame',{
+		Name = 'Toggle',
+		LayoutOrder = (10-#mainHolder:GetChildren()),
+		Parent = mainHolder,
+		BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+		BackgroundTransparency = 0.5,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 1, 0, 1),
+		Size = UDim2.new(0, 35, 1, 0),
+		ZIndex = mainHolder.ZIndex+2,
+	})
+	SetupFrame(toggle,{
+		corner = {radius = UDim.new(1,0)},
+		pad = {bottom = UDim.new(0,1),top = UDim.new(0,1),right = UDim.new(0,1),left = UDim.new(0,1)},
+		stroke = {}
+	})
+	local circle = create('Frame',{
+		Name = 'Circle',
+		Parent = toggle,
+		BackgroundColor3 = Color3.fromRGB(125, 125, 125),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 1, 0, 0),
+		Size = UDim2.new(0, 12, 1, 0),
+		ZIndex = mainHolder.ZIndex+3,
+	})
+	local btn = create('TextButton',{
+		Name = 'Callback Handler',
+		Parent = toggle,
+		BackgroundTransparency = 1,
+		Text = '',
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = mainHolder.ZIndex+4,
+	})
+	SetupFrame(circle,{corner = {radius = UDim.new(1,0)}})
+
+	local window = self._window
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	local callback = options.callback or function() end
+	window.flags[flag] = (options.default ~= nil)
+
+	local function OnCallback()
+		if window.flags[flag] then
+			Tween(circle,0.25,'Quad','Out',{BackgroundColor3 = Color3.new(1, 1, 1),Position = UDim2.new(1, -13, 0,0)})
+		else
+			Tween(circle,0.25,'Quad','Out',{BackgroundColor3 = Color3.fromRGB(125, 125, 125),Position = UDim2.new(0, 1,0,0)})
+		end
+		--Tween(circle,0.25,'Quad','Out',{BackgroundColor3 = (window.flags[flag] and Color3.new(1, 1, 1) or Color3.fromRGB(125, 125, 125)),Position = UDim2.new(window.flags[flag] and 1 or 0, window.flags[flag] and -13 or 1,0,0)})
+		callback(window.flags[flag])
+	end
+	local function Set(val)
+		window.flags[flag] = val
+		OnCallback()
+	end
+	Set(window.flags[flag])
+	local _ = toggle.AbsolutePosition -- abs position doesnt get updated until indexes lmao
+	btn.MouseButton1Down:Connect(function() Set(not window.flags[flag]) end)
+	
+	window._FlagsSet[flag] = Set
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	return setmetatable({Set = Set},{__index = newmt})
+end
+function Elements:Input(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	local window = self._window
+	local callback = options.callback or function() end
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	local input = create('Frame',{
+		Name = 'Input',
+		LayoutOrder = (10-#mainHolder:GetChildren()),
+		Parent = mainHolder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BackgroundTransparency = 0.5,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 1, 0, 1),
+		Size = UDim2.new(0, 100, 1, 0),
+		ZIndex = mainHolder.ZIndex+2,
+	})
+	SetupFrame(input,{pad = {Bottom = UDim.new(0,1),top = UDim.new(0,1),right = UDim.new(0,8),left = UDim.new(0,8)},corner = {radius = UDim.new(1,0)},stroke = {}})
+	local inputTextlabel = create('TextLabel',{
+		Parent = input,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = mainHolder.ZIndex+3,
+		Font = Enum.Font.Gotham,
+		Text = "0",
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextScaled = true,
+		TextSize = 14,
+		TextWrapped = true,
+	})
+	local function set(text)
+		inputTextlabel.Text = text
+		window.flags[flag] = text
+		callback(text)
+	end
+	inputTextlabel = CreateInput(inputTextlabel,{focuses = options.focuses,callback = function(...)
+		window.flags[flag] = inputTextlabel.Text
+		callback(...)
+	end,})
+	
+	window._FlagsSet[flag] = set
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	
+	return setmetatable({Set = set},{__index = newmt})
+end
+function Elements:Slider(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+
+	local window = self._window
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	local callback = options.callback or function() end
+	local min = options.min or 0
+	local max = options.max or 100
+	local default = options.default or min
+	local float = options.float or 1
+	local showvalue = true
+	if options.showvalue == false then showvalue = false end
+
+
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+
+	local SlideHolder = create('Frame',{
+		Name = 'Slider',
+		LayoutOrder = (10-#mainHolder:GetChildren()),
+		Parent = mainHolder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(0, 70+(showvalue and txtservice:GetTextSize(tostring(max),12,Enum.Font['GothamMedium'],Vector2.new(math.huge,math.huge)).X+5 or 0), 1, 0),
+		ZIndex = mainHolder.ZIndex+2,
+	})
+	SetupFrame(SlideHolder,{pad = {bottom = UDim.new(0,1),top = UDim.new(0,1),left = UDim.new(0,1),right = UDim.new(0,1)},corner = {radius = UDim.new(1,0)}})
+	local slider = create('Frame',{
+		Name = 'Slide',
+		Parent = SlideHolder,
+		BackgroundColor3 = Color3.fromRGB(40, 40, 40),
+		BorderSizePixel = 0,
+		Position = UDim2.new(1, -65, 0.5, -1),
+		Size = UDim2.new(0, 60, 0, 2),
+		ZIndex = mainHolder.ZIndex+3
+	})
+	local circle = create('Frame',{
+		Parent = slider,
+		Name = 'Circle',
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, -5, 0, 6),
+		Size = UDim2.new(0, 12, 0, 12),
+		ZIndex = mainHolder.ZIndex+3
+	})
+	SetupFrame(circle,{corner = {radius = UDim.new(1,0)}})
+	SetupFrame(slider,{corner = {radius = UDim.new(1,0)}})
+
+	local textLabel;
+	if showvalue then
+		textLabel = create('TextLabel',{
+			Parent = SlideHolder,
+			Name = 'Counter',
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(0, txtservice:GetTextSize(tostring(max),12,Enum.Font['GothamMedium'],Vector2.new(math.huge,math.huge)).X, 1, 0),
+			ZIndex = SlideHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = 'Right'
+		})
+	end
+	local function set(newval)
+		newval = math.clamp(newval,min,max)
+
+		circle.Position = UDim2.new((newval-min)/(max-min),-3,0,-6)
+
+		if textLabel then
+			textLabel.Text = tostring(newval)
+		end
+		window.flags[flag] = newval
+		callback(newval)
+	end
+
+	local a = CreateSlider(slider,{min = min,max = max,default = default,float = float,side = 'X',set = set})
+	a.Position = UDim2.new(0,0,0,-6)
+	a.Size = UDim2.new(0,60,0,12)
+
+	set(default)
+	
+	window._FlagsSet[flag] = set
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	return setmetatable({
+		Set = set,
+		
+	},{__index = newmt})
+end
+function Elements:Dropdown(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	if not mainHolder.Parent:FindFirstChild('Title') then
+		create('TextLabel',{
+			Name = 'Title',
+			Parent = mainHolder.Parent,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 12),
+			ZIndex = mainHolder.ZIndex+1,
+			Font = Enum.Font.GothamMedium,
+			TextColor3 = Color3.fromRGB(200, 200, 200),
+			TextSize = 12.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+			Text = options.name or ''
+		})
+	end
+	local choices = options.options or {}
+	local current = options.default or {}
+
+	local min = options.min or 0
+	local max = options.max or #choices
+
+	if min>max then error('kill yourself (min is bigger than max)',2) end
+	
+	local currentChild = #self._sector:GetChildren()
+	local zindexadd = 100
+	
+	local dropdownHolder = create('Frame',{
+		Parent = mainHolder,
+		Name = 'Dropdown',
+		LayoutOrder = (10-#mainHolder:GetChildren()),
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 1, 0, 1),
+		Size = UDim2.new(0, 90, 1, 0),
+		ZIndex = zindexadd,
+	})
+	SetupFrame(dropdownHolder,{Corner = {radius = UDim.new(0,2)},stroke = {}})
+
+	local btn = create('TextButton',{
+		Parent = dropdownHolder,
+		Name = 'Handler',
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = zindexadd+1,
+		Text = '',
+		TextTransparency = 1,
+	})
+
+	local choiceText = create('TextLabel',{
+		Parent = dropdownHolder,
+		Name = 'Choice',
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 5, 0, 2),
+		Size = UDim2.new(1, -20, 0, 9),
+		ZIndex = zindexadd+1,
+		Font = Enum.Font.Gotham,
+		Text = '',
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 11,
+		TextXAlignment = Enum.TextXAlignment.Left
+	})
+	local arrow = create('ImageLabel',{
+		Parent = dropdownHolder,
+		Name = 'Arrow',
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = UDim2.new(1, -12, 0, 5),
+		Size = UDim2.new(0, 7, 0, 4),
+		ZIndex = dropdownHolder.ZIndex+1,
+		Image = "http://www.roblox.com/asset/?id=14259608577",
+		ImageColor3 = Color3.fromRGB(200, 200, 200),
+	})
+	dropdownHolder:GetPropertyChangedSignal('ZIndex'):Connect(function()
+		arrow.ZIndex = dropdownHolder.ZIndex+1
+	end)
+	local optionsHolder = create('ScrollingFrame',{
+		Parent = dropdownHolder,
+		Name = 'OptionsHolder',
+		Active = true,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 0, 0, 17),
+		Size = UDim2.new(1, 0, 0, 73),
+		Visible = false,
+		ZIndex = zindexadd+1,
+		CanvasSize = UDim2.new(0, 0, 0, 0),
+		AutomaticCanvasSize = 'Y',
+		ScrollBarImageTransparency = 1,
+	})
+	SetupFrame(optionsHolder,{list = {pad = UDim.new(0,5),direction = 'Vertical',horizontalalignment = 'Left',verticalalignment = 'Top'},pad = {Top = UDim.new(0,1),Bottom = UDim.new(0,1),right = UDim.new(0,4),left = UDim.new(0,4)}})
+
+	local window = self._window
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	local callback = options.callback or function() end
+	
+	local function Update()
+		local str = ''
+		if #current == 0 then str = 'None' choiceText.TextColor3 = Color3.fromRGB(125,125,125) else
+			choiceText.TextColor3 = Color3.fromRGB(255,255,255)
+			for i,v in pairs(current) do
+				local len = txtservice:GetTextSize(v,choiceText.TextSize,Enum.Font.Gotham,choiceText.AbsoluteSize).X
+				if txtservice:GetTextSize(str,choiceText.TextSize,Enum.Font.Gotham,choiceText.AbsoluteSize).X + len >= choiceText.AbsoluteSize.X-7 then
+					str = str..'...'
+					break
+				end
+				str = str..tostring(v)..(#current ~= 1 and (i==#current and '' or ', ') or '')
+			end
+		end
+		choiceText.Text = str
+
+		window.flags[flag] = (max == 1 and current[1] or current)
+		callback(window.flags[flag])
+	end
+	Update()
+	
+	local ChosenFrames = {}
+	local FramesChosen = {}
+	local function OnClick(frame)
+		if not FramesChosen[frame] then
+			if #ChosenFrames == max then
+				local frame = ChosenFrames[1]
+				Tween(frame,0.25,'Quad','In',{TextColor3 = Color3.fromRGB(125, 125, 125)})
+				TabRemove(current,frame.Text)
+				TabRemove(ChosenFrames,frame)
+				FramesChosen[frame] = false
+			end
+			Tween(frame,0.25,'Quad','In',{TextColor3 = Color3.fromRGB(255, 255, 255)})
+			TabInsert(current,frame.Text)
+			TabInsert(ChosenFrames,frame)
+			FramesChosen[frame] = true
+		else -- trying to remove
+			if #current <= min then return end
+			Tween(frame,0.25,'Quad','In',{TextColor3 = Color3.fromRGB(125, 125, 125)})
+			TabRemove(current,frame.Text)
+			TabRemove(ChosenFrames,frame)
+			FramesChosen[frame] = false
+		end
+		Update()
+	end
+	local indx = 1
+	local choicesholders = {}
+	for i,v in pairs(choices) do
+		local frame = create('TextLabel',{
+			Parent = optionsHolder,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 1, 0, 1),
+			Size = UDim2.new(1, -5, 0, 12),
+			ZIndex = zindexadd+11,
+			Font = Enum.Font.Gotham,
+			Text = tostring(v),
+			TextColor3 = Color3.fromRGB(125, 125, 125),
+			TextSize = 11,
+			TextXAlignment = Enum.TextXAlignment.Left,
+		})
+		choicesholders[tostring(v)] = frame
+		local button = create('TextButton',{
+			Parent = frame,
+			BackgroundTransparency = 1,
+			TextTransparency = 1,
+			Size = UDim2.new(1,0,1,0),
+			ZIndex = frame.ZIndex+1,
+		})
+		frame.MouseEnter:Connect(function()
+			if FramesChosen[frame] then return end
+			Tween(frame,0.25,'Quad','In',{TextColor3 = Color3.fromRGB(200, 200, 200)})
+		end)
+		frame.MouseLeave:Connect(function()
+			if FramesChosen[frame] then return end
+			Tween(frame,0.25,'Quad','In',{TextColor3 = Color3.fromRGB(125, 125, 125)})
+		end)
+		button.MouseButton1Down:Connect(function()
+			OnClick(frame)
+		end)
+		optionsHolder:GetPropertyChangedSignal('ZIndex'):Connect(function()
+			frame.ZIndex = optionsHolder.ZIndex + 1
+			button.ZIndex = frame.ZIndex + 1
+		end)
+		if min >= indx then
+			OnClick(frame)
+		end
+		indx = 1
+	end
+	optionsHolder.Size = UDim2.new(1,-5,0,0)
+	
+	
+	self._sector.ChildAdded:Connect(function()
+
+		zindexadd = 100+(#self._sector:GetChildren()-currentChild)*100
+		dropdownHolder.ZIndex = zindexadd
+		optionsHolder.ZIndex = zindexadd+1
+		choiceText.ZIndex = zindexadd+1
+		btn.ZIndex = zindexadd+1
+	end)
+	btn.MouseButton1Down:Connect(function()
+		optionsHolder.Visible = not optionsHolder.Visible
+		local time = optionsHolder.Visible and 0.4 or 0.3
+		local size = optionsHolder.Visible and UDim2.new(0,90,1,math.clamp(optionsHolder.AbsoluteCanvasSize.Y,20,100)+5) or UDim2.new(0, 90, 1, 0)
+		local size2 =optionsHolder.Visible and UDim2.new(1,0,0,math.clamp(optionsHolder.AbsoluteCanvasSize.Y,20,100)+5) or UDim2.new(1,0,0,0)
+		Tween(dropdownHolder,time,'Quad','InOut',{Size = size})
+		Tween(optionsHolder,time,'Quad','InOut',{Size = size2})
+	end)
+	local function SetValue(newoptions)
+		if typeof(newoptions) == 'table' then
+			for i,v in pairs(newoptions) do
+				if not choices[i] then newoptions[i] = nil end
+			end
+		else
+			newoptions = {newoptions}
+		end
+		current = newoptions
+		for i,v in pairs(choicesholders) do
+			local a = table.find(current,i)
+			v.TextColor3 = a and Color3.fromRGB(255,255,255) or Color3.fromRGB(125, 125, 125)
+			FramesChosen[v] = a ~= nil
+			local b = table.find(ChosenFrames,v)
+			if b then table.remove(ChosenFrames,b) end
+		end
+		Update()
+	end
+	window._FlagsSet[flag] = SetValue
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	return setmetatable({Set = SetValue},{__index = newmt})
+end
+function Elements:Label(options)
+	local options = formatTable(options)
+	local mainHolder = CreateElement(self)
+	create('TextLabel',{
+		Name = 'Title',
+		Parent = mainHolder.Parent,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 0, 12),
+		ZIndex = mainHolder.ZIndex+1,
+		Font = Enum.Font.GothamMedium,
+		TextColor3 = Color3.fromRGB(200, 200, 200),
+		TextSize = 12.000,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		Text = options.name or ''
+	})
+	mainHolder:Destroy()
+end
+function Elements:Button(options)
+	local options = formatTable(options)
+	local mainHolder = self._holder
+
+	if not self._segment then
+		mainHolder = CreateElement(self)
+	end
+	local callback = options.callback or function() end
+	mainHolder.Position = UDim2.new(0,1,0,-1)
+	mainHolder.Size = UDim2.new(0,172,1,2)
+
+	local button = create('Frame',{
+		Name = 'Button',
+		LayoutOrder = 0,
+		Parent = mainHolder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 1, 0, 1),
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = mainHolder.ZIndex+2,
+	})
+	SetupFrame(button,{corner = {radius = UDim.new(0,2)},stroke = {}})
+	create('TextLabel',{
+		Parent = button,
+		Name = 'Label',
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 3, 0, 1),
+		Size = UDim2.new(1, 0, 1, -3),
+		ZIndex = mainHolder.ZIndex+3,
+		Font = Enum.Font.Gotham,
+		Text = options.name or '',
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 12.000,
+	})
+
+	local btn = create('TextButton', {
+		Parent = button,
+		Name = 'Handler',
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = mainHolder.ZIndex + 4,
+		Text = '',
+	})
+
+	btn.MouseButton1Down:Connect(callback)
+end
+
+
+local keys = {
+	[Enum.KeyCode.LeftShift] = 'L-SHIFT',
+	[Enum.KeyCode.RightShift] = 'R-SHIFT',
+	[Enum.KeyCode.One] = '1',
+	[Enum.KeyCode.Two] = '2',
+	[Enum.KeyCode.Three] = '3',
+	[Enum.KeyCode.Four] = '4',
+	[Enum.KeyCode.Five] = '5',
+	[Enum.KeyCode.Six] = '6',
+	[Enum.KeyCode.Seven] = '7',
+	[Enum.KeyCode.Eight] = '8',
+	[Enum.KeyCode.Nine] = '9',
+	[Enum.KeyCode.Zero] = '0',
+	[Enum.KeyCode.LeftControl] = 'L-CTRL',
+	[Enum.KeyCode.RightControl] = 'R-CTRL',
+	[Enum.KeyCode.RightAlt] = 'R-ALT',
+	[Enum.KeyCode.LeftAlt] = 'L-ALT',
+	[Enum.KeyCode.CapsLock] = 'CAPSLOCK',
+	[Enum.KeyCode.KeypadOne] = 'NUM-1',
+	[Enum.KeyCode.KeypadTwo] = 'NUM-2',
+	[Enum.KeyCode.KeypadThree] = 'NUM-3',
+	[Enum.KeyCode.KeypadFour] = 'NUM-4',
+	[Enum.KeyCode.KeypadFive] = 'NUM-5',
+	[Enum.KeyCode.KeypadSix] = 'NUM-6',
+	[Enum.KeyCode.KeypadSeven] = 'NUM-7',
+	[Enum.KeyCode.KeypadEight] = 'NUM-8',
+	[Enum.KeyCode.KeypadNine] = 'NUM-9',
+	[Enum.KeyCode.KeypadZero] = 'NUM-0',
+	[Enum.KeyCode.Minus] = "-",
+	[Enum.KeyCode.Equals] = "=",
+	[Enum.KeyCode.Tilde] = "~",
+	[Enum.KeyCode.LeftBracket] = "[",
+	[Enum.KeyCode.RightBracket] = "]",
+	[Enum.KeyCode.RightParenthesis] = ")",
+	[Enum.KeyCode.LeftParenthesis] = "(",
+	[Enum.KeyCode.Semicolon] = ",",
+	[Enum.KeyCode.Quote] = "'",
+	[Enum.KeyCode.BackSlash] = "\\",
+	[Enum.KeyCode.Comma] = ",",
+	[Enum.KeyCode.Period] = ".",
+	[Enum.KeyCode.Slash] = "/",
+	[Enum.KeyCode.Asterisk] = "*",
+	[Enum.KeyCode.Plus] = "+",
+	[Enum.KeyCode.Period] = ".",
+	[Enum.KeyCode.Backquote] = "`",
+	[Enum.UserInputType.MouseButton1] = "MOUSE-1",
+	[Enum.UserInputType.MouseButton2] = "MOUSE-2",
+	[Enum.UserInputType.MouseButton3] = "MOUSE-3"
+}
+local function GetEnum(EnumList, EnumChild)
+	local s,result = pcall(function() return EnumList[EnumChild] end)
+	if not s then return end
+	return result
+end
+local function GetKeyCode(name)
+	for i,v in pairs(keys) do
+		if v == name then return i end
+	end
+	return GetEnum(Enum.KeyCode,name) or GetEnum(Enum.UserInputType,name) or name
+end
+function Elements:Keybind(options)
+	local options = formatTable(options)
+	local mainHolder = CreateElement(self)
+
+	local window = self._window
+	local callback = options.callback or function() end
+
+	mainHolder.Size = UDim2.new(0,0,0,1)
+	create('TextLabel',{
+		Name = 'Title',
+		Parent = mainHolder.Parent,
+		BackgroundTransparency = 1.000,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 0, 12),
+		ZIndex = mainHolder.ZIndex+1,
+		Font = Enum.Font.GothamMedium,
+		TextColor3 = Color3.fromRGB(200, 200, 200),
+		TextSize = 12.000,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		Text = options.name or ''
+	})
+	local keybindHolder = create("Frame",{
+		Name = 'KeybindHolder',
+		Parent = mainHolder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BackgroundTransparency = 0.5,
+		BorderSizePixel = 0,
+		Size = UDim2.new(0, 75, 1, 0),
+		ZIndex = mainHolder.ZIndex+2,
+	})
+
+	local btn = create('TextButton',{
+		Name = 'Handler',
+		Parent = keybindHolder,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 10, 1, 0),
+		Position = UDim2.new(0,-5,0,0),
+		ZIndex = mainHolder.ZIndex+5,
+		Text = ''
+	})
+	SetupFrame(keybindHolder,
+		{
+			corner = {radius = UDim.new(0,2)},
+			pad = {bottom = UDim.new(0,1),top = UDim.new(0,1),Left = UDim.new(0,8),right = UDim.new(0,8)},
+			stroke = {}
+		}
+	)
+	local keyText = create('TextLabel',{
+		Parent = keybindHolder,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = mainHolder.ZIndex+3,
+		Font = Enum.Font.Gotham,
+		Text = "NONE",
+		TextColor3 = Color3.fromRGB(125, 125, 125),
+		TextSize = 12,
+		TextWrapped = false,
+	})
+
+	--
+
+	local Update
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	window.flags[flag] = {
+		Active = options.active,
+		Type = options.Type or 1,
+		Binding = false,
+	} 
+
+	local typechoser = create('Frame',{
+		Parent = keybindHolder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BackgroundTransparency = 0,
+		BorderSizePixel = 0,
+		Position = UDim2.new(0.5,0,0.5,0),
+		Size = UDim2.new(),
+		ZIndex = mainHolder.ZIndex+5,
+		Visible = false,
+	})
+	SetupFrame(typechoser,{stroke = {},corner = {radius = UDim.new(0,2)}})
+	local button1 = create('TextButton',{
+		Parent = typechoser,
+		BackgroundColor3 = Color3.fromRGB(125, 125, 125),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 0, 0.5, 0),
+		Size = UDim2.new(1, 0, 0.5, 0),
+		ZIndex = mainHolder.ZIndex+6,
+		Font = Enum.Font.SourceSans,
+		Text = "TOGGLE",
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 14,
+	})
+	local button2 = create('TextButton',{
+		Parent = typechoser,
+		BackgroundColor3 = Color3.fromRGB(125, 125, 125),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 0, 0, 0),
+		Size = UDim2.new(1, 0, 0.5, 0),
+		ZIndex = mainHolder.ZIndex+6,
+		Font = Enum.Font.SourceSans,
+		Text = "HOLD",
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 14,
+	})
+	
+	local scroll = self._tabSector
+	local scrollY = scroll.AbsoluteCanvasSize.Y
+
+	local edgeX = scroll.AbsolutePosition.X+scroll.AbsoluteSize.X
+	local sizex = 50
+	local offset = 15
+
+	local reverse = (keybindHolder.AbsolutePosition.X+keybindHolder.AbsoluteSize.X+offset >= edgeX or keybindHolder.AbsolutePosition.X+keybindHolder.AbsoluteSize.X+offset+sizex >= edgeX)
+
+	local function UpdateVisibility(set)
+		if set == false or typechoser.Visible then
+			Tween(button1,0.5,'Quad','Out',{TextTransparency = 1})
+			Tween(button2,0.5,'Quad','Out',{TextTransparency = 1})
+			Tween(typechoser,0.5,'Quad','Out',{Position = UDim2.new(0.5,0,0.5,0),Size = UDim2.new()}).Completed:Wait()
+			typechoser.Visible = false
+		else
+			local posY = math.clamp(keybindHolder.AbsolutePosition.Y-8,scroll.AbsolutePosition.Y,scroll.AbsolutePosition.Y+scrollY)
+			typechoser.Visible = true
+			Tween(button1,0.5,'Quad','Out',{TextTransparency = 0})
+			Tween(button2,0.5,'Quad','Out',{TextTransparency = 0})
+			Tween(typechoser,0.5,'Quad','Out',{Position = (reverse and UDim2.new(0,-65, 0, -8) or UDim2.new(1,15,0,-8)),Size = UDim2.new(0, 50, 0, 30)}).Completed:Wait()
+		end
+	end
+	btn.MouseButton2Down:Connect(function() UpdateVisibility() end)
+	button1.MouseButton1Down:Connect(function()
+		window.flags[flag].Type = 1
+		Update()
+		UpdateVisibility(false)
+	end)
+	button2.MouseButton1Down:Connect(function()
+		window.flags[flag].Type = 2
+		Update()
+		UpdateVisibility(false)
+	end)
+	button1.MouseEnter:Connect(function()
+		if window.flags[flag].Type ~= 1 then
+			Tween(button1,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+		end
+	end)
+	button2.MouseEnter:Connect(function()
+		if window.flags[flag].Type ~= 2 then
+			Tween(button2,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+		end
+	end)
+	button1.MouseLeave:Connect(function()
+		if window.flags[flag].Type ~= 1 then
+			Tween(button1,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(125,125,125)})
+		end
+	end)
+	button2.MouseLeave:Connect(function()
+		if window.flags[flag].Type ~= 2 then
+			Tween(button2,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(125,125,125)})
+		end
+	end)
+	
+	local key
+	local function setkey(newkey)
+		local keyName = keys[newkey] or tostring(newkey):match("Enum%.%a+%.(%a+)") or newkey
+
+		local color = (keyName == 'NONE' or keyName == '...') and Color3.fromRGB(125, 125, 125) or Color3.fromRGB(255, 255, 255)
+		Tween(keyText,0.1,'Quad','In',{TextColor3 = color})
+		keyText.Text = keyName
+		keybindHolder.Size = UDim2.new(0,keyText.TextBounds.X+10,1,0)
+		key = GetKeyCode(keyName)
+		
+		window.flags[flag]['Key'] = keyName
+	end
+	setkey('NONE')
+	local defaultKey = options.key
+	if defaultKey then
+		if typeof(defaultKey) == 'EnumItem' then
+			setkey(defaultKey)
+		else
+			setkey(Enum.KeyCode[defaultKey] or Enum.UserInputType.MouseButton1)
+		end
+	end
+	Update = function()
+		local val = window.flags[flag]
+		
+		if val.Type == 1 then
+			Tween(button1,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(255,255,255)})
+			Tween(button2,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(125,125,125)})
+		else
+			Tween(button1,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(125,125,125)})
+			Tween(button2,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(255,255,255)})
+		end
+		callback(val)
+	end
+	Update()
+	
+	
+
+	local bindingSignal
+
+	btn.MouseButton1Click:Connect(function()
+		window.flags[flag].Binding = true
+		setkey('...')
+		bindingSignal = uis.InputBegan:Connect(function(input,a)
+			
+			if input.KeyCode == Enum.KeyCode.Backspace then
+				setkey('NONE')
+			elseif input.KeyCode == Enum.KeyCode.Unknown then
+				setkey(input.UserInputType)
+			else
+				setkey(input.KeyCode)
+			end
+			window.flags[flag].Binding = false
+			bindingSignal:Disconnect()
+			Update()
+		end)
+	end)
+	Connections[math.random()] = uis.InputBegan:Connect(function(input,a)
+	
+		if key == input.KeyCode or key == input.UserInputType then
+			if window.flags[flag].Type == 1 then
+				window.flags[flag].Active = not window.flags[flag].Active
+			else
+				window.flags[flag].Active = true
+			end
+			Update()
+		end
+	end)
+	Connections[math.random()] = uis.InputEnded:Connect(function(input,a)
+	
+		if key == input.KeyCode or key == input.UserInputType then
+			if window.flags[flag].Type == 2 then
+				window.flags[flag].Active = false
+				Update()
+			end
+		end
+	end)
+
+	local function SetValue(value)
+		assert(typeof(value) == 'table')
+		local value = formatTable(value)
+		window.flags[flag].Binding = false
+		window.flags[flag].Active = value.active
+		window.flags[flag].Type = value.type or window.flags[flag].Type
+		setkey(GetKeyCode(value.key or 'NONE'))
+	end
+	window._FlagsSet[flag] = SetValue
+	
+	local newmt = table.clone(self)
+	newmt._holder = mainHolder
+	newmt._segment = true
+	setmetatable(newmt,Elements)
+	return setmetatable({Set = SetValue},{__index = newmt})
+end
+function SetupSector(window,tab)
+	SetupFrame(tab,{
+		list = {pad = UDim.new(0,14),direction = 'Horizontal',horizontalalignment = 'Left',verticalalignment = 'Top'},
+		pad = {top = UDim.new(0,1), left = UDim.new(0, 1),right = UDim.new(0,3)}
+	})
+	local rightRow = create('Frame',{
+		Name = 'Row 1',
+		Parent = tab,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(0.5, -7, 1, 0),
+	})
+	local leftRow = create('Frame',{
+		Name = 'Row 2',
+		Parent = tab,
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		Size = UDim2.new(0.5,-7,1,0)
+	})
+	local _, _, rightList = SetupFrame(rightRow,{
+		list = {pad = UDim.new(0,14),verticalalignment = 'Top',direction = 'Vertical'}
+	})
+	local _, _, leftList = SetupFrame(leftRow,{
+		list = {pad = UDim.new(0,14),verticalalignment = 'Top',direction = 'Vertical'}
+	})
+
+	local function handleCanvas()
+		task.wait()
+
+		tab.CanvasSize = UDim2.new(0, 0, 0, math.max(leftList.AbsoluteContentSize.Y, rightList.AbsoluteContentSize.Y) + tab.Parent.UIPadding.PaddingTop.Offset + tab.Parent.UIPadding.PaddingBottom.Offset)
+	end
+
+	rightList:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(handleCanvas)
+	leftList:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(handleCanvas)
+
+	local SectionsHandler = {}
+	function SectionsHandler:Sector(options)
+		local options = formatTable(options)
+		local row = options.side == 1 and rightRow or leftRow
+		local section = create('Frame',{
+			Parent = row,
+			ZIndex = 2,
+			BackgroundColor3 = Color3.fromRGB(30,30,30),
+			BackgroundTransparency = 0.5,
+			Size = UDim2.new(),
+			Name = 'Sector'
+		})
+		SetupFrame(section,{
+			list = {pad = UDim.new(0,12),direction = 'Vertical',horizontalalignment = 'Left',verticalalignment = 'Top'},
+			corner = {radius = UDim.new(0,4)},
+			pad = {Bottom = UDim.new(0,16),top = UDim.new(0,16),right = UDim.new(0,16),left = UDim.new(0,16)},
+			stroke = {}
+		})
+		local list = section.UIListLayout
+		list:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function(newval)
+			local contentSize = list.AbsoluteContentSize.Y + 32
+
+			section.Size = UDim2.new(1,0,0,contentSize)
+			handleCanvas()
+		end)
+		return setmetatable(
+			{
+				_holder = section,
+				_window = window,
+				_side = options.side,
+				_tabSector = tab,
+				_sector = section,
+				_holderSize = UDim2.new(0,100,1,0),
+				_holderPosition = UDim2.new(0,80,0,0)
+			},
+			{__index = function(a,b) return Segment[b] or Elements[b] end}
+		)
+	end
+
+	return SectionsHandler
+end
+local Tabs = {}
+Tabs.__index = Tabs
+function Tabs.normal(tabholder,window)
+	local tab = create('ScrollingFrame',{
+		Parent = tabholder,
+		Name = 'Sector',
+		LayoutOrder = #window._tabs+1,
+		Size = UDim2.new(1, 0, 1, 0),
+		BackgroundTransparency = 1,
+		BorderSizePixel = 0,
+		BottomImage = "",
+		CanvasSize = UDim2.new(0, 0, 1, 0),
+		ScrollBarImageColor3 = Color3.fromRGB(50, 50, 50),
+		ScrollBarThickness = 1,
+		TopImage = "",
+		Active = true,
+		ZIndex = 3,
+		Visible = false
+	})
+
+	return tab,SetupSector(window,tab)
+end
+
+local skins = {}
+skins.__index = skins
+function skins.new(options,window,tab)
+	local options = formatTable(options)
+	
+	local self = setmetatable(
+		{
+			_window = window,
+			_CurrentChoices = {},
+		},
+		skins
+	)
+	local flag = options.flag; if not flag then window.undefinedFlags = 1; flag = 'undefined_'..window.undefinedFlags end
+	window.flags[flag] = {choices = {},options = {}}	
+	self._flag = flag
+	
+	tab.Visible = false
+	local background = create('Frame',{
+		Parent = tab,
+		Name = 'Background',
+		BackgroundColor3 = Color3.fromRGB(20, 20, 20),
+		BackgroundTransparency = 0.500,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = 2,
+	})
+	SetupFrame(background,{
+		corner = {radius = UDim.new(0,4)},stroke = {}
+	})
+	local addframe = create('Frame',{
+		Parent = tab,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = 2,
+		Visible = false,
+	})
+	local content = create('ScrollingFrame',{
+		Name = 'Content',
+		Parent = tab,
+		Active = true,
+		BackgroundColor3 = Color3.fromRGB(20, 20, 20),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		Visible = true,
+		ZIndex = 2,
+		BottomImage = "",
+		CanvasSize = UDim2.new(0, 0, 0, 0),
+		ScrollBarThickness = 1,
+		TopImage = "",
+	})
+	self._ChoicesHolder = content
+	do
+		create('UIGridLayout',{
+			Parent = content,
+			CellPadding = UDim2.new(0,4,0,4),
+			CellSize = UDim2.new(0,80,0,85),
+			FillDirection = 'Horizontal',
+			SortOrder = 'LayoutOrder'
+		})
+		SetupFrame(content,{pad = {top = UDim.new(0,14),bottom = UDim.new(0,14),left = UDim.new(0,12),right = UDim.new(0,11)}})
+
+		local addbutton = create('Frame',{
+			Parent = content,
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			LayoutOrder = 1,
+			Size = UDim2.new(0, 100, 0, 100),
+			ZIndex = 3,
+		})
+		SetupFrame(addbutton,{corner = {radius = UDim.new(0,4)},pad = {top = UDim.new(0,3),bottom = UDim.new(0,3),left = UDim.new(0,3),right = UDim.new(0,3)},stroke = {}})
+
+		for i=0,1 do
+			create('Frame',{
+				Parent = addbutton,
+				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+				BorderColor3 = Color3.fromRGB(0, 0, 0),
+				BorderSizePixel = 0,
+				Position = UDim2.new(0.5, -5, 0.5, -20),
+				Rotation = i*90,
+				Size = UDim2.new(0, 10, 0, 40),
+				ZIndex = 4,
+			})
+		end
+		create('TextButton',{
+			Parent = addbutton,
+			BackgroundTransparency = 1,
+			TextTransparency = 1,
+			ZIndex = addbutton.ZIndex + 1,
+			Size = UDim2.new(1,0,1,0),
+		}).MouseButton1Down:Connect(function()
+			content.Visible = not content.Visible
+			addframe.Visible = not addframe.Visible
+		end)
+
+	end
+	do
+		local options = create('ScrollingFrame',{
+			Name = 'Options',
+			Parent = addframe,
+			Active = true,
+			BackgroundColor3 = Color3.fromRGB(50, 50, 50),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 0, 0, 30),
+			Size = UDim2.new(1, -5, 1, -30),
+			ZIndex = 3,
+			CanvasSize = UDim2.new(0, 0, 0, 0),
+			ScrollBarThickness = 1,
+		})
+		SetupFrame(options,{list = {pad = UDim.new(0,5),horizontalalignment = 'Left',direction = 'Vertical',SortOrder = 'Name',Verticalalignment = 'Top'},pad = {bottom = UDim.new(0,10),top = UDim.new(0,10),right = UDim.new(0,15),left = UDim.new(0,15)}})
+		self._OptionsHolder = options
+		local menu = create('Frame',{
+			Parent = addframe,
+			Name = 'Menu',
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 0, 30),
+			ZIndex = 3,
+		})
+		SetupFrame(menu,{
+			corner = {radius = UDim.new(0,4)},
+			list = {pad = UDim.new(0,6),direction = 'Horizontal',order = 'LayoutOrder',HorizontalAlignment = 'Left',verticalalignment = 'Top'},
+			pad = {top = UDim.new(0,5),bottom = UDim.new(0,5),left = UDim.new(0,5),right = UDim.new(0,5)},
+			stroke = {}
+		})
+		
+		local add = create('Frame',{
+			Parent = menu,
+			Name = 'Add',
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			LayoutOrder = 2,
+			Size = UDim2.new(0, 140, 1, 0),
+			ZIndex = 4,
+		})
+		
+		local back = create('Frame',{
+			Parent = menu,
+			Name = 'Back',
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			LayoutOrder = 1,
+			Size = UDim2.new(0, 60, 1, 0),
+			ZIndex = 4,
+		})
+		
+		local search = create('Frame',{
+			Parent = menu,
+			Name = 'Search',
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			LayoutOrder = 3,
+			Size = UDim2.new(0, 200, 1, 0),
+			ZIndex = 4,
+		})
+		SetupFrame(add,{corner = {radius = UDim.new(0,2)},stroke = {}})
+		SetupFrame(back,{corner = {radius = UDim.new(0,2)},stroke = {}})
+		SetupFrame(search,{corner = {radius = UDim.new(0,2)},stroke = {}})
+		
+		create('TextButton',{
+			Parent = back,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 0, 0, 1),
+			Size = UDim2.new(1, 0, 1, 0),
+			ZIndex = 4,
+			Font = Enum.Font.GothamMedium,
+			Text = "Back",
+			TextColor3 = Color3.fromRGB(255, 255, 255),
+			TextSize = 14.000,
+		}).MouseButton1Down:Connect(function()
+			content.Visible = true
+			addframe.Visible = false
+		end)
+		create('TextButton',{
+			Parent = add,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 0, 0, 3),
+			TextScaled = true,
+			TextWrapped = true,
+			Size = UDim2.new(1, 0, 1, -5),
+			ZIndex = 4,
+			Font = Enum.Font.GothamMedium,
+			Text = "Add Selected (0)",
+			TextColor3 = Color3.fromRGB(125, 125, 125),
+			TextSize = 14.000,
+		}).MouseButton1Down:Connect(function()
+			return self:_HandleChoices()
+		end)
+		local searchbox = create('TextBox',{
+			Parent = search,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 5, 0, 3),
+			Size = UDim2.new(1, -5, 1, -5),
+			TextScaled = true,
+			ZIndex = 5,
+			Font = Enum.Font.GothamMedium,
+			Text = "Search",
+			TextColor3 = Color3.fromRGB(125, 125, 125),
+			TextSize = 14.000,
+			TextXAlignment = Enum.TextXAlignment.Left,
+		})
+		local isEmpty = true
+		local ignore = false
+		searchbox.Focused:Connect(function()
+			searchbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+			if isEmpty then
+				searchbox.Text = ''
+			end
+		end)
+		searchbox.FocusLost:Connect(function()
+			searchbox.ClearTextOnFocus = searchbox.Text == ''
+			isEmpty = searchbox.Text == ''
+			if searchbox.Text == '' then
+				searchbox.TextColor3 = Color3.fromRGB(125,125,125)
+				ignore = true
+				searchbox.Text = 'Search'
+			end
+		end)
+		searchbox:GetPropertyChangedSignal('Text'):Connect(function()
+			if ignore then
+				ignore = false
+				isEmpty = true
+			else
+				isEmpty = searchbox.Text == ''
+			end
+			for i,v in pairs(options:GetChildren()) do
+				if not v:IsA('Frame') then  end
+	
+				if v.Name:match(searchbox.Text) or isEmpty then
+					v.Visible = true
+				else
+					v.Visible = false
+				end
+			end
+		end)
+	end
+	
+	self:AddOptions(options.options or {})
+	self:AddChoices(options.choices or {})
+end
+function skins:AddOption(suffix,option)
+	local holder = self._OptionsHolder
+	local option = formatTable(option)
+	local name = option.name or ''
+	local window = self._window
+	local flag = self._flag
+	
+	local suffix = suffix or ''
+	
+	local holder = create('Frame',{
+		Parent = holder,
+		Name = (suffix or '')..' | '..(name or ''),
+		LayoutOrder = #holder:GetChildren()-1,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 0, 0, 0),
+		Size = UDim2.new(1, 0, 0, 40),
+		ZIndex = 4,
+	})
+	SetupFrame(holder,{pad = {bottom = UDim.new(0,5),top = UDim.new(0,5),left = UDim.new(),right = UDim.new(0,5)}})
+	create('ImageLabel',{
+		Parent = holder,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(0, 30, 1, 0),
+		ZIndex = 4,
+		Image = option.image or '',
+	})
+	create('TextLabel',{
+		Parent = holder,
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 35, 0, 0),
+		Size = UDim2.new(0, 200, 1, 0),
+		ZIndex = 4,
+		Font = Enum.Font.GothamMedium,
+		Text = (suffix or '')..' | '..(name or ''),
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 14.000,
+		TextXAlignment = Enum.TextXAlignment.Left,
+	})
+	local button = create('Frame',{
+		Name = 'Button',
+		Parent = holder,
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(1, -75, 0, 0),
+		Size = UDim2.new(0, 75, 1, 0),
+		ZIndex = 4,
+	})
+	SetupFrame(button,{corner = {radius = UDim.new(0,2)},stroke = {}})
+	
+	window.flags[self._flag].options[suffix] = window.flags[self._flag].options[suffix] or {}
+	local data = {image = option.image or '',name = option.name or ''}
+	table.insert(window.flags[self._flag].options[suffix],data)
+	local id = #window.flags[self._flag].options[suffix]
+	local btn = create('TextButton',{
+		Name = 'Button',
+		Parent = button,
+		BackgroundColor3 = Color3.fromRGB(200, 200, 200),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = 4,
+		Font = Enum.Font.GothamMedium,
+		Text = "ADD",
+		TextColor3 = Color3.fromRGB(200, 200, 200),
+		TextSize = 14.000,
+	})
+	btn.MouseButton1Down:Connect(function()
+		if window.flags[flag].choices[suffix] and window.flags[flag].choices[suffix].name == data.name then return end
+		if self._CurrentChoices[suffix] then
+			self._CurrentChoices[suffix] = nil
+			self:_SetSelection(self:_GetSelection()-1)
+			Tween(btn,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+		else
+			self._CurrentChoices[suffix] = data
+
+			self:_SetSelection(self:_GetSelection()+1)
+			Tween(btn,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(125,125,125)})
+		end
+		self:FilterOptions()
+	end)
+	btn.MouseEnter:Connect(function()
+		if self._CurrentChoices[suffix] ~= data and (not window.flags[flag].choices[suffix] or window.flags[flag].choices[suffix].name ~= data.name) then
+			Tween(btn,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(255,255,255)})
+		end
+	end)
+	btn.MouseLeave:Connect(function()
+		if self._CurrentChoices[suffix] ~= data and (not window.flags[flag].choices[suffix] or window.flags[flag].choices[suffix].name ~= data.name) then
+			Tween(btn,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+		end
+	end)
+end
+function skins:AddChoice(suffix,data)
+	if self._window.flags[self._flag].choices[suffix] then return end
+	local holder = self._ChoicesHolder
+	local option = formatTable(data)
+	local frame = create('Frame',{
+		Parent = holder,
+		LayoutOrder = #holder:GetChildren()-1,
+		Name = 'Choice',
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(0, 100, 0, 100),
+		ZIndex = 3,
+	})
+	SetupFrame(frame,{corner = {radius = UDim.new(0,4)},pad = {Bottom = UDim.new(0,3),top = UDim.new(0,3),right = UDim.new(0,3),left = UDim.new(0,3)},stroke = {}})
+	local button = create('ImageButton',{
+		Parent = frame,
+		BackgroundColor3 = Color3.fromRGB(200, 200, 200),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(1, 0, 1, 0),
+		ZIndex = 4,
+		Image = option.image or ''
+	})
+	button.MouseButton1Down:Connect(function()
+		self._window.flags[self._flag].choices[suffix] = nil
+		frame:Destroy()
+		self:FilterOptions()
+	end)
+	self._window.flags[self._flag].choices[suffix] = option
+
+end
+function skins:AddChoices(options)
+	for i,v in pairs(options) do
+		for _,v2 in pairs(v) do
+			self:AddChoice(i,v2)
+		end
+	end
+end
+function skins:AddOptions(options)
+	for i,v in pairs(options) do
+		for _,v2 in pairs(v) do
+			self:AddOption(i,v2)
+		end
+	end
+end
+function skins:_HandleChoices()
+	for i,v in pairs(self._CurrentChoices) do
+		self:AddChoice(i,v)
+	end
+	
+	table.clear(self._CurrentChoices)
+	self:FilterOptions()
+	self:_SetSelection(0)
+end
+function skins:_SetSelection(n)
+	local text = "Add Selection ("..n..')'
+	self._OptionsHolder.Parent.Menu.Add.TextButton.Text = text
+	Tween(self._OptionsHolder.Parent.Menu.Add.TextButton,0.2,'Quad','Out',{TextColor3 = tonumber(n) == 0 and Color3.fromRGB(125,125,125) or Color3.fromRGB(255,255,255)})
+end
+function skins:_GetSelection()
+	return self._OptionsHolder.Parent.Menu.Add.TextButton.Text:match("%d+")
+end
+
+function skins:FilterOptions()
+	for i,v in pairs(self._OptionsHolder:GetChildren()) do
+		if not v:IsA('Frame') then  end
+		local data = v.Name:split(' | ')
+		local value = self._CurrentChoices[data[1]]
+		local value2 = self._window.flags[self._flag].choices[data[1]]
+		if (value and value.name ~= data[2]) or (value2 and value2.name ~= data[2]) then
+			v.Visible = false
+			Tween(v.Button.Button,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+		else
+			if not (value or value2) then
+				Tween(v.Button.Button,0.2,'Quad','Out',{TextColor3 = Color3.fromRGB(200,200,200)})
+			end
+			v.Visible = true
+		end
+	end
+end
+
+function Tabs.skins(tabholder,window,options)
+	local options = formatTable(options)
+	
+	return tabholder,skins.new(options,window,tabholder)
+end
+
+local Notify = {}
+Notify.__index = Notify
+function Notify.new(options,notifsholder)
+	local options = typeof(options) == 'table' and formatTable(options) or {text=tostring(options)}
+	local holder = create('Frame',{
+		Parent = notifsholder,
+		Name = 'Holder',
+		BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Size = UDim2.new(50, 0, 0, 20),
+		ZIndex = 3,
+		ClipsDescendants = true,
+	})
+	SetupFrame(holder,{corner = {radius = UDim.new(0,4)},stroke = {}})
+	
+	options.color = options.color or Color3.fromRGB(255,255,255)
+	options.time = options.time or 1.3
+	
+	if options.grad ~= false then
+		create('Frame',{
+			Name = 'Color',
+			Parent = holder,
+			BackgroundColor3 = options.color,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 0, 0, 1),
+			Size = UDim2.new(0, 1, 1, -2),
+			ZIndex = 4,
+		})
+		create('Frame',{
+			Name = 'Color2',
+			Parent = holder,
+			BackgroundColor3 = options.color,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0,1,0,0),
+			Size = UDim2.new(0, 1, 1, 0),
+			ZIndex = 4,
+		})
+	end
+	local text = create('TextLabel',{
+		Parent = holder,
+		Name = 'Text',
+		BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+		BackgroundTransparency = 1.000,
+		BorderColor3 = Color3.fromRGB(0, 0, 0),
+		BorderSizePixel = 0,
+		Position = UDim2.new(0, 7, 0, 0),
+		Size = UDim2.new(1, -10, 1, 0),
+		ZIndex = 4,
+		Font = Enum.Font.Gotham,
+		TextColor3 = Color3.fromRGB(255, 255, 255),
+		TextSize = 14.000,
+		TextXAlignment = Enum.TextXAlignment.Left,
+		Text = options.text or ''
+	})
+	
+	holder.Size = UDim2.new(0,text.TextBounds.X+15,0,25)
+	
+	local mt = setmetatable({_holder = holder,_options = options},Notify)
+	task.spawn(Notify[options.style and options.style:lower() or 'normal'],mt)
+	return mt
+end
+function Notify:_Animate()
+	local signals = {
+		OnFinish = Signal.new(),
+		OnAnimation = Signal.new(),
+	}
+	coroutine.wrap(function()
+		local size = self._holder.AbsoluteSize
+		self._holder.Size = UDim2.new(0,0,0,size.Y)
+
+		Tween(self._holder,0.6,'Quad','Out',{Size = UDim2.new(0,size.X,0,size.Y)})
+
+		wait(self._options.time)
+		
+		signals.OnAnimation:Fire()
+		Tween(self._holder,0.2,'Quad','Out',{BackgroundTransparency = 1,Position = UDim2.new(-1,0,0,0)})
+		Tween(self._holder.Color,0.2,'Quad','Out',{BackgroundTransparency = 1})
+		Tween(self._holder.Stroke,0.2,'Quad','Out',{Transparency = 1})
+		Tween(self._holder.Color2,0.2,'Quad','Out',{BackgroundTransparency = 1})
+		local t = Tween(self._holder.Text,0.2,'Quad','Out',{TextTransparency = 1})
+		t.Completed:Wait()
+		
+		signals.OnFinish:Fire()
+		self._holder:Destroy()
+	end)()
+	return signals
+end
+function Notify:normal()
+	return self:_Animate()
+end
+function Notify:warning()
+	local shouldbreak = false
+	local grad,grad2 = self._holder.Color,self._holder.Color2
+	coroutine.wrap(function()
+		local a = 0
+		while not shouldbreak do
+			Tween(grad,0.25,'Linear','In',{BackgroundColor3 = Color3.new() or self._options.color})
+			local t = Tween(grad2,0.25,'Linear','In',{BackgroundColor3 = Color3.new() or self._options.color})
+			t.Completed:Wait()
+			a=1
+		end
+	end)()
+
+	local signals = self:_Animate()
+	signals.OnFinish:Connect(function()
+		shouldbreak = true
+	end)
+	return signals
+end
+function Notify:time()
+	local shouldbreak = false
+	local time = self._options.time
+	local timer = create('Frame',{
+		Parent = self._holder,
+		Position = UDim2.new(0,2,1,-1),
+		Size = UDim2.new(0,0,0,1),
+		BackgroundColor3 = self._options.color,
+		ZIndex = 4,
+		BorderSizePixel = 0,
+	})
+	local ct = 0
+	local loop = rs.RenderStepped:Connect(function(dt)
+		ct = dt
+		timer.Size = UDim2.new(math.min(ct/time,1),-6,0,1)
+	end)
+
+	local signals = self:_Animate()
+	signals.OnAnimation:Connect(function()
+		loop:Disconnect()
+		Tween(timer,0.2,'Quad','Out',{BackgroundTransparency = 1})
+	end)
+	return signals
+end
+function Notify:loading()
+	local shouldbreak = false
+	local grad,grad2 = self._holder.Color,self._holder.Color2
+	local bar = create('Frame',{
+		Parent = self._holder,
+		Position = UDim2.new(0,1,1,-1),
+		Size = UDim2.new(0,0,0,1),
+		BackgroundColor3 = self._options.color,
+		ZIndex = 4,
+		BorderSizePixel = 0,
+	})
+	coroutine.wrap(function()
+		local a = 0
+		while not shouldbreak do
+			local sizex = self._holder.AbsoluteSize.X/3
+			local x = (sizex/2)
+			
+			local t = Tween(bar,0.6,'Linear','Out',{Position = UDim2.new(0.5,a%2 == 0 and x or -x,1,-1),Size = UDim2.new(0,a%2 == 0 and -sizex or sizex,0,1)})
+			t.Completed:Wait()
+			local t = Tween(bar,0.6,'Quad','Out',{Position = a%2==0 and UDim2.new(1,-2,1,-1) or UDim2.new(0,2,1,-1),Size = UDim2.new(0,1,0,1)})
+			t.Completed:Wait()
+			a=1
+			task.wait(.15)
+		end
+	end)()
+
+	local signals = self:_Animate()
+	signals.OnAnimation:Connect(function()
+		shouldbreak = true
+		Tween(bar,0.2,'Quad','Out',{BackgroundTransparency = 1})
+	end)
+	return signals
+end
+function Notify:SetText(text)
+	self._holder.Text.Text = text
+	self._holder.Size = UDim2.new(0,self._holder.Text.TextBounds.X+10,0,25)
+end
+local Watermark = {}
+Watermark.__index = Watermark
+function Watermark.new(watermark,options)
+	local mt = setmetatable({_watermark = watermark},Watermark)
+
+	mt:Edit(options or {})
+	return mt
+end
+function Watermark:Edit(options)
+	local options = formatTable(options)
+	if options.text then
+		self._watermark.Text.Text = tostring(options.text)
+	end
+end
+function ui:Init(options)
+	local options = formatTable(options)
+
+	local parent = options.parent or script.Parent or game:GetService('CoreGui')
+
+	local UIsHolder = create('ScreenGui',{
+		Name = 'UIHolder',
+		Parent = parent,
+		ZIndexBehavior = 'Global',
+		ResetOnSpawn = false
+	})
+
+	function ui:Unload()
+		for _, connection in next, Connections do
+			connection:Disconnect()
+		end
+		
+		UIsHolder:Destroy()
+	end
+
+	function ui:SetToggled(bool)
+		UIsHolder.Enabled = bool
+	end
+
+	function ui:Toggle()
+		self:SetToggled(not UIsHolder.Enabled)
+	end
+
+	function ui:Watermark(options)
+		local options = formatTable(options)
+
+		local text = options.text or 'Lynx'
+
+		local watermark = create('Frame',{
+			Name = "Watermark",
+			Parent = UIsHolder,
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 32, 0, 32),
+			Size = UDim2.new(0, 32, 0, 32),
+		})
+		Dragify(watermark)
+		SetupFrame(watermark, {
+			corner = {radius = UDim.new(0, 8)},
+			pad = {bottom = UDim.new(0, 8), top = UDim.new(0, 8), left = UDim.new(0, 16), right = UDim.new(0, 16)},
+			stroke = {}
+		})
+
+		local text = create('TextLabel', {
+			Name = "Text",
+			FontFace = Font.new("rbxasset://fonts/families/GothamSSm.json"),
+			RichText = true,
+			Text = text,
+			TextColor3 = Color3.fromRGB(255, 255, 255),
+			TextSize = 14,
+			TextScaled = false,
+			TextWrapped = false,
+			TextXAlignment = "Left",
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
+			Size = UDim2.new(1, 0, 1, 0),
+			Parent = watermark
+		})
+
+		text:GetPropertyChangedSignal('TextBounds'):Connect(function()
+			task.wait()
+
+			local bounds = text.TextBounds
+			watermark.Size = UDim2.new(0, bounds.X + 32, 0, bounds.Y + 16)
+		end)
+		
+		return Watermark.new(watermark,options)
+	end
+	do
+
+		local notifs = create("ScreenGui",{
+			Parent = UIsHolder.Parent,
+			Name = 'Notifications'
+		})
+		local notifsholder = create('Frame',{
+			Name = 'NotificationsHolder',
+			Parent = notifs,
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BackgroundTransparency = 1.000,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0, 50, 0, 50),
+			Size = UDim2.new(0, 34, 50, 0),
+			ZIndex = 2,
+		})
+		local childs = {}
+		local offsets = {}
+		notifsholder.ChildAdded:Connect(function(child)
+			if child.Name == 'Holder' then
+				local y = #childs*30
+				child.Position = UDim2.new(0,child.AbsolutePosition.X,0,y)
+				table.insert(childs,child)
+				offsets[child] = y
+			end
+		end)
+		notifsholder.ChildRemoved:Connect(function(child)
+			if child.Name == 'Holder' then
+				local t = table.find(childs,child)
+				local curY = offsets[child]
+
+				for i=t+1,#childs do
+					local child = childs[i]
+
+					local oldy = curY
+					curY = offsets[child]
+					offsets[child] = oldy
+					Tween(child,0.2,'Quad','Out',{Position = UDim2.new(0,child.AbsolutePosition.X-notifsholder.AbsolutePosition.X,0,oldy)})
+				end
+				offsets[child] = nil
+				table.remove(childs,t)
+			end
+		end)
+		function ui:Notify(options)
+			return Notify.new(options,notifsholder)
+		end
+	end
+	
+	function ui:SetupLoader(options)
+		local options = formatTable(options)
+
+		local span = options.time or 2
+
+		local loaderFrame = create('Frame',{
+			Parent = UIsHolder,
+			Name = 'Loading',
+			BackgroundColor3 = Color3.fromRGB(30, 30, 30),
+			BorderSizePixel = 0,
+			Position = UDim2.new(0.5, -50, 0.5, -50),
+			Size = UDim2.fromOffset(100, 100),
+		})
+
+		SetupFrame(loaderFrame, {
+			corner = {radius = UDim.new(1, 0)},
+			pad = {bottom = UDim.new(0, 16),top = UDim.new(0, 16),left = UDim.new(0, 16),right = UDim.new(0, 16)}
+		})
+
+		local circle = create('ImageLabel', {
+			Name = "Circle",
+			Image = "rbxassetid://6331335348",
+			BackgroundTransparency = 1,
+			BorderSizePixel = 0,
+			Size = UDim2.fromScale(1, 1),
+			Parent = loaderFrame		
+		})
+
+		local startTick = tick()
+
+		task.spawn(function()
+			while task.wait() do
+				if tick() - startTick >= (span - 2) then 
+					task.spawn(function()
+						Tween(circle, 0.1, 'Quad', 'In', {ImageTransparency = 1})
+						task.wait(.1)
+						circle.Rotation = 0
+						circle.Image = 'rbxassetid://1202200114'
+						Tween(circle, 0.1, 'Quad', 'In', {ImageTransparency = 0})
+						task.wait(1)
+						Tween(loaderFrame, 0.2, 'Quad', 'In', {BackgroundTransparency = 1})
+						Tween(circle, 0.2, 'Quad', 'In', {ImageTransparency = 1})
+						task.wait(.9)
+						loaderFrame:Destroy()
+					end)
+					break 
+				end
+
+				circle.Rotation = (circle.Rotation + 5) % 360
+			end
+		end)
+	end
+
+	function ui:NewWindow(options)
+		local options = formatTable(options)
+
+		local windowOptions = formatTable(options.window)
+		local windowName = windowOptions.name or 'MTX Client'
+		local windowDescription = windowOptions.description or 'Universal'
+
+		local userOptions = formatTable(options.user)
+		local username = userOptions.name or 'metatron_exe'
+		local role = userOptions.role or 'Developer'
+		local icon = userOptions.icon or ''
+
+		local windowFrame = create('Frame',{
+			Parent = UIsHolder,
+			Name = 'Window',
+			BackgroundColor3 = Color3.fromRGB(23,23,23),
+			BackgroundTransparency = 0.030,
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Size = UDim2.new(0, 620, 0, 385),
+		})
+		windowFrame.Position = UDim2.new(0.5, -windowFrame.AbsoluteSize.X/2, 0.5, -windowFrame.AbsoluteSize.Y/2)
+
+		SetupFrame(windowFrame,{
+			corner = {radius = UDim.new(0,8)},
+			stroke = {Color = Color3.fromRGB(40,40,40)}
+		})
+		local sideBar = create('Frame',{
+			Parent = windowFrame,
+			Name = 'Sidebar',
+			BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BackgroundTransparency = 1.000,
+			Size = UDim2.new(0.270000011, 0, 1, 0),
+			BorderSizePixel = 0,
+		})
+		Dragify(windowFrame,sideBar)
+		local window = {
+			_tabs = {},
+			undefinedFlags = 0,
+			_FlagsSet = {},
+			_DefaultFlags = {},
+			flags = {},
+		}
+		window['Flags'] = window.flags
+		function window:SaveConfig(name)
+			local cfg = {}
+			for i,v in pairs(window.flags) do
+				local val = v
+				if typeof(v) == 'table' and v.Color and typeof(v.Color) == 'Color3' then
+					val = {Color = {R = v.Color.R,G=v.Color.G,B=v.Color.B},Alpha = v.Alpha}
+				end
+				cfg[i] = val
+			end
+			return hs:JSONEncode(cfg)
+		end
+		function window:LoadConfig(input)
+			local load = hs:JSONDecode(input)
+			for flag,val in pairs(load) do
+				if typeof(val) == 'table' and typeof(val.Color) == 'table' then
+					val.Color = Color3.new(val.Color.R,val.Color.G,val.Color.B)
+				end
+				if window._FlagsSet[flag] then
+					window._FlagsSet[flag](val)
+				end
+			end
+		end
+		do 
+			local content = create('Frame',{
+				Name = 'Content',
+				Parent = sideBar,
+				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+				BackgroundTransparency = 1.000,
+				BorderColor3 = Color3.fromRGB(0, 0, 0),
+				BorderSizePixel = 0,
+				Size = UDim2.new(1, 0, 1, 0),            
+			})
+			create('UIPadding',{
+				Parent = content,
+				PaddingBottom = UDim.new(0, 16),
+				PaddingLeft = UDim.new(0, 16),
+				PaddingRight = UDim.new(0, 16),
+				PaddingTop = UDim.new(0, 16),
+			})	
+			---------------------------------------------------------
+			local windowsInfo = create('Frame',{
+				Parent = content,
+				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+				BackgroundTransparency = 1.000,
+				BorderColor3 = Color3.fromRGB(0, 0, 0),
+				BorderSizePixel = 0,
+				Size = UDim2.new(1, 0, 0.150000006, -16),
+			})
+			create('UIListLayout',{
+				Parent = windowsInfo,
+				Padding = UDim.new(0,4),
+				HorizontalAlignment = Enum.HorizontalAlignment.Center,
+				VerticalAlignment = Enum.VerticalAlignment.Center,
+			})
+			create('TextLabel',{
+				Name = 'a_name',
+				Parent = windowsInfo,
+				BackgroundTransparency = 1,
+				BorderSizePixel = 0,
+				Size = UDim2.new(1, 0, 0, 18),
+				Font = Enum.Font.GothamBlack,
+				Text = windowName,
+				RichText = true,
+				TextColor3 = Color3.fromRGB(255, 255, 255),
+				TextSize = 14.000,
+				TextXAlignment = Enum.TextXAlignment.Left,
+				TextYAlignment = Enum.TextYAlignment.Bottom,
+			})
+			create('TextLabel',{
+				Name = 'b_Description',
+				Parent = windowsInfo,
+				BackgroundTransparency = 1,
+				BorderSizePixel = 0,
+				Size = UDim2.new(1, 0, 0, 18),
+				Font = Enum.Font.Gotham,
+				Text = windowDescription,
+				RichText = true,
+				TextColor3 = Color3.fromRGB(108, 108, 108),
+				TextSize = 14.000,
+				TextStrokeColor3 = Color3.fromRGB(92, 92, 92),
+				TextXAlignment = Enum.TextXAlignment.Left,
+				TextYAlignment = Enum.TextYAlignment.Top,
+			})
+			------------------------------------------------------------
+			local userInfo = create('Frame',{
+				Name = 'UserInfo',
+				Parent = content,
+				BackgroundTransparency = 1,
+				BorderSizePixel = 0,
+				Position = UDim2.new(0, 0, 0.9, 0),
+				Size = UDim2.new(1, 0, 0.1, 0),	
+			})
+			SetupFrame(userInfo,{list = {pad = UDim.new(0,16),sort = 'LayoutOrder',direction = 'Horizontal',horizontalalignment = 'Left'}})
+
+			if icon then
+				SetupFrame(create('ImageLabel',{
+					Name = 'Img',
+					Parent = userInfo,
+					BackgroundTransparency = 1,
+					BorderSizePixel = 0,
+					Position = UDim2.new(0, 0, 0.5, -12),
+					Size = UDim2.new(0, 35, 0, 35),
+					Image = icon,
+				}),{corner = {radius = UDim.new(1,0),stroke = {}}})
+			end
+
+			local info = create('Frame',{
+				Name = 'Info',
+				Parent = userInfo,
+				BackgroundTransparency = 1.000,
+				BorderSizePixel = 0,
+				Position = UDim2.new(0, icon and 56 or 0, 0, 0),
+				Size = UDim2.new(1, icon and -40 or 0, 1, 0),
+			})
+			SetupFrame(info,{list = {pad = UDim.new(0,4)}})
+			create('TextLabel',{
+				Parent = info,
+				BackgroundTransparency = 1,
+				BorderSizePixel = 0,
+				Position = UDim2.new(0, 56, 0.5, -18),
+				Size = UDim2.new(1, 0, 0, 14),
+				Font = Enum.Font.GothamBold,
+				Text = username,
+				TextColor3 = Color3.fromRGB(255, 255, 255),
+				TextSize = 14.000,
+				TextWrapped = true,
+				TextXAlignment = Enum.TextXAlignment.Left,
+				TextYAlignment = Enum.TextYAlignment.Bottom,		
+			})
+			create('TextLabel',{
+				Parent = info,
+				BackgroundTransparency = 1,
+				BorderSizePixel = 0,
+				Position = UDim2.new(0, 56, 0.5, -18),
+				Size = UDim2.new(1, 0, 0, 14),
+				Font = Enum.Font.Gotham,
+				Text = role,
+				TextColor3 = Color3.fromRGB(108, 108, 108),
+				TextSize = 14,
+				TextWrapped = true,
+				TextXAlignment = Enum.TextXAlignment.Left,
+				TextYAlignment = Enum.TextYAlignment.Top,
+			})
+
+			--------------------------------------------------------------
+			local tabs = create('ScrollingFrame',{
+				Name = 'Tabs',
+				Parent = content,
+				BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+				BackgroundTransparency = 1.000,
+				BorderColor3 = Color3.fromRGB(0, 0, 0),
+				BorderSizePixel = 0,
+				Position = UDim2.new(0, 0, 0.150000006, 0),
+				Selectable = false,
+				Size = UDim2.new(1, 0, 0.75, -24),
+				BottomImage = "",
+				CanvasSize = UDim2.new(0, 0, 0, 145),
+				ScrollBarImageColor3 = Color3.fromRGB(50, 50, 50),
+				ScrollBarThickness = 1,
+				TopImage = "",
+			})
+			local _, _, list, pad = SetupFrame(tabs,{
+				list = {pad = UDim.new(0,8),VerticalAlignment = 'Top'},
+				Pad = {left = UDim.new(0,1),top = UDim.new(0,1), right = UDim.new(0, 8)}
+			})
+
+			list:GetPropertyChangedSignal('AbsoluteContentSize'):Connect(function()
+				task.wait()
+				local abs = list.AbsoluteContentSize
+				tabs.CanvasSize = UDim2.new(0, abs.X, 0, abs.Y)
+			end)
+
+			
+			local function _tween(fp, is)
+				Tween(fp, 0.25, 'Quad', 'In', {BackgroundTransparency = is and 0 or 1})
+				Tween(fp:FindFirstChildOfClass('UIStroke'), 0.25, 'Quad', 'In', {Transparency = is and 0 or 1})
+			end
+			function window:Tab(options)
+				local options = formatTable(options)
+				
+				local type = options.type and options.type:lower() or 'normal'
+				local icon = options.icon
+
+				----------------------------------------------------------------------------------
+				local section = create('Frame',{
+					Name = ('1'):rep(#tabs:GetChildren()-1),
+					Parent = tabs,
+					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+					BackgroundTransparency = 1.000,
+					BorderColor3 = Color3.fromRGB(0, 0, 0),
+					BorderSizePixel = 0,
+					Size = UDim2.new(1, -1, 0, 32),
+					ZIndex = 2,
+				})
+
+				local _clickHandler = create('TextButton', {
+					Name = 'Handler',
+					Parent = section,
+					BackgroundTransparency = 1,
+					BorderSizePixel = 0,
+					ZIndex = 5,
+					Size = UDim2.new(1, 0, 1, 0),
+					Text = '',
+				})
+
+				local tab_a = create('Frame',{
+					Name = 'Tab',
+					Parent = section,
+					BackgroundColor3 = Color3.fromRGB(25, 25, 25),
+					BackgroundTransparency = 1,
+					BorderSizePixel = 0,
+					Size = UDim2.new(1, 0, 1, 0),
+					ZIndex = 3,
+				})
+				local _,stroke,_,_ = SetupFrame(tab_a,{
+					corner = {radius = UDim.new(0,4)},
+					list = {pad = UDim.new(0,8),horizontalalignment = 'Left',verticalalignment = 'Center',direction = 'Horizontal'},
+					pad = {bottom = UDim.new(0,10),top = UDim.new(0,10),left = UDim.new(0,10),right = UDim.new(0,10)},
+					stroke = {}
+				})
+				stroke.Transparency = 1
+
+				if icon then
+					create('ImageLabel',{
+						Name = 'a_icon',
+						Parent = tab_a,
+						BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+						BackgroundTransparency = 1.000,
+						BorderColor3 = Color3.fromRGB(0, 0, 0),
+						BorderSizePixel = 0,
+						Size = UDim2.new(0, 16, 1, 0),
+						ZIndex = 4,
+						Image = icon,
+						ScaleType = Enum.ScaleType.Fit,
+					})
+				end
+				create('TextLabel',{
+					Name = 'b_text',
+					Parent = tab_a,
+					BackgroundColor3 = Color3.fromRGB(255, 255, 255),
+					BackgroundTransparency = 1.000,
+					BorderColor3 = Color3.fromRGB(0, 0, 0),
+					BorderSizePixel = 0,
+					Size = UDim2.new(1, icon and -28 or 0, 1, 0),
+					ZIndex = 4,
+					Font = Enum.Font.GothamMedium,
+					Text = options.name or '[NO NAME]',
+					TextColor3 = Color3.fromRGB(255, 255, 255),
+					TextSize = 14,
+					TextWrapped = true,
+					TextXAlignment = Enum.TextXAlignment.Left,
+				})
+				----------------------------------------------------------------------------------
+				local tabHolder = create('Frame',{
+					Parent = windowFrame,
+					Name = 'SectorHolder_'..(#window._tabs+1),
+					Size = UDim2.new(0.73, 0,1, 0),
+					Position = UDim2.new(0.27,0,0,0),
+					BackgroundTransparency = 1,
+					BorderSizePixel = 0,
+				})
+
+				SetupFrame(tabHolder, {
+					pad = {bottom = UDim.new(0,14),top = UDim.new(0,14),right = UDim.new(0,14),left = UDim.new(0,14)}
+				})
+				local tab,funcs = Tabs[type](tabHolder,window,options)
+				_clickHandler.MouseButton1Down:Connect(function()
+					if window._CurrentTab[1] ~= section then
+
+						task.spawn(function()
+							_tween(window._CurrentTab[1].Tab, false)
+							window._CurrentTab[2].Visible = false
+							window._CurrentTab[2].ZIndex = 1	
+
+							window._CurrentTab = {section,tab}
+							tab.ZIndex = 1
+							_tween(section.Tab, true)
+						end)
+						tab.Visible = true
+					end
+				end)
+				if not window._CurrentTab then
+					window._CurrentTab = {section,tab}
+
+					_tween(window._CurrentTab[1].Tab, true)
+					tab.Visible = true
+					tab.ZIndex = 1
+				end
+
+
+				table.insert(window._tabs,tab)
+				return funcs
+			end
+			function window:Separator()
+				create('Frame',{
+					Name = 'Separator',
+					Parent = create('Frame',{
+						Name = ('1'):rep(#tabs:GetChildren()-1),
+						Parent = tabs,
+						BackgroundTransparency = 1,
+						Size = UDim2.new(1, -1, 0, 32),
+						ZIndex = 2,
+					}),
+					BackgroundColor3 = Color3.fromRGB(40, 40, 40),
+					BorderColor3 = Color3.fromRGB(0, 0, 0),
+					BorderSizePixel = 0,
+					Position = UDim2.new(0, 0, 0.5, 0),
+					Size = UDim2.new(1, 0, 0, 1),
+				})
+			end
+		end
+		create('Frame',{
+			Name = "Separator",
+			Parent = sideBar,
+			BackgroundColor3 = Color3.fromRGB(40, 40, 40),
+			BorderColor3 = Color3.fromRGB(0, 0, 0),
+			BorderSizePixel = 0,
+			Position = UDim2.new(1, 0, 0, 0),
+			Size = UDim2.new(0, 1, 1, 0),
+		})
+
+
+		return window
+	end
+end
+return ui
