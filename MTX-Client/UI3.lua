@@ -3033,5 +3033,4 @@ function ui:Init(options)
 		return window
 	end
 end
-
-ui:Init()
+return ui
