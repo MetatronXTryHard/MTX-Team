@@ -35,7 +35,7 @@ local IndexUIColor = {
     ["Box Highlight Color"] = Color3.fromRGB(105, 0, 255),
     ["Slider Line Color"] = Color3.fromRGB(75, 75, 75),
     ["Slider Highlight Color"] = Color3.fromRGB(105, 0, 255),
-    ["Tween Animation 1 Speed"] = 0.25,
+    ["Tween Animation 1 Speed"] = 0.20,
     ["Tween Animation 2 Speed"] = 0.5,
     ["Tween Animation 3 Speed"] = 0.1,
 	["Text Stroke Transparency"] = 0.5
@@ -87,7 +87,7 @@ function DCorrectTable(tabl)
 	return ret
 end
 local HttpService = game:GetService("HttpService")
-local SaveCustomFileName = "!MTXClient_UI_Config.json"
+local SaveCustomFileName = "UIConfig.json"
  
 
 function SaveCustomUISettings()
@@ -118,7 +118,7 @@ for k,v in pairs(SettingsRac) do
 end
 if not getgenv().racMTXClientretarddumb then
 	spawn(function() 
-		while wait(1) do
+		while task.wait(1) do
 			SaveCustomUISettings()
 		end
 	end)
@@ -235,80 +235,79 @@ local UIGradient = Instance.new("UIGradient")
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
--- Função para calcular a menor dimensão da tela
-local function GetMinScreenDimension()
-    local screenSize = workspace.CurrentCamera.ViewportSize
-    return math.min(screenSize.X, screenSize.Y)
-end
+local CheckMobile = function()
+	if game:GetService("UserInputService").TouchEnabled then
+		return true 
+	end
+end 
+IsMobile = CheckMobile()
+Size11,Size22 = 600,460
+if IsMobile then 
+	Size11,Size22 = 500,290
+	local ClickButton = Instance.new("ScreenGui")
+	local MainFrame = Instance.new("Frame")
+	local ImageLabel = Instance.new("ImageLabel")
+	local TextButton = Instance.new("TextButton") 
+	local UICorner = Instance.new("UICorner") 
+	local UICorner_2 = Instance.new("UICorner")
+	if game.CoreGui:FindFirstChild("ClickButton") then 
+		game.CoreGui:FindFirstChild("ClickButton"):Destroy()
+	end
+	ClickButton.Name = "ClickButton"
+	ClickButton.Parent = game.CoreGui
+	ClickButton.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	
+	MainFrame.Name = "MainFrame"
+	MainFrame.Parent = ClickButton
+	MainFrame.Active = true
+	MainFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+	MainFrame.BackgroundColor3 = Color3.new(1, 1, 1)
+	MainFrame.BorderColor3 = Color3.new(0, 0, 0)
+	MainFrame.BorderSizePixel = 0
+	MainFrame.Transparency = 1
+	MainFrame.Position = UDim2.new(0.187441245, 0, 0.476932675, 0)
+	MainFrame.Size = UDim2.new(0, 45, 0, 45)
+	
+	UICorner.CornerRadius = UDim.new(0, 100)
+	UICorner.Parent = MainFrame
+	
+	UICorner_2.CornerRadius = UDim.new(0, 100)
+	UICorner_2.Parent = ImageLabel
+	
+	ImageLabel.Parent = MainFrame
+	ImageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+	ImageLabel.BackgroundColor3 = Color3.new(0, 0, 0)
+	ImageLabel.BorderColor3 = Color3.new(0, 0, 0)
+	ImageLabel.BorderSizePixel = 0
+	ImageLabel.Position = UDim2.new(0.48888889, 0, 0.48888889, 0)
+	ImageLabel.Size = UDim2.new(0, 45, 0, 45)
+	ImageLabel.Image = "rbxassetid://16550588402"
+	
+	TextButton.Parent = MainFrame
+	TextButton.BackgroundColor3 = Color3.new(1, 1, 1)
+	TextButton.BackgroundTransparency = 1
+	TextButton.BorderColor3 = Color3.new(0, 0, 0)
+	TextButton.BorderSizePixel = 0
+	TextButton.Position = UDim2.new(3.3908421e-07, 0, 0, 0)
+	TextButton.Size = UDim2.new(0, 45, 0, 45)
+	TextButton.AutoButtonColor = false
+	TextButton.Font = Enum.Font.SourceSans
+	TextButton.Text = ""
+	TextButton.TextColor3 = Color3.new(255, 255, 255)
+	TextButton.TextSize = 15
+	TextButton.MouseButton1Click:Connect(function()
+		Library.ToggleUI()
+	end)
+end 
 
--- Defina a posição inicial para o canto superior esquerdo da tela
-local initialPosition = UDim2.new(0, GetMinScreenDimension() * 0.1, 0, GetMinScreenDimension() * 0.1)
+local UserInputService = game:GetService("UserInputService")
 
-ImageButton.Parent = ScreenGui
-ImageButton.AnchorPoint = Vector2.new(0, 0)
-ImageButton.Position = initialPosition
-ImageButton.Size = UDim2.new(0, GetMinScreenDimension() * 0.1, 0, GetMinScreenDimension() * 0.1)
-ImageButton.Image = "rbxassetid://16550588402"
-
-UICorner.CornerRadius = UDim.new(1, 0)
-UICorner.Parent = ImageButton
-
-UIGradient.Color = ColorSequence.new{ColorSequenceKeypoint.new(0.00, Color3.fromRGB(105, 0, 255)), ColorSequenceKeypoint.new(0.32, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(0.65, Color3.fromRGB(150, 0, 255)), ColorSequenceKeypoint.new(1.00, Color3.fromRGB(105, 0, 255))}
-UIGradient.Parent = ImageButton
-
-local function HCEGY_fake_script()
-    local script = Instance.new("LocalScript", UIGradient)
-
-    local TweenService = game:GetService("TweenService")
-    local tweeninfo = TweenInfo.new(4, Enum.EasingStyle.Linear, Enum.EasingDirection.In, -1)
-    local tween = TweenService:Create(script.Parent, tweeninfo, {Rotation = 360})
-    tween:Play()
-end
-coroutine.wrap(HCEGY_fake_script)()
-
-local function YTZCAJC_fake_script()
-    local script = Instance.new("LocalScript", ImageButton)
-
-    local UIS = game:GetService("UserInputService")
-    local frame = script.Parent
-    local dragToggle = nil
-    local dragSpeed = 0.25
-    local dragStart = nil
-    local startPos = nil
-
-    local function updateInput(input)
-        local delta = input.Position - dragStart
-        local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-            startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-        game:GetService("TweenService"):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
+local function ToggleUI(input)
+    if input.KeyCode == Enum.KeyCode.F1 then
+        Library.ToggleUI()
     end
-
-    frame.InputBegan:Connect(function(input)
-        if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-            dragToggle = true
-            dragStart = input.Position
-            startPos = frame.Position
-            input.Changed:Connect(function()
-                if input.UserInputState == Enum.UserInputState.End then
-                    dragToggle = false
-                end
-            end)
-        end
-    end)
-
-    UIS.InputChanged:Connect(function(input)
-        if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-            if dragToggle then
-                updateInput(input)
-            end
-        end
-    end)
-    
-    script.Parent.MouseButton1Click:Connect(function()
-      Library.ToggleUI()
-    end)
 end
-coroutine.wrap(YTZCAJC_fake_script)()
+UserInputService.InputBegan:Connect(ToggleUI)
 
 Library.ToggleUI = function()
 	getgenv().UIToggled = not getgenv().UIToggled
@@ -341,7 +340,6 @@ NotiList.Padding = UDim.new(0, 5)
 
 Library_Function.Gui.Parent = game:GetService('CoreGui')
 Library_Function.NotiGui.Parent = game:GetService('CoreGui')
-
 
 
 function Library_Function.Getcolor(color)
@@ -633,9 +631,9 @@ function Library.CreateMain(Setting)
 		if v ~= ""
 		and type(v) == 'string'
 		and string.find(v:lower(), ".webm")
-		and pcall(function() writefile("seahub.webm", http_request({Url=v}).Body) end) then
+		and pcall(function() writefile("MTXClient.webm", http_request({Url=v}).Body) end) then
 			wait(.25)
-			local sus = isfile("seahub.webm")
+			local sus = isfile("MTXClient.webm")
 			wait(.25)
 			if sus then
 				MainContainer_ = Instance.new("VideoFrame")  
@@ -643,11 +641,11 @@ function Library.CreateMain(Setting)
 				MainContainer_.Parent = Main
 				MainContainer_.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 				MainContainer_.Size = UDim2.new(1, 0, 1, 0)
-				MainContainer_.Video = getsynasset("seahub.webm")
+				MainContainer_.Video = getsynasset("MTXClient.webm")
 				MainContainer_.Looped = true
 				MainContainer_:Play()
 				wait(.5)
-				delfile('seahub.webm')
+				delfile('MTXClient.webm')
 			end
 		else
 			MainContainer_ = Instance.new("ImageLabel")
@@ -695,9 +693,9 @@ function Library.CreateMain(Setting)
 	if defurl ~= ""
 	and type(defurl) == 'string'
 	and string.find(defurl:lower(), ".webm")
-	and pcall(function() writefile("seahub.webm", http_request({Url=defurl}).Body) end) then
+	and pcall(function() writefile("MTXClient.webm", http_request({Url=defurl}).Body) end) then
 		wait(.25)
-		local sus = isfile("seahub.webm")
+		local sus = isfile("MTXClient.webm")
 		wait(.25)
 		if sus then
 			MainContainer = Instance.new("VideoFrame")  
@@ -705,11 +703,11 @@ function Library.CreateMain(Setting)
 			MainContainer.Parent = Main
 			MainContainer.BackgroundColor3 = Color3.fromRGB(53, 53, 53)
 			MainContainer.Size = UDim2.new(1, 0, 1, 0)
-			MainContainer.Video = getsynasset("seahub.webm")
+			MainContainer.Video = getsynasset("MTXClient.webm")
 			MainContainer.Looped = true
 			MainContainer:Play()
 			wait(.5)
-			delfile('seahub.webm')
+			delfile('MTXClient.webm')
 		end
 	else
 		MainContainer = Instance.new("ImageLabel")
@@ -4101,6 +4099,184 @@ function Library.CreateMain(Setting)
 
 	return Main_Function
 
+end
+if not IsMobile then
+    Library.CreateNoti({Title = 'System', Desc = 'PC Detected Press "F1" To Toggle UI', ShowTime = 5})
+end
+
+local Notif = {}
+
+local CoreGUI = game:GetService("CoreGui")
+local TS = game:GetService("TweenService")
+
+local HIDEUI = get_hidden_gui or gethui
+if syn and typeof(syn) == "table" and RenderWindow then syn.protect_gui = gethui; end
+local function Hide_UI(gui)
+    if HIDEUI then
+        gui["Parent"] = HIDEUI()
+    elseif (not is_sirhurt_closure) and (syn and syn.protect_gui) then
+        syn.protect_gui(gui)
+        gui["Parent"] = CoreGUI
+    elseif CoreGUI:FindFirstChild('RobloxGui') then
+        gui["Parent"] = CoreGUI.RobloxGui
+    else
+        gui["Parent"] = CoreGUI
+    end
+end
+
+local screen_gui = Instance.new("ScreenGui")
+Hide_UI(screen_gui)
+
+local frame = Instance.new("Frame")
+frame.AnchorPoint = Vector2.new(0.5, 0.949999988079071)
+frame.BackgroundColor3 = Color3.new(1, 1, 1)
+frame.BackgroundTransparency = 1
+frame.BorderColor3 = Color3.new(0, 0, 0)
+frame.BorderSizePixel = 0
+frame.Position = UDim2.new(0.5, 0, 0.954999983, 0)
+frame.Size = UDim2.new(0, 100, 0, 100)
+frame.Visible = true
+frame.Parent = screen_gui
+
+local uilist_layout = Instance.new("UIListLayout")
+uilist_layout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+uilist_layout.SortOrder = Enum.SortOrder.LayoutOrder
+uilist_layout.VerticalAlignment = Enum.VerticalAlignment.Bottom
+uilist_layout.Parent = frame
+	
+function Notif.New(text, timee)
+    local frame_2 = Instance.new("Frame")
+    frame_2.BackgroundColor3 = Color3.new(1, 1, 1)
+    frame_2.BorderColor3 = Color3.new(0, 0, 0)
+    frame_2.BorderSizePixel = 0
+    frame_2.BackgroundTransparency = 1
+    frame_2.Size = UDim2.new(0, 100, 0, 0)
+    frame_2.Visible = true
+    frame_2.Parent = frame
+	
+    -- Main Notification Frame
+    local frame_3 = Instance.new("Frame")
+    frame_3.AnchorPoint = Vector2.new(0.5, 1)
+    frame_3.AutomaticSize = Enum.AutomaticSize.X
+    frame_3.BackgroundColor3 = Color3.new(0.141176, 0.141176, 0.141176)
+    frame_3.BackgroundTransparency = 0.20000000298023224
+    frame_3.BorderColor3 = Color3.new(0, 0, 0)
+    frame_3.Position = UDim2.new(0.5, 0, 1, 60)
+    frame_3.Size = UDim2.new(0, 0, 0, 30)
+    frame_3.Visible = true
+    frame_3.Parent = frame_2
+
+    local uicorner = Instance.new("UICorner")
+    uicorner.CornerRadius = UDim.new(0, 6)
+    uicorner.Parent = frame_3
+
+    local uipadding = Instance.new("UIPadding")
+    uipadding.PaddingBottom = UDim.new(0, 3)
+    uipadding.PaddingLeft = UDim.new(0, 3)
+    uipadding.PaddingRight = UDim.new(0, 3)
+    uipadding.PaddingTop = UDim.new(0, 3)
+    uipadding.Parent = frame_3
+
+    local uistroke = Instance.new("UIStroke")
+    uistroke.ApplyStrokeMode = Enum.ApplyStrokeMode.Border
+    uistroke.Color = Color3.new(0.0313726, 0.0313726, 0.0313726)
+    uistroke.Parent = frame_3
+
+    local text_label = Instance.new("TextLabel")
+    text_label.Font = Enum.Font.Gotham
+    text_label.Text = text
+    text_label.TextColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+    text_label.TextSize = 14
+    text_label.AutomaticSize = Enum.AutomaticSize.X
+    text_label.BackgroundColor3 = Color3.new(1, 1, 1)
+    text_label.BackgroundTransparency = 1
+    text_label.BorderColor3 = Color3.new(0, 0, 0)
+    text_label.BorderSizePixel = 0
+    text_label.Size = UDim2.new(0, 0, 0, 24)
+    text_label.Visible = true
+    text_label.Parent = frame_3
+
+    local uipadding_2 = Instance.new("UIPadding")
+    uipadding_2.PaddingLeft = UDim.new(0, 5)
+    uipadding_2.PaddingRight = UDim.new(0, 30)
+    uipadding_2.Parent = text_label
+
+    local text_button = Instance.new("TextButton")
+    text_button.Font = Enum.Font.SourceSans
+    text_button.Text = ""
+    text_button.TextColor3 = Color3.new(0, 0, 0)
+    text_button.TextSize = 14
+    text_button.AnchorPoint = Vector2.new(1, 0.5)
+    text_button.BackgroundColor3 = Color3.new(0, 0, 0)
+    text_button.BackgroundTransparency = 1
+    text_button.BorderColor3 = Color3.new(0, 0, 0)
+    text_button.BorderSizePixel = 0
+    text_button.Position = UDim2.new(1, 0, 0.5, 0)
+    text_button.Size = UDim2.new(0, 24, 0, 24)
+    text_button.Visible = true
+    text_button.Parent = frame_3
+
+    local uicorner_2 = Instance.new("UICorner")
+    uicorner_2.CornerRadius = UDim.new(0, 5)
+    uicorner_2.Parent = text_button
+
+    local image_button = Instance.new("ImageButton")
+    image_button.Image = "rbxassetid://3926305904"
+    image_button.ImageColor3 = Color3.new(0.784314, 0.784314, 0.784314)
+    image_button.ImageRectOffset = Vector2.new(924, 724)
+    image_button.ImageRectSize = Vector2.new(36, 36)
+    image_button.AnchorPoint = Vector2.new(0.5, 0.5)
+    image_button.BackgroundTransparency = 1
+    image_button.LayoutOrder = 3
+    image_button.Position = UDim2.new(0.5, 0, 0.5, 0)
+    image_button.Size = UDim2.new(0, 18, 0, 18)
+    image_button.Visible = true
+    image_button.ZIndex = 2
+    image_button.Parent = text_button
+
+    --Animations
+    TS:Create(frame_3, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Position = UDim2.new(0.5, 0, 1, 0) }):Play()
+    TS:Create(frame_2, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 100, 0, 35) }):Play()
+
+    -- Close Button
+    local function close_notif()
+        TS:Create(image_button, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { ImageTransparency = 1 }):Play()
+        TS:Create(text_button, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
+        TS:Create(text_label, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(.17)
+        TS:Create(frame_3, TweenInfo.new(0.25, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
+        TS:Create(uistroke, TweenInfo.new(0.24, Enum.EasingStyle.Quint), { Transparency = 1 }):Play()
+        task.wait(.05)
+        TS:Create(frame_2, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 100, 0, 0) }):Play()
+        task.wait(.2)
+        frame_2:Destroy()
+    end
+    text_button.MouseEnter:Connect(function()
+        TS:Create(text_button, TweenInfo.new(0.25, Enum.EasingStyle.Quint), { BackgroundTransparency = 0.8 }):Play()
+        TS:Create(image_button, TweenInfo.new(0.3, Enum.EasingStyle.Quint),
+            { ImageColor3 = Color3.new(0.890196, 0.054902, 0.054902) }):Play()
+    end)
+
+    text_button.MouseLeave:Connect(function()
+        TS:Create(text_button, TweenInfo.new(0.25, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
+        TS:Create(image_button, TweenInfo.new(0.3, Enum.EasingStyle.Quint),
+            { ImageColor3 = Color3.new(0.784314, 0.784314, 0.784314) }):Play()
+    end)
+
+    text_button.MouseButton1Click:Connect(function()
+        TS:Create(image_button, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { ImageTransparency = 1 }):Play()
+        TS:Create(text_button, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
+        TS:Create(text_label, TweenInfo.new(0.15, Enum.EasingStyle.Quint), { TextTransparency = 1 }):Play()
+        task.wait(.17)
+        TS:Create(frame_3, TweenInfo.new(0.25, Enum.EasingStyle.Quint), { BackgroundTransparency = 1 }):Play()
+        TS:Create(uistroke, TweenInfo.new(0.24, Enum.EasingStyle.Quint), { Transparency = 1 }):Play()
+        task.wait(.05)
+        TS:Create(frame_2, TweenInfo.new(0.2, Enum.EasingStyle.Quint), { Size = UDim2.new(0, 100, 0, 0) }):Play()
+        task.wait(.2)
+        frame_2:Destroy()
+    end)
+    image_button.MouseButton1Click:Connect(close_notif)
+    task.delay(tonumber(timee) and timee or 10, close_notif)
 end
 
 return Library
