@@ -300,15 +300,6 @@ if IsMobile then
 	end)
 end 
 
-local UserInputService = game:GetService("UserInputService")
-
-local function ToggleUI(input)
-    if input.KeyCode == Enum.KeyCode.F1 then
-        Library.ToggleUI()
-    end
-end
-UserInputService.InputBegan:Connect(ToggleUI)
-
 Library.ToggleUI = function()
 	getgenv().UIToggled = not getgenv().UIToggled
 	if game.CoreGui:FindFirstChild("MTX Client")then for a,b in ipairs(game.CoreGui:GetChildren())do if b.Name=="MTX Client"then b.Enabled= getgenv().UIToggled end end end
