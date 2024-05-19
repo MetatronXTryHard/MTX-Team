@@ -1,6 +1,6 @@
 # MTX-Client
 
-## Github Oficial Do Script : https://github.com/MTXClient/MTX-Client
+## Github Oficial Do MTX Client : https://github.com/MTXClient/MTX-Client
 
 **Apresentando o  MTX Cliente**
 
