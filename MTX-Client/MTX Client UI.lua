@@ -1,3 +1,25 @@
+--[[
+     UI By metatron_exe | And MTX Team / discord.gg/mtxstore
+
+███╗   ███╗████████╗██╗  ██╗     ██████╗██╗     ██╗███████╗███╗   ██╗████████╗
+████╗ ████║╚══██╔══╝╚██╗██╔╝    ██╔════╝██║     ██║██╔════╝████╗  ██║╚══██╔══╝
+██╔████╔██║   ██║    ╚███╔╝     ██║     ██║     ██║█████╗  ██╔██╗ ██║   ██║   
+██║╚██╔╝██║   ██║    ██╔██╗     ██║     ██║     ██║██╔══╝  ██║╚██╗██║   ██║   
+██║ ╚═╝ ██║   ██║   ██╔╝ ██╗    ╚██████╗███████╗██║███████╗██║ ╚████║   ██║   
+╚═╝     ╚═╝   ╚═╝   ╚═╝  ╚═╝     ╚═════╝╚══════╝╚═╝╚══════╝╚═╝  ╚═══╝   ╚═╝  
+
+                This script has been licensed using Luauth
+            Unauthorized distribution of this script is forbidden.
+      Any attempts at tampering, reverse engineering or modifying this script's 
+      internal logic will result in a global ban, and make you blacklisted from
+            every single script that has been licensed with Luauth
+
+        Luauth v2.5 for Roblox, #1 lua whitelisting system by Federal#9999
+
+--// • Discord Server: https://discord.gg/pzV9Zfcd
+--// • Developers: MTX-Team </>
+--// • Owner: metatron_exe
+]]
 if getgenv().MTXClient then 
 	if game.CoreGui:FindFirstChild("MTX Client") then for i, v in ipairs(game.CoreGui:GetChildren()) do if v.Name == "MTX Client" then v:Destroy() end end end
 end
