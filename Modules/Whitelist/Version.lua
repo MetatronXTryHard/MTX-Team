@@ -5,4 +5,4 @@ getgenv().Info = {["Version"] = {Loader = {"0.1"}}}
 local version = getgenv().Info.Version.Loader
 print(version)
 
-return getgenv().Info
+return version
